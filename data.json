@@ -6,6 +6,7 @@
     "notas_em_atraso": 26,
     "previstas_para_hoje": 18,
     "performance_percent": 91.96,
+    "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 80948.72,
     "valor_total_previsto_hoje": 59246.84
   },
@@ -48,14 +49,14 @@
     {
       "nota_fiscal": "197504",
       "destinatario": "DIAGNOSTICOS DA AMERICA S.A .",
-      "valor_mercadoria": 820,
+      "valor_mercadoria": 820.0,
       "transportador": "AZURELOG",
       "previsao_entrega": "2026-01-08"
     },
     {
       "nota_fiscal": "198850",
       "destinatario": "ALFA EXCELENCIA DIAGNOSTICA LTDA",
-      "valor_mercadoria": 5040,
+      "valor_mercadoria": 5040.0,
       "transportador": "PATRUS",
       "previsao_entrega": "2026-01-12"
     },
@@ -83,7 +84,7 @@
     {
       "nota_fiscal": "198961",
       "destinatario": "DIAGNOSTICOS DA AMERICA S.A",
-      "valor_mercadoria": 1722,
+      "valor_mercadoria": 1722.0,
       "transportador": "PATRUS",
       "previsao_entrega": "2026-01-14"
     },
@@ -176,7 +177,7 @@
     {
       "nota_fiscal": "199450",
       "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
-      "valor_mercadoria": 7847,
+      "valor_mercadoria": 7847.0,
       "transportador": "SCHREIBER",
       "cidade_destino": "BARUERI - SP"
     },
@@ -225,7 +226,7 @@
     {
       "nota_fiscal": "199108",
       "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
-      "valor_mercadoria": 1200,
+      "valor_mercadoria": 1200.0,
       "transportador": "TGL",
       "cidade_destino": "BARUERI - SP"
     },
@@ -239,7 +240,7 @@
     {
       "nota_fiscal": "199091",
       "destinatario": "DIAGNOSTICOS DA AMERICA",
-      "valor_mercadoria": 976,
+      "valor_mercadoria": 976.0,
       "transportador": "TGL",
       "cidade_destino": "SAO JOSE DOS PINHAIS - PR"
     },
@@ -266,4 +267,3 @@
     }
   ]
 }
-
