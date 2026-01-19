@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Painel de Entregas – Indicador</title>
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --muted:#9aa4c0;
+      --text:#e9ecf5;
+      --line:#243055;
+
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+
+      --shadow: 0 14px 30px rgba(0,0,0,.25);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 30% 0%, rgba(11,134,255,.22), transparent 55%),
+                  radial-gradient(900px 700px at 80% 20%, rgba(34,197,94,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+
+    .wrap{ max-width:1200px; margin: 28px auto 60px; padding: 0 18px; }
+
+    header{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:16px; margin-bottom:18px; flex-wrap:wrap;
+    }
+    h1{ margin:0; font-size:38px; letter-spacing:.2px; }
+    .rightHead{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .updated{
+      color:var(--muted);
+      font-size:13px;
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+      white-space:nowrap;
+    }
+    .filter{
+      display:flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+    }
+    .filter label{ font-size:12px; color: rgba(233,236,245,.80); }
+    select{
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+    .kpi{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding: 16px 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      min-height: 104px;
+    }
+    .kpi .title{ color: rgba(233,236,245,.85); font-size:13px; letter-spacing:.3px; }
+    .kpi .value{ font-size:28px; font-weight:800; margin:10px 0 2px; }
+    .kpi .sub{ color:var(--muted); font-size:12px; }
+
+    .hero{
+      margin:16px 0 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(120deg, rgba(11,134,255,.85), rgba(10,91,211,.85));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      padding: 18px 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-80px -120px auto auto;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.32), transparent 60%);
+      transform: rotate(10deg);
+      opacity:.55;
+    }
+    .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; }
+    .hero p{ margin:0; color: rgba(255,255,255,.85); max-width: 720px; }
+
+    .gaugeWrap{
+      display:flex; justify-content:center; align-items:center;
+      position:relative;
+      z-index:1;
+    }
+    .gauge{
+      width: 210px; height: 210px;
+      border-radius: 50%;
+      background: conic-gradient(var(--good) 0deg, var(--good) 180deg, rgba(255,255,255,.18) 180deg 360deg);
+      position:relative;
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    }
+    .gauge::after{
+      content:"";
+      position:absolute; inset: 18px;
+      background: rgba(10,91,211,.95);
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .gaugeCenter{
+      position:absolute;
+      top:50%; left:50%;
+      transform: translate(-50%, -54%);
+      text-align:center;
+      z-index:2;
+      width: 170px;
+    }
+    .gaugeCenter .pct{ font-size:52px; font-weight:900; line-height:1; }
+    .gaugeCenter .lbl{ font-size:12px; color: rgba(255,255,255,.88); margin-top:6px; }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .panel{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .panel .ph{
+      padding: 14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.10);
+    }
+    .ph .ttl{
+      font-weight:800;
+      display:flex; align-items:center; gap:10px;
+    }
+    .badge{
+      font-size:12px;
+      padding: 6px 10px;
+      border-radius:999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(233,236,245,.92);
+      white-space:nowrap;
+    }
+    table{ width:100%; border-collapse:collapse; }
+    th, td{
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      vertical-align:middle;
+      font-size:13px;
+    }
+    th{
+      text-transform:uppercase;
+      letter-spacing:.35px;
+      font-size:11px;
+      color: rgba(233,236,245,.75);
+      background: rgba(255,255,255,.05);
+      position:sticky; top:0;
+    }
+    td .muted{ color: var(--muted); font-size:12px; }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding: 6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      color:#0b1020;
+      background: var(--warn);
+      white-space:nowrap;
+    }
+    .pill.bad{ background: var(--bad); color:#fff; }
+    .pill.good{ background: var(--good); color:#0b1020; }
+
+    .scroll{ max-height: 420px; overflow:auto; }
+
+    .foot{
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 1200px){
+      .kpis{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+    }
+    @media (max-width: 980px){
+      .kpis{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .hero{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      h1{ font-size:30px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Painel de Entregas</h1>
+      </div>
+
+      <div class="rightHead">
+        <div class="filter">
+          <label for="carrierFilter">Transportador</label>
+          <select id="carrierFilter">
+            <option value="__ALL__">Todos</option>
+          </select>
+        </div>
+        <div class="updated" id="updatedAt">Atualizado em: --/--/----</div>
+      </div>
+    </header>
+
+    <section class="kpis">
+      <div class="kpi">
+        <div class="title">Total de Notas</div>
+        <div class="value" id="kpiTotalNotas">—</div>
+        <div class="sub">Notas fiscais no período</div>
+      </div>
+      <div class="kpi">
+        <div class="title">Entregas Realizadas</div>
+        <div class="value" id="kpiEntregas">—</div>
+        <div class="sub">Notas entregues</div>
+      </div>
+      <div class="kpi">
+        <div class="title">Notas em Atraso</div>
+        <div class="value" id="kpiAtraso">—</div>
+        <div class="sub">Pendentes fora do prazo</div>
+      </div>
+      <div class="kpi">
+        <div class="title">Previstas para Hoje</div>
+        <div class="value" id="kpiHoje">—</div>
+        <div class="sub">Previsão diária</div>
+      </div>
+      <div class="kpi">
+        <div class="title">Valor em Atraso</div>
+        <div class="value" id="kpiValorAtraso">—</div>
+        <div class="sub">Somatório (filtro aplicado)</div>
+      </div>
+      <div class="kpi">
+        <div class="title">Valor Previsto Hoje</div>
+        <div class="value" id="kpiValorHoje">—</div>
+        <div class="sub">Somatório (filtro aplicado)</div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div style="position:relative; z-index:1;">
+        <h2>Performance de Entregas Atual</h2>
+        <p>
+          Indicador consolidado de entregas concluídas. Use o filtro de transportador para focar a análise de notas em atraso
+          e previstas para o dia.
+        </p>
+      </div>
+
+      <div class="gaugeWrap">
+        <div class="gauge" id="gauge">
+          <div class="gaugeCenter">
+            <div class="pct" id="perfPct">—%</div>
+            <div class="lbl">Eficiência de Entrega</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid2">
+      <div class="panel">
+        <div class="ph">
+          <div class="ttl">Notas em Atraso</div>
+          <div class="badge" id="atrasoCount">— itens</div>
+        </div>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>NF</th>
+                <th>Destinatário</th>
+                <th>Valor</th>
+                <th>Transportador</th>
+                <th>Prev. Entrega</th>
+                <th>Atraso</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyAtraso"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph">
+          <div class="ttl">Notas Previstas para Hoje</div>
+          <div class="badge" id="hojeCount">— itens</div>
+        </div>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>NF</th>
+                <th>Destinatário</th>
+                <th>Valor</th>
+                <th>Transportador</th>
+                <th>Cidade destino</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyHoje"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">
+      <div>Observação: painel alimentado via <strong>data.json</strong>.</div>
+      <div>Labor • Logística • Indicadores</div>
+    </div>
+  </div>
+
+  <script>
+    const fmtBRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
+
+    function parseUpdatedDate(updatedAtStr){
+      const [datePart, timePart="00:00"] = updatedAtStr.split(" ");
+      const [dd, mm, yyyy] = datePart.split("/").map(Number);
+      const [HH, MM] = timePart.split(":").map(Number);
+      return new Date(yyyy, mm-1, dd, HH || 0, MM || 0, 0, 0);
+    }
+
+    function isoToBR(iso){
+      const [y,m,d] = iso.split("-").map(Number);
+      const dt = new Date(y, m-1, d);
+      return dt.toLocaleDateString('pt-BR');
+    }
+
+    function daysDiff(later, earlier){
+      const ms = later.getTime() - earlier.getTime();
+      return Math.floor(ms / (1000*60*60*24));
+    }
+
+    function setGauge(percent){
+      const p = Math.max(0, Math.min(100, percent));
+      const deg = (p/100) * 180;
+
+      const root = getComputedStyle(document.documentElement);
+      const good = root.getPropertyValue('--good').trim();
+      const warn = root.getPropertyValue('--warn').trim();
+      const bad  = root.getPropertyValue('--bad').trim();
+
+      let color = good;
+      if (p < 85) color = warn;
+      if (p < 75) color = bad;
+
+      const gauge = document.getElementById('gauge');
+      gauge.style.background = `conic-gradient(${color} 0deg, ${color} ${deg}deg, rgba(255,255,255,.18) ${deg}deg 360deg)`;
+
+      document.getElementById('perfPct').textContent =
+        p.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
+    }
+
+    function normalizeCarrier(s){
+      return String(s || '').trim();
+    }
+
+    function sumValues(list){
+      return list.reduce((acc, it) => acc + (Number(it.valor_mercadoria) || 0), 0);
+    }
+
+    function applyCarrierFilter(list, carrier){
+      if (!carrier || carrier === '__ALL__') return list;
+      return list.filter(it => normalizeCarrier(it.transportador) === carrier);
+    }
+
+    function buildCarrierOptions(data){
+      const carriers = new Set();
+      for (const it of (data.notas_em_atraso || [])) carriers.add(normalizeCarrier(it.transportador));
+      for (const it of (data.notas_previstas_hoje || [])) carriers.add(normalizeCarrier(it.transportador));
+
+      const sorted = Array.from(carriers).filter(Boolean).sort((a,b) => a.localeCompare(b, 'pt-BR'));
+      const sel = document.getElementById('carrierFilter');
+
+      // preserve "Todos"
+      for (const c of sorted){
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c;
+        sel.appendChild(opt);
+      }
+    }
+
+    function renderTables(data, carrier){
+      const now = parseUpdatedDate(data.updated_at);
+
+      const atrasoAll = (data.notas_em_atraso || []).slice().sort((a,b) => (a.previsao_entrega > b.previsao_entrega ? 1 : -1));
+      const hojeAll   = (data.notas_previstas_hoje || []).slice();
+
+      const atrasoList = applyCarrierFilter(atrasoAll, carrier);
+      const hojeList   = applyCarrierFilter(hojeAll, carrier);
+
+      // badges (contagem)
+      document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
+      document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
+
+      // KPIs de valor (sempre recalculados com filtro)
+      document.getElementById('kpiValorAtraso').textContent = fmtBRL.format(sumValues(atrasoList));
+      document.getElementById('kpiValorHoje').textContent   = fmtBRL.format(sumValues(hojeList));
+
+      // tabela atraso
+      const atrasoBody = document.getElementById('tbodyAtraso');
+      atrasoBody.innerHTML = '';
+
+      for (const it of atrasoList){
+        const prev = new Date(it.previsao_entrega + "T00:00:00");
+        const lateDays = Math.max(0, daysDiff(now, prev));
+        const pillClass = lateDays >= 10 ? 'pill bad' : (lateDays >= 5 ? 'pill' : 'pill good');
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${it.nota_fiscal}</strong></td>
+          <td>${it.destinatario}</td>
+          <td>${fmtBRL.format(Number(it.valor_mercadoria || 0))}</td>
+          <td><span class="muted">${it.transportador}</span></td>
+          <td>${isoToBR(it.previsao_entrega)}</td>
+          <td><span class="${pillClass}">${lateDays}d</span></td>
+        `;
+        atrasoBody.appendChild(tr);
+      }
+
+      // tabela hoje
+      const hojeBody = document.getElementById('tbodyHoje');
+      hojeBody.innerHTML = '';
+
+      for (const it of hojeList){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${it.nota_fiscal}</strong></td>
+          <td>${it.destinatario}</td>
+          <td>${fmtBRL.format(Number(it.valor_mercadoria || 0))}</td>
+          <td><span class="muted">${it.transportador}</span></td>
+          <td>${it.cidade_destino}</td>
+        `;
+        hojeBody.appendChild(tr);
+      }
+
+      // opcional: também atualizar os KPIs de contagem com filtro (mantendo os globais no KPI principal)
+      // Se quiser que "Notas em Atraso" e "Previstas para Hoje" do KPI também mudem com o filtro, descomente:
+      // document.getElementById('kpiAtraso').textContent = atrasoList.length.toLocaleString('pt-BR');
+      // document.getElementById('kpiHoje').textContent   = hojeList.length.toLocaleString('pt-BR');
+    }
+
+    async function load(){
+      const res = await fetch('data.json', { cache: 'no-store' });
+      const data = await res.json();
+
+      document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
+
+      // KPIs globais
+      document.getElementById('kpiTotalNotas').textContent = data.kpis.total_notas.toLocaleString('pt-BR');
+      document.getElementById('kpiEntregas').textContent   = data.kpis.entregas_realizadas.toLocaleString('pt-BR');
+      document.getElementById('kpiAtraso').textContent     = data.kpis.notas_em_atraso.toLocaleString('pt-BR');
+      document.getElementById('kpiHoje').textContent       = data.kpis.previstas_para_hoje.toLocaleString('pt-BR');
+
+      setGauge(Number(data.kpis.performance_percent || 0));
+
+      buildCarrierOptions(data);
+
+      const sel = document.getElementById('carrierFilter');
+      const render = () => renderTables(data, sel.value);
+
+      sel.addEventListener('change', render);
+
+      // render inicial (Todos)
+      render();
+    }
+
+    load().catch(err => {
+      console.error(err);
+      alert('Erro ao carregar data.json. Verifique se index.html e data.json estão na mesma pasta.');
+    });
+  </script>
+</body>
+</html>

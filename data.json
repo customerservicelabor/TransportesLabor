@@ -1,0 +1,269 @@
+{
+  "updated_at": "19/01/2026 09:00",
+  "kpis": {
+    "total_notas": 2262,
+    "entregas_realizadas": 1829,
+    "notas_em_atraso": 26,
+    "previstas_para_hoje": 18,
+    "performance_percent": 91.96,
+    "valor_total_em_atraso": 80948.72,
+    "valor_total_previsto_hoje": 59246.84
+  },
+  "notas_em_atraso": [
+    {
+      "nota_fiscal": "198029",
+      "destinatario": "MAXSAUDE DISTRIBUIDORA DE MEDICAMENTOS E",
+      "valor_mercadoria": 1364.88,
+      "transportador": "LATAM",
+      "previsao_entrega": "2025-12-19"
+    },
+    {
+      "nota_fiscal": "198003",
+      "destinatario": "DISTRIBUIDORA SAUDE HOSPITALAR LTDA",
+      "valor_mercadoria": 3116.5,
+      "transportador": "LATAM",
+      "previsao_entrega": "2025-12-19"
+    },
+    {
+      "nota_fiscal": "197610",
+      "destinatario": "MANAUARA COM PROD SERV HOSPITALARES LTDA",
+      "valor_mercadoria": 2417.92,
+      "transportador": "LATAM",
+      "previsao_entrega": "2025-12-19"
+    },
+    {
+      "nota_fiscal": "198506",
+      "destinatario": "RICCO FARMA DISTRIBUIDORA LTDA",
+      "valor_mercadoria": 6753.63,
+      "transportador": "TECMAR",
+      "previsao_entrega": "2026-01-05"
+    },
+    {
+      "nota_fiscal": "198690",
+      "destinatario": "RICCO FARMA DISTRIBUIDORA LTDA",
+      "valor_mercadoria": 3183.32,
+      "transportador": "TECMAR",
+      "previsao_entrega": "2026-01-07"
+    },
+    {
+      "nota_fiscal": "197504",
+      "destinatario": "DIAGNOSTICOS DA AMERICA S.A .",
+      "valor_mercadoria": 820,
+      "transportador": "AZURELOG",
+      "previsao_entrega": "2026-01-08"
+    },
+    {
+      "nota_fiscal": "198850",
+      "destinatario": "ALFA EXCELENCIA DIAGNOSTICA LTDA",
+      "valor_mercadoria": 5040,
+      "transportador": "PATRUS",
+      "previsao_entrega": "2026-01-12"
+    },
+    {
+      "nota_fiscal": "198954",
+      "destinatario": "LUNAV ANALISES CLINICAS LTDA",
+      "valor_mercadoria": 360.38,
+      "transportador": "Fedex",
+      "previsao_entrega": "2026-01-12"
+    },
+    {
+      "nota_fiscal": "198914",
+      "destinatario": "CLASSMED - PRODUTOS HOSPITALARES LT",
+      "valor_mercadoria": 422.8,
+      "transportador": "Fedex",
+      "previsao_entrega": "2026-01-13"
+    },
+    {
+      "nota_fiscal": "198732",
+      "destinatario": "COMERCIAL PEREIRA CARVALHO LTDA",
+      "valor_mercadoria": 1374.69,
+      "transportador": "Fedex",
+      "previsao_entrega": "2026-01-13"
+    },
+    {
+      "nota_fiscal": "198961",
+      "destinatario": "DIAGNOSTICOS DA AMERICA S.A",
+      "valor_mercadoria": 1722,
+      "transportador": "PATRUS",
+      "previsao_entrega": "2026-01-14"
+    },
+    {
+      "nota_fiscal": "199157",
+      "destinatario": "IMPACTA MED DISTRI MEDICAMENTO MA HOS LT",
+      "valor_mercadoria": 2940.66,
+      "transportador": "TGL",
+      "previsao_entrega": "2026-01-14"
+    },
+    {
+      "nota_fiscal": "199050",
+      "destinatario": "GHM HOSPITALAR LTDA",
+      "valor_mercadoria": 6360.81,
+      "transportador": "TRANSLOVATO",
+      "previsao_entrega": "2026-01-14"
+    },
+    {
+      "nota_fiscal": "199298",
+      "destinatario": "MARQUES MED DISTRIBUIDORA DE MEDICA FIVE MED DISTR",
+      "valor_mercadoria": 2447.56,
+      "transportador": "TGL",
+      "previsao_entrega": "2026-01-15"
+    },
+    {
+      "nota_fiscal": "199217",
+      "destinatario": "EMPRESA BRASILEIRA DE SERVICOS HOSPITALARES - EBSE",
+      "valor_mercadoria": 29.43,
+      "transportador": "Fedex",
+      "previsao_entrega": "2026-01-15"
+    },
+    {
+      "nota_fiscal": "199030",
+      "destinatario": "F B MATIJACEVICH",
+      "valor_mercadoria": 3733.96,
+      "transportador": "LATAM",
+      "previsao_entrega": "2026-01-16"
+    },
+    {
+      "nota_fiscal": "198886",
+      "destinatario": "TOTAL MED COMERCIO DE PRODUTOS HOSPITALAR LTDA",
+      "valor_mercadoria": 18762.24,
+      "transportador": "LATAM",
+      "previsao_entrega": "2026-01-16"
+    },
+    {
+      "nota_fiscal": "199248",
+      "destinatario": "COMERCIAL 3ALBE LTDA",
+      "valor_mercadoria": 11160.99,
+      "transportador": "SCHREIBER",
+      "previsao_entrega": "2026-01-16"
+    },
+    {
+      "nota_fiscal": "199300",
+      "destinatario": "MARILEI LOPES DE LIMA",
+      "valor_mercadoria": 1376.07,
+      "transportador": "Fedex",
+      "previsao_entrega": "2026-01-16"
+    },
+    {
+      "nota_fiscal": "199292",
+      "destinatario": "LABORATORIO DE ANALISES CLINICAS LEDRA LTDA",
+      "valor_mercadoria": 853.87,
+      "transportador": "Fedex",
+      "previsao_entrega": "2026-01-16"
+    },
+    {
+      "nota_fiscal": "199270",
+      "destinatario": "W.J. ANDRADE COMERCIO DE ARTIGOS HOSPITALARES EIRELI",
+      "valor_mercadoria": 12543.82,
+      "transportador": "Fedex",
+      "previsao_entrega": "2026-01-16"
+    }
+  ],
+  "notas_previstas_hoje": [
+    {
+      "nota_fiscal": "199225",
+      "destinatario": "UNNI MEDICAL LTDA",
+      "valor_mercadoria": 1056.77,
+      "transportador": "AZUL",
+      "cidade_destino": "SAO LUIS - MA"
+    },
+    {
+      "nota_fiscal": "199207",
+      "destinatario": "SAUDE MEDIC COM PROD MEDICOS HOSP LTDA",
+      "valor_mercadoria": 3.9,
+      "transportador": "AZUL",
+      "cidade_destino": "LAURO DE FREITAS - BA"
+    },
+    {
+      "nota_fiscal": "199450",
+      "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
+      "valor_mercadoria": 7847,
+      "transportador": "SCHREIBER",
+      "cidade_destino": "BARUERI - SP"
+    },
+    {
+      "nota_fiscal": "199216",
+      "destinatario": "DUAL VET CLINICA VETERINARIA LTDA",
+      "valor_mercadoria": 601.68,
+      "transportador": "SCHREIBER",
+      "cidade_destino": "CARAGUATATUBA - SP"
+    },
+    {
+      "nota_fiscal": "199523",
+      "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
+      "valor_mercadoria": 21120.23,
+      "transportador": "TGL",
+      "cidade_destino": "BARUERI - SP"
+    },
+    {
+      "nota_fiscal": "199521",
+      "destinatario": "DUMALE PRODUTOS PARA SAUDE LTDA",
+      "valor_mercadoria": 4341.63,
+      "transportador": "TGL",
+      "cidade_destino": "CURITIBA - PR"
+    },
+    {
+      "nota_fiscal": "199519",
+      "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
+      "valor_mercadoria": 5562.77,
+      "transportador": "TGL",
+      "cidade_destino": "BARUERI - SP"
+    },
+    {
+      "nota_fiscal": "199474",
+      "destinatario": "MINUZZI & PINTARELLI PRODUTOS MEDICO-HOS",
+      "valor_mercadoria": 5769.59,
+      "transportador": "TGL",
+      "cidade_destino": "CURITIBA - PR"
+    },
+    {
+      "nota_fiscal": "199333",
+      "destinatario": "MEDTOUR ADMINISTRADORA DE BENEFICIOS E E",
+      "valor_mercadoria": 2871.93,
+      "transportador": "TGL",
+      "cidade_destino": "GUARULHOS - SP"
+    },
+    {
+      "nota_fiscal": "199108",
+      "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
+      "valor_mercadoria": 1200,
+      "transportador": "TGL",
+      "cidade_destino": "BARUERI - SP"
+    },
+    {
+      "nota_fiscal": "199102",
+      "destinatario": "DASA",
+      "valor_mercadoria": 1216.77,
+      "transportador": "TGL",
+      "cidade_destino": "BARUERI - SP"
+    },
+    {
+      "nota_fiscal": "199091",
+      "destinatario": "DIAGNOSTICOS DA AMERICA",
+      "valor_mercadoria": 976,
+      "transportador": "TGL",
+      "cidade_destino": "SAO JOSE DOS PINHAIS - PR"
+    },
+    {
+      "nota_fiscal": "199358",
+      "destinatario": "GAIA MEDICAMENTOS LTDA",
+      "valor_mercadoria": 1854.94,
+      "transportador": "Fedex",
+      "cidade_destino": "ICARA - SC"
+    },
+    {
+      "nota_fiscal": "199235",
+      "destinatario": "PEGASUS SOLUCOES CORPORATIVAS LTDA",
+      "valor_mercadoria": 1304.54,
+      "transportador": "Fedex",
+      "cidade_destino": "SANTO ANTONIO DA PLATINA - PR"
+    },
+    {
+      "nota_fiscal": "199441",
+      "destinatario": "CASA MEDICA COM. PROD. HOSPITALARES LTDA",
+      "valor_mercadoria": 3538.89,
+      "transportador": "TRANSLOVATO",
+      "cidade_destino": "LONDRINA - PR"
+    }
+  ]
+}
+
