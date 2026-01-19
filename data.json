@@ -1,5 +1,5 @@
 {
-  "updated_at": "19/01/2026 09:00",
+  "updated_at": "19/01/2026",
   "kpis": {
     "total_notas": 2262,
     "entregas_realizadas": 1829,
@@ -267,3 +267,4 @@
     }
   ]
 }
+
