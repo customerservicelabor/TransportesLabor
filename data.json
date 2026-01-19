@@ -1,14 +1,14 @@
 {
   "updated_at": "19/01/2026",
   "kpis": {
-    "total_notas": 2262,
-    "entregas_realizadas": 1829,
-    "notas_em_atraso": 26,
-    "previstas_para_hoje": 18,
-    "performance_percent": 91.96,
+    "total_notas": 2301,
+    "entregas_realizadas": 1858,
+    "notas_em_atraso": 20,
+    "previstas_para_hoje": 09,
+    "performance_percent": 92.03,
     "meta_performance_percent": 95.0,
-    "valor_total_em_atraso": 80948.72,
-    "valor_total_previsto_hoje": 59246.84
+    "valor_total_em_atraso": 75624.54,
+    "valor_total_previsto_hoje": 44055.66
   },
   "notas_em_atraso": [
     {
@@ -130,14 +130,7 @@
       "transportador": "LATAM",
       "previsao_entrega": "2026-01-16"
     },
-    {
-      "nota_fiscal": "199248",
-      "destinatario": "COMERCIAL 3ALBE LTDA",
-      "valor_mercadoria": 11160.99,
-      "transportador": "SCHREIBER",
-      "previsao_entrega": "2026-01-16"
-    },
-    {
+        {
       "nota_fiscal": "199300",
       "destinatario": "MARILEI LOPES DE LIMA",
       "valor_mercadoria": 1376.07,
@@ -168,39 +161,11 @@
       "cidade_destino": "SAO LUIS - MA"
     },
     {
-      "nota_fiscal": "199207",
-      "destinatario": "SAUDE MEDIC COM PROD MEDICOS HOSP LTDA",
-      "valor_mercadoria": 3.9,
-      "transportador": "AZUL",
-      "cidade_destino": "LAURO DE FREITAS - BA"
-    },
-    {
-      "nota_fiscal": "199450",
-      "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
-      "valor_mercadoria": 7847.0,
-      "transportador": "SCHREIBER",
-      "cidade_destino": "BARUERI - SP"
-    },
-    {
-      "nota_fiscal": "199216",
-      "destinatario": "DUAL VET CLINICA VETERINARIA LTDA",
-      "valor_mercadoria": 601.68,
-      "transportador": "SCHREIBER",
-      "cidade_destino": "CARAGUATATUBA - SP"
-    },
-    {
       "nota_fiscal": "199523",
       "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
       "valor_mercadoria": 21120.23,
       "transportador": "TGL",
       "cidade_destino": "BARUERI - SP"
-    },
-    {
-      "nota_fiscal": "199521",
-      "destinatario": "DUMALE PRODUTOS PARA SAUDE LTDA",
-      "valor_mercadoria": 4341.63,
-      "transportador": "TGL",
-      "cidade_destino": "CURITIBA - PR"
     },
     {
       "nota_fiscal": "199519",
@@ -222,20 +187,6 @@
       "valor_mercadoria": 2871.93,
       "transportador": "TGL",
       "cidade_destino": "GUARULHOS - SP"
-    },
-    {
-      "nota_fiscal": "199108",
-      "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
-      "valor_mercadoria": 1200.0,
-      "transportador": "TGL",
-      "cidade_destino": "BARUERI - SP"
-    },
-    {
-      "nota_fiscal": "199102",
-      "destinatario": "DASA",
-      "valor_mercadoria": 1216.77,
-      "transportador": "TGL",
-      "cidade_destino": "BARUERI - SP"
     },
     {
       "nota_fiscal": "199091",
@@ -267,4 +218,5 @@
     }
   ]
 }
+
 
