@@ -10,7 +10,6 @@
       --bg:#0b1020;
       --muted:#9aa4c0;
       --text:#e9ecf5;
-      --line:#243055;
 
       --good:#22c55e;
       --warn:#f59e0b;
@@ -18,6 +17,8 @@
 
       --shadow: 0 14px 30px rgba(0,0,0,.25);
       --radius:18px;
+
+      --ink:#0b1b3a;
     }
 
     *{ box-sizing:border-box; }
@@ -85,14 +86,24 @@
       min-height: 104px;
     }
     .kpi .title{ color: rgba(233,236,245,.85); font-size:13px; letter-spacing:.3px; }
-    .kpi .value{ font-size:28px; font-weight:800; margin:10px 0 2px; }
+    /* evita estourar valores grandes */
+    .kpi .value{
+      font-size: clamp(18px, 2.2vw, 30px);
+      font-weight: 800;
+      margin: 10px 0 2px;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .kpi .sub{ color:var(--muted); font-size:12px; }
 
+    /* HERO (branco, executivo) */
     .hero{
       margin:16px 0 16px;
       border-radius: var(--radius);
-      background: linear-gradient(120deg, rgba(11,134,255,.85), rgba(10,91,211,.85));
-      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(255,255,255,.35);
       box-shadow: var(--shadow);
       padding: 18px 18px;
       display:grid;
@@ -101,17 +112,18 @@
       align-items:center;
       overflow:hidden;
       position:relative;
+      color: var(--ink);
     }
     .hero::before{
       content:"";
       position:absolute; inset:-80px -120px auto auto;
       width: 360px; height: 360px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.32), transparent 60%);
+      background: radial-gradient(circle at 30% 30%, rgba(11,27,58,.10), transparent 60%);
       transform: rotate(10deg);
-      opacity:.55;
+      opacity:.70;
     }
-    .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; }
-    .hero p{ margin:0; color: rgba(255,255,255,.85); max-width: 720px; }
+    .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
+    .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; }
 
     .gaugeWrap{
       display:flex; justify-content:center; align-items:center;
@@ -121,27 +133,65 @@
     .gauge{
       width: 210px; height: 210px;
       border-radius: 50%;
-      background: conic-gradient(var(--good) 0deg, var(--good) 180deg, rgba(255,255,255,.18) 180deg 360deg);
       position:relative;
-      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      /* fundo padrão (vai ser atualizado via JS) */
+      background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
+      overflow:hidden;
+    }
+    /* “corta” a metade inferior (semi-gauge) */
+    .gauge::before{
+      content:"";
+      position:absolute;
+      left:-2px; right:-2px; bottom:-2px;
+      height: 54%;
+      background: rgba(255,255,255,.92);
+      border-top: 1px solid rgba(11,27,58,.10);
+      z-index:1;
     }
     .gauge::after{
       content:"";
       position:absolute; inset: 18px;
-      background: rgba(10,91,211,.95);
+      background: rgba(255,255,255,.96);
       border-radius:50%;
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(11,27,58,.18);
+      z-index:2;
     }
+
     .gaugeCenter{
       position:absolute;
       top:50%; left:50%;
       transform: translate(-50%, -54%);
       text-align:center;
-      z-index:2;
+      z-index:3;
       width: 170px;
     }
-    .gaugeCenter .pct{ font-size:52px; font-weight:900; line-height:1; }
-    .gaugeCenter .lbl{ font-size:12px; color: rgba(255,255,255,.88); margin-top:6px; }
+    .gaugeCenter .pct{ font-size:52px; font-weight:900; line-height:1; color:var(--ink); }
+    .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
+
+    /* marcador de meta (pino) */
+    .targetDot{
+      position:absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 6px 14px rgba(0,0,0,.25);
+      z-index:4;
+      transform: translate(-50%, -50%);
+    }
+    .targetTag{
+      position:absolute;
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(11,27,58,.10);
+      color: var(--ink);
+      border: 1px solid rgba(11,27,58,.12);
+      z-index:4;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+    }
 
     .grid2{
       display:grid;
@@ -163,7 +213,7 @@
       justify-content:space-between;
       gap:10px;
       border-bottom:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.10);
+      background: rgba(0,0,0,.14);
     }
     .ph .ttl{
       font-weight:800;
@@ -178,6 +228,7 @@
       color: rgba(233,236,245,.92);
       white-space:nowrap;
     }
+
     table{ width:100%; border-collapse:collapse; }
     th, td{
       padding: 10px 12px;
@@ -185,14 +236,30 @@
       vertical-align:middle;
       font-size:13px;
     }
-    th{
+
+    /* FIX DO “MISTURAR AO ROLAR”:
+       - cabeçalho opaco
+       - z-index alto
+       - topo dentro do container de scroll */
+    .scroll{
+      max-height: 420px;
+      overflow:auto;
+      position: relative;
+      background: rgba(0,0,0,.04);
+    }
+    thead th{
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(12,18,38,.96); /* opaco */
+      color: rgba(233,236,245,.85);
       text-transform:uppercase;
       letter-spacing:.35px;
       font-size:11px;
-      color: rgba(233,236,245,.75);
-      background: rgba(255,255,255,.05);
-      position:sticky; top:0;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,.12);
     }
+
     td .muted{ color: var(--muted); font-size:12px; }
     .pill{
       display:inline-flex;
@@ -208,8 +275,6 @@
     }
     .pill.bad{ background: var(--bad); color:#fff; }
     .pill.good{ background: var(--good); color:#0b1020; }
-
-    .scroll{ max-height: 420px; overflow:auto; }
 
     .foot{
       margin-top: 16px;
@@ -288,9 +353,14 @@
       <div style="position:relative; z-index:1;">
         <h2>Performance de Entregas Atual</h2>
         <p>
-          Indicador consolidado de entregas concluídas. Use o filtro de transportador para focar a análise de notas em atraso
-          e previstas para o dia.
+          Indicador consolidado de entregas concluídas. A meta é manter a eficiência em 95,00% ou acima.
+          Abaixo da meta, o painel sinaliza atenção.
         </p>
+
+        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <span class="badge" id="metaBadge">Meta: 95,00%</span>
+          <span class="pill" id="metaStatus">—</span>
+        </div>
       </div>
 
       <div class="gaugeWrap">
@@ -299,6 +369,10 @@
             <div class="pct" id="perfPct">—%</div>
             <div class="lbl">Eficiência de Entrega</div>
           </div>
+
+          <!-- marcador (posicionado por JS) -->
+          <div class="targetDot" id="targetDot" style="left:-9999px; top:-9999px;"></div>
+          <div class="targetTag" id="targetTag" style="left:-9999px; top:-9999px;">Meta</div>
         </div>
       </div>
     </section>
@@ -375,26 +449,6 @@
       return Math.floor(ms / (1000*60*60*24));
     }
 
-    function setGauge(percent){
-      const p = Math.max(0, Math.min(100, percent));
-      const deg = (p/100) * 180;
-
-      const root = getComputedStyle(document.documentElement);
-      const good = root.getPropertyValue('--good').trim();
-      const warn = root.getPropertyValue('--warn').trim();
-      const bad  = root.getPropertyValue('--bad').trim();
-
-      let color = good;
-      if (p < 85) color = warn;
-      if (p < 75) color = bad;
-
-      const gauge = document.getElementById('gauge');
-      gauge.style.background = `conic-gradient(${color} 0deg, ${color} ${deg}deg, rgba(255,255,255,.18) ${deg}deg 360deg)`;
-
-      document.getElementById('perfPct').textContent =
-        p.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
-    }
-
     function normalizeCarrier(s){
       return String(s || '').trim();
     }
@@ -416,7 +470,6 @@
       const sorted = Array.from(carriers).filter(Boolean).sort((a,b) => a.localeCompare(b, 'pt-BR'));
       const sel = document.getElementById('carrierFilter');
 
-      // preserve "Todos"
       for (const c of sorted){
         const opt = document.createElement('option');
         opt.value = c;
@@ -425,20 +478,96 @@
       }
     }
 
+    function placeTargetMarker(targetPct){
+      const gauge = document.getElementById('gauge');
+      const dot = document.getElementById('targetDot');
+      const tag = document.getElementById('targetTag');
+
+      if (!gauge || !dot || !tag) return;
+
+      // Geometria do gauge (círculo)
+      const size = gauge.clientWidth;        // 210
+      const cx = size / 2;                   // 105
+      const cy = size / 2;                   // 105
+      const r = (size / 2) - 8;              // margem do arco
+
+      // Semicírculo superior: ângulo vai de PI (esquerda) a 0 (direita)
+      const t = Math.max(0, Math.min(100, Number(targetPct) || 0));
+      const angle = Math.PI * (1 - (t / 100)); // 0% => PI; 100% => 0
+
+      const x = cx + r * Math.cos(angle);
+      const y = cy - r * Math.sin(angle);
+
+      // posiciona o pino
+      dot.style.left = `${x}px`;
+      dot.style.top  = `${y}px`;
+
+      // etiqueta acima do pino (um pouco)
+      tag.style.left = `${x}px`;
+      tag.style.top  = `${Math.max(18, y - 16)}px`;
+    }
+
+    function setGauge(percent, target){
+      const p = Math.max(0, Math.min(100, Number(percent) || 0));
+      const t = Math.max(0, Math.min(100, Number(target) || 95));
+
+      // preenche apenas até 180deg (semi)
+      const fillDeg = (p/100) * 180;
+
+      const root = getComputedStyle(document.documentElement);
+      const good = root.getPropertyValue('--good').trim();
+      const warn = root.getPropertyValue('--warn').trim();
+      const bad  = root.getPropertyValue('--bad').trim();
+
+      // Cor pelo atingimento da meta
+      let color = good;
+      if (p < t) color = warn;
+      if (p < (t - 5)) color = bad;
+
+      const gauge = document.getElementById('gauge');
+      gauge.style.background = `conic-gradient(from 180deg, ${color} 0deg, ${color} ${fillDeg}deg, rgba(11,27,58,.12) ${fillDeg}deg 360deg)`;
+
+      document.getElementById('perfPct').textContent =
+        p.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
+
+      // Status meta
+      const statusEl = document.getElementById('metaStatus');
+      const metaEl = document.getElementById('metaBadge');
+      if (metaEl) metaEl.textContent = `Meta: ${t.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2})}%`;
+
+      if (statusEl){
+        if (p >= t){
+          statusEl.className = 'pill good';
+          statusEl.textContent = 'OK — acima da meta';
+        } else {
+          statusEl.className = 'pill bad';
+          statusEl.textContent = 'Atenção — abaixo da meta';
+        }
+      }
+
+      // posiciona pino da meta
+      placeTargetMarker(t);
+
+      // texto da tag
+      const tag = document.getElementById('targetTag');
+      if (tag) tag.textContent = `Meta ${t.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2})}%`;
+    }
+
     function renderTables(data, carrier){
       const now = parseUpdatedDate(data.updated_at);
 
-      const atrasoAll = (data.notas_em_atraso || []).slice().sort((a,b) => (a.previsao_entrega > b.previsao_entrega ? 1 : -1));
+      const atrasoAll = (data.notas_em_atraso || []).slice()
+        .sort((a,b) => (a.previsao_entrega > b.previsao_entrega ? 1 : -1));
       const hojeAll   = (data.notas_previstas_hoje || []).slice();
 
       const atrasoList = applyCarrierFilter(atrasoAll, carrier);
       const hojeList   = applyCarrierFilter(hojeAll, carrier);
 
-      // badges (contagem)
+      // contadores
       document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
       document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
 
-      // KPIs de valor (sempre recalculados com filtro)
+      // KPIs de valor (com filtro)
       document.getElementById('kpiValorAtraso').textContent = fmtBRL.format(sumValues(atrasoList));
       document.getElementById('kpiValorHoje').textContent   = fmtBRL.format(sumValues(hojeList));
 
@@ -478,11 +607,6 @@
         `;
         hojeBody.appendChild(tr);
       }
-
-      // opcional: também atualizar os KPIs de contagem com filtro (mantendo os globais no KPI principal)
-      // Se quiser que "Notas em Atraso" e "Previstas para Hoje" do KPI também mudem com o filtro, descomente:
-      // document.getElementById('kpiAtraso').textContent = atrasoList.length.toLocaleString('pt-BR');
-      // document.getElementById('kpiHoje').textContent   = hojeList.length.toLocaleString('pt-BR');
     }
 
     async function load(){
@@ -497,17 +621,20 @@
       document.getElementById('kpiAtraso').textContent     = data.kpis.notas_em_atraso.toLocaleString('pt-BR');
       document.getElementById('kpiHoje').textContent       = data.kpis.previstas_para_hoje.toLocaleString('pt-BR');
 
-      setGauge(Number(data.kpis.performance_percent || 0));
-
       buildCarrierOptions(data);
+
+      const perf = Number(data.kpis.performance_percent || 0);
+      const target = Number(data.kpis.meta_performance_percent || 95);
+      setGauge(perf, target);
 
       const sel = document.getElementById('carrierFilter');
       const render = () => renderTables(data, sel.value);
 
       sel.addEventListener('change', render);
-
-      // render inicial (Todos)
       render();
+
+      // reposiciona o pino se a tela mudar (responsivo)
+      window.addEventListener('resize', () => setGauge(perf, target));
     }
 
     load().catch(err => {
