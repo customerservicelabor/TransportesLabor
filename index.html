@@ -31,7 +31,8 @@
       color:var(--text);
     }
 
-    .wrap{ max-width:1200px; margin: 28px auto 60px; padding: 0 18px; }
+  .wrap{ max-width: min(1800px, 96vw); margin: 28px auto 60px; padding: 0 18px; }
+
 
     header{
       display:flex; align-items:flex-end; justify-content:space-between;
@@ -86,7 +87,7 @@
       min-height: 104px;
     }
     .kpi .title{ color: rgba(233,236,245,.85); font-size:13px; letter-spacing:.3px; }
-    /* evita estourar valores grandes */
+    /* não estoura valores grandes */
     .kpi .value{
       font-size: clamp(18px, 2.2vw, 30px);
       font-weight: 800;
@@ -98,7 +99,7 @@
     }
     .kpi .sub{ color:var(--muted); font-size:12px; }
 
-    /* HERO (branco, executivo) */
+    /* HERO (branco) */
     .hero{
       margin:16px 0 16px;
       border-radius: var(--radius);
@@ -125,6 +126,12 @@
     .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
     .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; }
 
+    .metaLine{
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(11,27,58,.72);
+    }
+
     .gaugeWrap{
       display:flex; justify-content:center; align-items:center;
       position:relative;
@@ -135,11 +142,9 @@
       border-radius: 50%;
       position:relative;
       box-shadow: 0 18px 40px rgba(0,0,0,.18);
-      /* fundo padrão (vai ser atualizado via JS) */
       background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
       overflow:hidden;
     }
-    /* “corta” a metade inferior (semi-gauge) */
     .gauge::before{
       content:"";
       position:absolute;
@@ -169,7 +174,7 @@
     .gaugeCenter .pct{ font-size:52px; font-weight:900; line-height:1; color:var(--ink); }
     .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
 
-    /* marcador de meta (pino) */
+    /* pino da meta (sem etiqueta) */
     .targetDot{
       position:absolute;
       width: 10px; height: 10px;
@@ -178,19 +183,6 @@
       box-shadow: 0 6px 14px rgba(0,0,0,.25);
       z-index:4;
       transform: translate(-50%, -50%);
-    }
-    .targetTag{
-      position:absolute;
-      padding: 5px 8px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 800;
-      background: rgba(11,27,58,.10);
-      color: var(--ink);
-      border: 1px solid rgba(11,27,58,.12);
-      z-index:4;
-      transform: translate(-50%, -50%);
-      white-space: nowrap;
     }
 
     .grid2{
@@ -237,10 +229,6 @@
       font-size:13px;
     }
 
-    /* FIX DO “MISTURAR AO ROLAR”:
-       - cabeçalho opaco
-       - z-index alto
-       - topo dentro do container de scroll */
     .scroll{
       max-height: 420px;
       overflow:auto;
@@ -251,7 +239,7 @@
       position: sticky;
       top: 0;
       z-index: 5;
-      background: rgba(12,18,38,.96); /* opaco */
+      background: rgba(12,18,38,.96);
       color: rgba(233,236,245,.85);
       text-transform:uppercase;
       letter-spacing:.35px;
@@ -361,6 +349,9 @@
           <span class="badge" id="metaBadge">Meta: 95,00%</span>
           <span class="pill" id="metaStatus">—</span>
         </div>
+
+        <!-- Meta fora do gráfico (como você pediu) -->
+        <div class="metaLine" id="metaLegend">Meta no gauge: —</div>
       </div>
 
       <div class="gaugeWrap">
@@ -369,10 +360,7 @@
             <div class="pct" id="perfPct">—%</div>
             <div class="lbl">Eficiência de Entrega</div>
           </div>
-
-          <!-- marcador (posicionado por JS) -->
           <div class="targetDot" id="targetDot" style="left:-9999px; top:-9999px;"></div>
-          <div class="targetTag" id="targetTag" style="left:-9999px; top:-9999px;">Meta</div>
         </div>
       </div>
     </section>
@@ -431,6 +419,26 @@
   <script>
     const fmtBRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
 
+    function fmtPctBR(v){
+      return (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
+    }
+
+    // Formato "universal": R$ 86.7K / R$ 1.2M (com ponto como no seu exemplo)
+    function fmtBRLCompactK(value){
+      const v = Number(value) || 0;
+      const abs = Math.abs(v);
+
+      const sign = v < 0 ? "-" : "";
+      const format1 = (n) => (Math.round(n * 10) / 10).toFixed(1);
+
+      if (abs >= 1e9)  return `R$ ${sign}${format1(abs/1e9)}B`;
+      if (abs >= 1e6)  return `R$ ${sign}${format1(abs/1e6)}M`;
+      if (abs >= 1e3)  return `R$ ${sign}${format1(abs/1e3)}K`;
+
+      // abaixo de 1.000, usa moeda normal BR
+      return fmtBRL.format(v);
+    }
+
     function parseUpdatedDate(updatedAtStr){
       const [datePart, timePart="00:00"] = updatedAtStr.split(" ");
       const [dd, mm, yyyy] = datePart.split("/").map(Number);
@@ -481,37 +489,27 @@
     function placeTargetMarker(targetPct){
       const gauge = document.getElementById('gauge');
       const dot = document.getElementById('targetDot');
-      const tag = document.getElementById('targetTag');
+      if (!gauge || !dot) return;
 
-      if (!gauge || !dot || !tag) return;
+      const size = gauge.clientWidth;   // 210
+      const cx = size / 2;
+      const cy = size / 2;
+      const r = (size / 2) - 8;
 
-      // Geometria do gauge (círculo)
-      const size = gauge.clientWidth;        // 210
-      const cx = size / 2;                   // 105
-      const cy = size / 2;                   // 105
-      const r = (size / 2) - 8;              // margem do arco
-
-      // Semicírculo superior: ângulo vai de PI (esquerda) a 0 (direita)
       const t = Math.max(0, Math.min(100, Number(targetPct) || 0));
       const angle = Math.PI * (1 - (t / 100)); // 0% => PI; 100% => 0
 
       const x = cx + r * Math.cos(angle);
       const y = cy - r * Math.sin(angle);
 
-      // posiciona o pino
       dot.style.left = `${x}px`;
       dot.style.top  = `${y}px`;
-
-      // etiqueta acima do pino (um pouco)
-      tag.style.left = `${x}px`;
-      tag.style.top  = `${Math.max(18, y - 16)}px`;
     }
 
     function setGauge(percent, target){
       const p = Math.max(0, Math.min(100, Number(percent) || 0));
       const t = Math.max(0, Math.min(100, Number(target) || 95));
 
-      // preenche apenas até 180deg (semi)
       const fillDeg = (p/100) * 180;
 
       const root = getComputedStyle(document.documentElement);
@@ -519,21 +517,19 @@
       const warn = root.getPropertyValue('--warn').trim();
       const bad  = root.getPropertyValue('--bad').trim();
 
-      // Cor pelo atingimento da meta
       let color = good;
       if (p < t) color = warn;
       if (p < (t - 5)) color = bad;
 
       const gauge = document.getElementById('gauge');
-      gauge.style.background = `conic-gradient(from 180deg, ${color} 0deg, ${color} ${fillDeg}deg, rgba(11,27,58,.12) ${fillDeg}deg 360deg)`;
+      gauge.style.background =
+        `conic-gradient(from 180deg, ${color} 0deg, ${color} ${fillDeg}deg, rgba(11,27,58,.12) ${fillDeg}deg 360deg)`;
 
-      document.getElementById('perfPct').textContent =
-        p.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
+      document.getElementById('perfPct').textContent = fmtPctBR(p);
 
-      // Status meta
       const statusEl = document.getElementById('metaStatus');
       const metaEl = document.getElementById('metaBadge');
-      if (metaEl) metaEl.textContent = `Meta: ${t.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2})}%`;
+      if (metaEl) metaEl.textContent = `Meta: ${fmtPctBR(t)}`;
 
       if (statusEl){
         if (p >= t){
@@ -545,12 +541,11 @@
         }
       }
 
-      // posiciona pino da meta
-      placeTargetMarker(t);
+      // meta fora do gauge (como você pediu)
+      const legend = document.getElementById('metaLegend');
+      if (legend) legend.textContent = `Meta no gauge: ${fmtPctBR(t)} (pino)`;
 
-      // texto da tag
-      const tag = document.getElementById('targetTag');
-      if (tag) tag.textContent = `Meta ${t.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2})}%`;
+      placeTargetMarker(t);
     }
 
     function renderTables(data, carrier){
@@ -558,20 +553,18 @@
 
       const atrasoAll = (data.notas_em_atraso || []).slice()
         .sort((a,b) => (a.previsao_entrega > b.previsao_entrega ? 1 : -1));
-      const hojeAll   = (data.notas_previstas_hoje || []).slice();
+      const hojeAll = (data.notas_previstas_hoje || []).slice();
 
       const atrasoList = applyCarrierFilter(atrasoAll, carrier);
       const hojeList   = applyCarrierFilter(hojeAll, carrier);
 
-      // contadores
       document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
       document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
 
-      // KPIs de valor (com filtro)
-      document.getElementById('kpiValorAtraso').textContent = fmtBRL.format(sumValues(atrasoList));
-      document.getElementById('kpiValorHoje').textContent   = fmtBRL.format(sumValues(hojeList));
+      // KPIs de valor em formato compacto (K/M)
+      document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(sumValues(atrasoList));
+      document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(sumValues(hojeList));
 
-      // tabela atraso
       const atrasoBody = document.getElementById('tbodyAtraso');
       atrasoBody.innerHTML = '';
 
@@ -592,7 +585,6 @@
         atrasoBody.appendChild(tr);
       }
 
-      // tabela hoje
       const hojeBody = document.getElementById('tbodyHoje');
       hojeBody.innerHTML = '';
 
@@ -615,7 +607,6 @@
 
       document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
 
-      // KPIs globais
       document.getElementById('kpiTotalNotas').textContent = data.kpis.total_notas.toLocaleString('pt-BR');
       document.getElementById('kpiEntregas').textContent   = data.kpis.entregas_realizadas.toLocaleString('pt-BR');
       document.getElementById('kpiAtraso').textContent     = data.kpis.notas_em_atraso.toLocaleString('pt-BR');
@@ -633,7 +624,6 @@
       sel.addEventListener('change', render);
       render();
 
-      // reposiciona o pino se a tela mudar (responsivo)
       window.addEventListener('resize', () => setGauge(perf, target));
     }
 
