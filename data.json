@@ -1,14 +1,14 @@
 {
-  "updated_at": "20/01/2026 14:06",
+  "updated_at": "20/01/2026 17:33",
   "kpis": {
-    "total_notas": 2356,
-    "entregas_realizadas": 1916,
-    "notas_em_atraso": 17,
-    "previstas_para_hoje": 15,
-    "performance_percent": 92.12,
+    "total_notas": 2376,
+    "entregas_realizadas": 1933,
+    "notas_em_atraso": 13,
+    "previstas_para_hoje": 12,
+    "performance_percent": 92.03,
     "meta_performance_percent": 95.0,
-    "valor_total_em_atraso": 72445.42,
-    "valor_total_previsto_hoje": 86048.25
+    "valor_total_em_atraso": 44899.17,
+    "valor_total_previsto_hoje": 37599.44
   },
   "notas_em_atraso": [
     {
@@ -42,14 +42,6 @@
       "transportador": "TECMAR",
       "previsao_entrega": "2026-01-05",
       "ocorrencia": "Ticket 39427"
-    },
-    {
-      "nota_fiscal": "198690",
-      "destinatario": "RICCO FARMA DISTRIBUIDORA LTDA",
-      "valor_mercadoria": 3183.32,
-      "transportador": "TECMAR",
-      "previsao_entrega": "2026-01-07",
-      "ocorrencia": "Ticket 39495"
     },
     {
       "nota_fiscal": "197504",
@@ -92,22 +84,6 @@
       "ocorrencia": "Atrasado"
     },
     {
-      "nota_fiscal": "199050",
-      "destinatario": "GHM HOSPITALAR LTDA",
-      "valor_mercadoria": 6360.81,
-      "transportador": "TRANSLOVATO",
-      "previsao_entrega": "2026-01-14",
-      "ocorrencia": "Atrasada (39556)"
-    },
-    {
-      "nota_fiscal": "198886",
-      "destinatario": "TOTAL MED COMERCIO DE PRODUTOS HOSPITALAR LTDA",
-      "valor_mercadoria": 18762.24,
-      "transportador": "LATAM",
-      "previsao_entrega": "2026-01-16",
-      "ocorrencia": "Ticket 39467"
-    },
-    {
       "nota_fiscal": "199300",
       "destinatario": "MARILEI LOPES DE LIMA",
       "valor_mercadoria": 1376.07,
@@ -122,14 +98,6 @@
       "transportador": "FEDEX",
       "previsao_entrega": "2026-01-16",
       "ocorrencia": "Ticket 39776"
-    },
-    {
-      "nota_fiscal": "199225",
-      "destinatario": "UNNI MEDICAL LTDA",
-      "valor_mercadoria": 1056.77,
-      "transportador": "AZUL",
-      "previsao_entrega": "2026-01-19",
-      "ocorrencia": "Atrasada"
     },
     {
       "nota_fiscal": "199474",
@@ -192,20 +160,6 @@
       "cidade_destino": "GOVERNADOR VALADARES - MG"
     },
     {
-      "nota_fiscal": "199623",
-      "destinatario": "ALDREY PAUCIO DA SILVA",
-      "valor_mercadoria": 2308.41,
-      "transportador": "TGL",
-      "cidade_destino": "CURITIBA - PR"
-    },
-    {
-      "nota_fiscal": "199560",
-      "destinatario": "MINUZZI & PINTARELLI PRODUTOS MEDICO-HOS",
-      "valor_mercadoria": 5235.02,
-      "transportador": "TGL",
-      "cidade_destino": "CURITIBA - PR"
-    },
-    {
       "nota_fiscal": "199227",
       "destinatario": "UNI DENTAL PRODUTOS ODONTOLOGICOS LTDA",
       "valor_mercadoria": 2373.94,
@@ -241,13 +195,6 @@
       "cidade_destino": "CHAPECO - SC"
     },
     {
-      "nota_fiscal": "199334",
-      "destinatario": "CYRO MODE",
-      "valor_mercadoria": 501.58,
-      "transportador": "TRANSLOVATO",
-      "cidade_destino": "MATAO - SP"
-    },
-    {
       "nota_fiscal": "199301",
       "destinatario": "JS DIAGNOSTICOS LTDA",
       "valor_mercadoria": 1406.19,
@@ -256,6 +203,7 @@
     }
   ]
 }
+
 
 
 
