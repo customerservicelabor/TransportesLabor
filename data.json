@@ -1,10 +1,10 @@
 {
   "updated_at": "19/01/2026",
   "kpis": {
-    "total_notas": 2301,
-    "entregas_realizadas": 1858,
+    "total_notas": 2332,
+    "entregas_realizadas": 1895,
     "notas_em_atraso": 18,
-    "previstas_para_hoje": 9,
+    "previstas_para_hoje": 22,
     "performance_percent": 92.03,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 0,
@@ -12,211 +12,304 @@
   },
   "notas_em_atraso": [
     {
-      "nota_fiscal": "199300",
-      "destinatario": "MARILEI LOPES DE LIMA",
-      "valor_mercadoria": 1376.07,
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-16"
-    },
-    {
-      "nota_fiscal": "199298",
-      "destinatario": "MARQUES MED DISTRIBUIDORA DE MEDICA FIVE MED DISTR",
-      "valor_mercadoria": 2447.56,
-      "transportador": "TGL",
-      "previsao_entrega": "2026-01-15"
-    },
-    {
-      "nota_fiscal": "199292",
-      "destinatario": "LABORATORIO DE ANALISES CLINICAS LEDRA LTDA",
-      "valor_mercadoria": 853.87,
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-16"
-    },
-    {
-      "nota_fiscal": "199270",
-      "destinatario": "W.J. ANDRADE COMERCIO DE ARTIGOS HOSPITALARES EIRELI",
-      "valor_mercadoria": 12543.82,
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-16"
-    },
-    {
-      "nota_fiscal": "199217",
-      "destinatario": "EMPRESA BRASILEIRA DE SERVICOS HOSPITALARES - EBSE",
-      "valor_mercadoria": 29.43,
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-15"
-    },
-    {
-      "nota_fiscal": "199157",
-      "destinatario": "IMPACTA MED DISTRI MEDICAMENTO MA HOS LT",
-      "valor_mercadoria": 2940.66,
-      "transportador": "TGL",
-      "previsao_entrega": "2026-01-14"
-    },
-    {
-      "nota_fiscal": "199050",
-      "destinatario": "GHM HOSPITALAR LTDA",
-      "valor_mercadoria": 6360.81,
-      "transportador": "TRANSLOVATO",
-      "previsao_entrega": "2026-01-14"
-    },
-    {
-      "nota_fiscal": "199030",
-      "destinatario": "F B MATIJACEVICH",
-      "valor_mercadoria": 3733.96,
-      "transportador": "LATAM",
-      "previsao_entrega": "2026-01-16"
-    },
-    {
-      "nota_fiscal": "198961",
-      "destinatario": "DIAGNOSTICOS DA AMERICA S.A",
-      "valor_mercadoria": 1722.0,
-      "transportador": "PATRUS",
-      "previsao_entrega": "2026-01-14"
-    },
-    {
-      "nota_fiscal": "198954",
-      "destinatario": "LUNAV ANALISES CLINICAS LTDA",
-      "valor_mercadoria": 360.38,
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-12"
-    },
-    {
-      "nota_fiscal": "198914",
-      "destinatario": "CLASSMED - PRODUTOS HOSPITALARES LT",
-      "valor_mercadoria": 422.8,
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-13"
-    },
-    {
-      "nota_fiscal": "198886",
-      "destinatario": "TOTAL MED COMERCIO DE PRODUTOS HOSPITALAR LTDA",
-      "valor_mercadoria": 18762.24,
-      "transportador": "LATAM",
-      "previsao_entrega": "2026-01-16"
-    },
-    {
-      "nota_fiscal": "198850",
-      "destinatario": "ALFA EXCELENCIA DIAGNOSTICA LTDA",
-      "valor_mercadoria": 5040.0,
-      "transportador": "PATRUS",
-      "previsao_entrega": "2026-01-12"
-    },
-    {
-      "nota_fiscal": "198732",
-      "destinatario": "COMERCIAL PEREIRA CARVALHO LTDA",
-      "valor_mercadoria": 1374.69,
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-13"
-    },
-    {
-      "nota_fiscal": "198690",
-      "destinatario": "RICCO FARMA DISTRIBUIDORA LTDA",
-      "valor_mercadoria": 3183.32,
-      "transportador": "TECMAR",
-      "previsao_entrega": "2026-01-07"
-    },
-    {
-      "nota_fiscal": "198506",
-      "destinatario": "RICCO FARMA DISTRIBUIDORA LTDA",
-      "valor_mercadoria": 6753.63,
-      "transportador": "TECMAR",
-      "previsao_entrega": "2026-01-05"
-    },
-    {
       "nota_fiscal": "198029",
       "destinatario": "MAXSAUDE DISTRIBUIDORA DE MEDICAMENTOS E",
       "valor_mercadoria": 1364.88,
       "transportador": "LATAM",
-      "previsao_entrega": "2025-12-19"
+      "previsao_entrega": "2025-12-19",
+      "ocorrencia": "Ticket 39008"
     },
     {
       "nota_fiscal": "198003",
       "destinatario": "DISTRIBUIDORA SAUDE HOSPITALAR LTDA",
       "valor_mercadoria": 3116.5,
       "transportador": "LATAM",
-      "previsao_entrega": "2025-12-19"
+      "previsao_entrega": "2025-12-19",
+      "ocorrencia": "Ticket 39051"
     },
     {
       "nota_fiscal": "197610",
       "destinatario": "MANAUARA COM PROD SERV HOSPITALARES LTDA",
       "valor_mercadoria": 2417.92,
       "transportador": "LATAM",
-      "previsao_entrega": "2025-12-19"
+      "previsao_entrega": "2025-12-19",
+      "ocorrencia": "Ticket 39052"
+    },
+    {
+      "nota_fiscal": "198506",
+      "destinatario": "RICCO FARMA DISTRIBUIDORA LTDA",
+      "valor_mercadoria": 6753.63,
+      "transportador": "TECMAR",
+      "previsao_entrega": "2026-01-05",
+      "ocorrencia": "Ticket 39427"
+    },
+    {
+      "nota_fiscal": "198690",
+      "destinatario": "RICCO FARMA DISTRIBUIDORA LTDA",
+      "valor_mercadoria": 3183.32,
+      "transportador": "TECMAR",
+      "previsao_entrega": "2026-01-07",
+      "ocorrencia": "Ticket 39495"
     },
     {
       "nota_fiscal": "197504",
       "destinatario": "DIAGNOSTICOS DA AMERICA S.A .",
       "valor_mercadoria": 820.0,
+      "transportador": "AZURELOG",
+      "previsao_entrega": "2026-01-08",
+      "ocorrencia": "Aguardando Agendamento"
+    },
+    {
+      "nota_fiscal": "198850",
+      "destinatario": "ALFA EXCELENCIA DIAGNOSTICA LTDA",
+      "valor_mercadoria": 5040.0,
+      "transportador": "PATRUS",
+      "previsao_entrega": "2026-01-12",
+      "ocorrencia": "Atrasado"
+    },
+    {
+      "nota_fiscal": "198954",
+      "destinatario": "LUNAV ANALISES CLINICAS LTDA",
+      "valor_mercadoria": 360.38,
       "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-08"
-    }
-  ],
-  "notas_previstas_hoje": [
-    {
-      "nota_fiscal": "199523",
-      "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
-      "valor_mercadoria": 21120.23,
-      "transportador": "TGL",
-      "cidade_destino": "BARUERI - SP"
+      "previsao_entrega": "2026-01-12",
+      "ocorrencia": "Aguardando Agendamento"
     },
     {
-      "nota_fiscal": "199519",
-      "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S",
-      "valor_mercadoria": 5562.77,
-      "transportador": "TGL",
-      "cidade_destino": "BARUERI - SP"
+      "nota_fiscal": "198914",
+      "destinatario": "CLASSMED - PRODUTOS HOSPITALARES LT",
+      "valor_mercadoria": 422.8,
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-13",
+      "ocorrencia": "Ticket 39622"
     },
     {
-      "nota_fiscal": "199474",
-      "destinatario": "MINUZZI & PINTARELLI PRODUTOS MEDICO-HOS",
-      "valor_mercadoria": 5769.59,
-      "transportador": "TGL",
-      "cidade_destino": "CURITIBA - PR"
+      "nota_fiscal": "198732",
+      "destinatario": "COMERCIAL PEREIRA CARVALHO LTDA",
+      "valor_mercadoria": 1374.69,
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-13",
+      "ocorrencia": "Atrasado"
     },
     {
-      "nota_fiscal": "199441",
-      "destinatario": "CASA MEDICA COM. PROD. HOSPITALARES LTDA",
-      "valor_mercadoria": 3538.89,
+      "nota_fiscal": "198961",
+      "destinatario": "DIAGNOSTICOS DA AMERICA S.A",
+      "valor_mercadoria": 1722.0,
+      "transportador": "PATRUS",
+      "previsao_entrega": "2026-01-14",
+      "ocorrencia": "Ticket 39705"
+    },
+    {
+      "nota_fiscal": "199050",
+      "destinatario": "GHM HOSPITALAR LTDA",
+      "valor_mercadoria": 6360.81,
       "transportador": "TRANSLOVATO",
-      "cidade_destino": "LONDRINA - PR"
+      "previsao_entrega": "2026-01-14",
+      "ocorrencia": "Atrasada (39556)"
     },
     {
-      "nota_fiscal": "199358",
-      "destinatario": "GAIA MEDICAMENTOS LTDA",
-      "valor_mercadoria": 1854.94,
+      "nota_fiscal": "198886",
+      "destinatario": "TOTAL MED COMERCIO DE PRODUTOS HOSPITALAR LTDA",
+      "valor_mercadoria": 18762.24,
+      "transportador": "LATAM",
+      "previsao_entrega": "2026-01-16",
+      "ocorrencia": "Ticket 39467"
+    },
+    {
+      "nota_fiscal": "199300",
+      "destinatario": "MARILEI LOPES DE LIMA",
+      "valor_mercadoria": 1376.07,
       "transportador": "FEDEX",
-      "cidade_destino": "ICARA - SC"
+      "previsao_entrega": "2026-01-16",
+      "ocorrencia": "Ticket 39774"
     },
     {
-      "nota_fiscal": "199333",
-      "destinatario": "MEDTOUR ADMINISTRADORA DE BENEFICIOS E E",
-      "valor_mercadoria": 2871.93,
-      "transportador": "TGL",
-      "cidade_destino": "GUARULHOS - SP"
-    },
-    {
-      "nota_fiscal": "199235",
-      "destinatario": "PEGASUS SOLUCOES CORPORATIVAS LTDA",
-      "valor_mercadoria": 1304.54,
+      "nota_fiscal": "199270",
+      "destinatario": "W.J. ANDRADE COMERCIO DE ARTIGOS HOSPITALARES EIRELI",
+      "valor_mercadoria": 12543.82,
       "transportador": "FEDEX",
-      "cidade_destino": "SANTO ANTONIO DA PLATINA - PR"
+      "previsao_entrega": "2026-01-16",
+      "ocorrencia": "Ticket 39776"
     },
     {
       "nota_fiscal": "199225",
       "destinatario": "UNNI MEDICAL LTDA",
       "valor_mercadoria": 1056.77,
       "transportador": "AZUL",
-      "cidade_destino": "SAO LUIS - MA"
+      "previsao_entrega": "2026-01-19",
+      "ocorrencia": "Atrasada"
     },
     {
-      "nota_fiscal": "199091",
+      "nota_fiscal": "199474",
+      "destinatario": "MINUZZI & PINTARELLI PRODUTOS MEDICO-HOS",
+      "valor_mercadoria": 5769.59,
+      "transportador": "TGL",
+      "previsao_entrega": "2026-01-19",
+      "ocorrencia": "Cliente Fechado (39817)"
+    },
+    {
+      "nota_fiscal": "199441",
+      "destinatario": "CASA MEDICA COM. PROD. HOSPITALARES LTDA",
+      "valor_mercadoria": 3538.89,
+      "transportador": "TRANSLOVATO",
+      "previsao_entrega": "2026-01-19",
+      "ocorrencia": "Atrasada"
+    }
+  ],
+  "notas_previstas_hoje": [
+    {
+      "nota_fiscal": "199291",
+      "destinatario": "CIRURGICA MORENA COMERCIO DE MATERIAL MEDICO HOSPITALAR LTDA",
+      "valor_mercadoria": 1125.59,
+      "transportador": "AZUL",
+      "cidade_destino": "CAMPO GRANDE - MS"
+    },
+    {
+      "nota_fiscal": "199435",
+      "destinatario": "METHABIO FARMACEUTICA DO BRASIL LTDA",
+      "valor_mercadoria": 3998.85,
+      "transportador": "AZURELOG",
+      "cidade_destino": "BRASILIA - DF"
+    },
+    {
+      "nota_fiscal": "199377",
+      "destinatario": "GREEN MED DISTRIBUIDORA E IMPORTADORA DE",
+      "valor_mercadoria": 17172.44,
+      "transportador": "PATRUS",
+      "cidade_destino": "NOVA IGUACU - RJ"
+    },
+    {
+      "nota_fiscal": "199246",
+      "destinatario": "CIRURGICA E DENTAL SAO CARLOS LTDA",
+      "valor_mercadoria": 1052.61,
+      "transportador": "PATRUS",
+      "cidade_destino": "SAO CARLOS - SP"
+    },
+    {
+      "nota_fiscal": "199218",
+      "destinatario": "VISUAL COMER DE MATER HOSP LTD",
+      "valor_mercadoria": 2157.01,
+      "transportador": "PATRUS",
+      "cidade_destino": "BELO HORIZONTE - MG"
+    },
+    {
+      "nota_fiscal": "199141",
+      "destinatario": "ATIVA MEDICO CIRURGICA EIRELI",
+      "valor_mercadoria": 3459.86,
+      "transportador": "PATRUS",
+      "cidade_destino": "JUIZ DE FORA - MG"
+    },
+    {
+      "nota_fiscal": "199064",
+      "destinatario": "PONTO COM PRODUTOS HOSPITALARES LTDA",
+      "valor_mercadoria": 1350.37,
+      "transportador": "PATRUS",
+      "cidade_destino": "GOVERNADOR VALADARES - MG"
+    },
+    {
+      "nota_fiscal": "199490",
+      "destinatario": "CBS MEDICO CIENTIFICA COMERCIO E REPRESENTACAO LTD",
+      "valor_mercadoria": 17265.27,
+      "transportador": "SCHREIBER",
+      "cidade_destino": "SAO PAULO - SP"
+    },
+    {
+      "nota_fiscal": "199248",
+      "destinatario": "COMERCIAL 3ALBE LTDA",
+      "valor_mercadoria": 11160.99,
+      "transportador": "SCHREIBER",
+      "cidade_destino": "SAO PAULO - SP"
+    },
+    {
+      "nota_fiscal": "199623",
+      "destinatario": "ALDREY PAUCIO DA SILVA",
+      "valor_mercadoria": 2308.41,
+      "transportador": "TGL",
+      "cidade_destino": "CURITIBA - PR"
+    },
+    {
+      "nota_fiscal": "199573",
+      "destinatario": "JOAOMED COMERCIO DE MATERIAIS CIRURGICOS LTDA",
+      "valor_mercadoria": 4667.48,
+      "transportador": "TGL",
+      "cidade_destino": "CURITIBA - PR"
+    },
+    {
+      "nota_fiscal": "199560",
+      "destinatario": "MINUZZI & PINTARELLI PRODUTOS MEDICO-HOS",
+      "valor_mercadoria": 5235.02,
+      "transportador": "TGL",
+      "cidade_destino": "CURITIBA - PR"
+    },
+    {
+      "nota_fiscal": "199227",
+      "destinatario": "UNI DENTAL PRODUTOS ODONTOLOGICOS LTDA",
+      "valor_mercadoria": 2373.94,
+      "transportador": "TGL",
+      "cidade_destino": "XANXERE - SC"
+    },
+    {
+      "nota_fiscal": "199129",
       "destinatario": "DIAGNOSTICOS DA AMERICA",
-      "valor_mercadoria": 976.0,
+      "valor_mercadoria": 1108.0,
       "transportador": "TGL",
       "cidade_destino": "SAO JOSE DOS PINHAIS - PR"
+    },
+    {
+      "nota_fiscal": "198976",
+      "destinatario": "DIAGNOSTICOS DA AMERICA",
+      "valor_mercadoria": 1013.0,
+      "transportador": "TGL",
+      "cidade_destino": "SAO JOSE DOS PINHAIS - PR"
+    },
+    {
+      "nota_fiscal": "199419",
+      "destinatario": "HINOVALAB COM PROD PA ANAL CLINICAS LTDA",
+      "valor_mercadoria": 3598.48,
+      "transportador": "FEDEX",
+      "cidade_destino": "COLOMBO - PR"
+    },
+    {
+      "nota_fiscal": "199373",
+      "destinatario": "SANTA MARIA MEDICAL DIST MAT HOSP LT",
+      "valor_mercadoria": 1457.84,
+      "transportador": "FEDEX",
+      "cidade_destino": "SANTA MARIA - RS"
+    },
+    {
+      "nota_fiscal": "199302",
+      "destinatario": "CURAMED PRODUTOS HOSPITALARES LTDA",
+      "valor_mercadoria": 7416.44,
+      "transportador": "FEDEX",
+      "cidade_destino": "ARAPONGAS - PR"
+    },
+    {
+      "nota_fiscal": "199587",
+      "destinatario": "PET SHOP J P LTDA",
+      "valor_mercadoria": 495.2,
+      "transportador": "TRANSLOVATO",
+      "cidade_destino": "CHAPECO - SC"
+    },
+    {
+      "nota_fiscal": "199499",
+      "destinatario": "DIMMEX COMERCIO DE PRODUTOS HOSPITALARES",
+      "valor_mercadoria": 1862.5,
+      "transportador": "TRANSLOVATO",
+      "cidade_destino": "CASCAVEL - PR"
+    },
+    {
+      "nota_fiscal": "199334",
+      "destinatario": "CYRO MODE",
+      "valor_mercadoria": 501.58,
+      "transportador": "TRANSLOVATO",
+      "cidade_destino": "MATAO - SP"
+    },
+    {
+      "nota_fiscal": "199301",
+      "destinatario": "JS DIAGNOSTICOS LTDA",
+      "valor_mercadoria": 1406.19,
+      "transportador": "TRANSLOVATO",
+      "cidade_destino": "SANTANA DO PARAISO - MG"
     }
   ]
 }
-
-
