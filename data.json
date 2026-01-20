@@ -1,11 +1,11 @@
 {
   "updated_at": "20/01/2026 12:57",
   "kpis": {
-    "total_notas": 2342,
-    "entregas_realizadas": 1909,
-    "notas_em_atraso": 18,
-    "previstas_para_hoje": 19,
-    "performance_percent": 92.09,
+    "total_notas": 2356,
+    "entregas_realizadas": 1916,
+    "notas_em_atraso": 17,
+    "previstas_para_hoje": 15,
+    "performance_percent": 92.12,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 72445.42,
     "valor_total_previsto_hoje": 86048.25
@@ -90,14 +90,6 @@
       "transportador": "FEDEX",
       "previsao_entrega": "2026-01-13",
       "ocorrencia": "Atrasado"
-    },
-    {
-      "nota_fiscal": "198961",
-      "destinatario": "DIAGNOSTICOS DA AMERICA S.A",
-      "valor_mercadoria": 1722.0,
-      "transportador": "PATRUS",
-      "previsao_entrega": "2026-01-14",
-      "ocorrencia": "Ticket 39705"
     },
     {
       "nota_fiscal": "199050",
@@ -200,30 +192,9 @@
       "cidade_destino": "GOVERNADOR VALADARES - MG"
     },
     {
-      "nota_fiscal": "199490",
-      "destinatario": "CBS MEDICO CIENTIFICA COMERCIO E REPRESENTACAO LTD",
-      "valor_mercadoria": 17265.27,
-      "transportador": "SCHREIBER",
-      "cidade_destino": "SAO PAULO - SP"
-    },
-    {
-      "nota_fiscal": "199248",
-      "destinatario": "COMERCIAL 3ALBE LTDA",
-      "valor_mercadoria": 11160.99,
-      "transportador": "SCHREIBER",
-      "cidade_destino": "SAO PAULO - SP"
-    },
-    {
       "nota_fiscal": "199623",
       "destinatario": "ALDREY PAUCIO DA SILVA",
       "valor_mercadoria": 2308.41,
-      "transportador": "TGL",
-      "cidade_destino": "CURITIBA - PR"
-    },
-    {
-      "nota_fiscal": "199573",
-      "destinatario": "JOAOMED COMERCIO DE MATERIAIS CIRURGICOS LTDA",
-      "valor_mercadoria": 4667.48,
       "transportador": "TGL",
       "cidade_destino": "CURITIBA - PR"
     },
@@ -256,13 +227,6 @@
       "cidade_destino": "SANTA MARIA - RS"
     },
     {
-      "nota_fiscal": "199302",
-      "destinatario": "CURAMED PRODUTOS HOSPITALARES LTDA",
-      "valor_mercadoria": 7416.44,
-      "transportador": "FEDEX",
-      "cidade_destino": "ARAPONGAS - PR"
-    },
-    {
       "nota_fiscal": "199235",
       "destinatario": "PEGASUS SOLUCOES CORPORATIVAS LTDA",
       "valor_mercadoria": 1304.54,
@@ -292,4 +256,5 @@
     }
   ]
 }
+
 
