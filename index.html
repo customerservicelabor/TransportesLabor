@@ -32,8 +32,7 @@
       color:var(--text);
     }
 
-  .wrap{ max-width: min(1800px, 96vw); margin: 28px auto 60px; padding: 0 18px; }
-
+    .wrap{ max-width: min(1800px, 96vw); margin: 28px auto 60px; padding: 0 18px; }
 
     header{
       display:flex; align-items:flex-end; justify-content:space-between;
@@ -88,7 +87,6 @@
       min-height: 104px;
     }
     .kpi .title{ color: rgba(233,236,245,.85); font-size:13px; letter-spacing:.3px; }
-    /* não estoura valores grandes */
     .kpi .value{
       font-size: clamp(18px, 2.2vw, 30px);
       font-weight: 800;
@@ -100,7 +98,6 @@
     }
     .kpi .sub{ color:var(--muted); font-size:12px; }
 
-    /* HERO (branco) */
     .hero{
       margin:16px 0 16px;
       border-radius: var(--radius);
@@ -175,7 +172,6 @@
     .gaugeCenter .pct{ font-size:52px; font-weight:900; line-height:1; color:var(--ink); }
     .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
 
-    /* pino da meta (sem etiqueta) */
     .targetDot{
       position:absolute;
       width: 10px; height: 10px;
@@ -250,6 +246,7 @@
     }
 
     td .muted{ color: var(--muted); font-size:12px; }
+
     .pill{
       display:inline-flex;
       align-items:center;
@@ -351,7 +348,6 @@
           <span class="pill" id="metaStatus">—</span>
         </div>
 
-        <!-- Meta fora do gráfico (como você pediu) -->
         <div class="metaLine" id="metaLegend">Meta no gauge: —</div>
       </div>
 
@@ -381,6 +377,7 @@
                 <th>Valor</th>
                 <th>Transportador</th>
                 <th>Prev. Entrega</th>
+                <th>Ocorrência</th>
                 <th>Atraso</th>
               </tr>
             </thead>
@@ -424,7 +421,6 @@
       return (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
     }
 
-    // Formato "universal": R$ 86.7K / R$ 1.2M (com ponto como no seu exemplo)
     function fmtBRLCompactK(value){
       const v = Number(value) || 0;
       const abs = Math.abs(v);
@@ -436,20 +432,21 @@
       if (abs >= 1e6)  return `R$ ${sign}${format1(abs/1e6)}M`;
       if (abs >= 1e3)  return `R$ ${sign}${format1(abs/1e3)}K`;
 
-      // abaixo de 1.000, usa moeda normal BR
       return fmtBRL.format(v);
     }
 
     function parseUpdatedDate(updatedAtStr){
-      const [datePart, timePart="00:00"] = updatedAtStr.split(" ");
+      const parts = String(updatedAtStr || '').split(" ");
+      const datePart = parts[0] || "01/01/1970";
+      const timePart = parts[1] || "00:00";
       const [dd, mm, yyyy] = datePart.split("/").map(Number);
       const [HH, MM] = timePart.split(":").map(Number);
-      return new Date(yyyy, mm-1, dd, HH || 0, MM || 0, 0, 0);
+      return new Date(yyyy, (mm || 1)-1, dd || 1, HH || 0, MM || 0, 0, 0);
     }
 
     function isoToBR(iso){
-      const [y,m,d] = iso.split("-").map(Number);
-      const dt = new Date(y, m-1, d);
+      const [y,m,d] = String(iso || '').split("-").map(Number);
+      const dt = new Date(y, (m||1)-1, d||1);
       return dt.toLocaleDateString('pt-BR');
     }
 
@@ -492,7 +489,7 @@
       const dot = document.getElementById('targetDot');
       if (!gauge || !dot) return;
 
-      const size = gauge.clientWidth;   // 210
+      const size = gauge.clientWidth;
       const cx = size / 2;
       const cy = size / 2;
       const r = (size / 2) - 8;
@@ -542,7 +539,6 @@
         }
       }
 
-      // meta fora do gauge (como você pediu)
       const legend = document.getElementById('metaLegend');
       if (legend) legend.textContent = `Meta no gauge: ${fmtPctBR(t)} (pino)`;
 
@@ -562,7 +558,6 @@
       document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
       document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
 
-      // KPIs de valor em formato compacto (K/M)
       document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(sumValues(atrasoList));
       document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(sumValues(hojeList));
 
@@ -570,9 +565,11 @@
       atrasoBody.innerHTML = '';
 
       for (const it of atrasoList){
-        const prev = new Date(it.previsao_entrega + "T00:00:00");
+        const prev = new Date(String(it.previsao_entrega) + "T00:00:00");
         const lateDays = Math.max(0, daysDiff(now, prev));
         const pillClass = lateDays >= 10 ? 'pill bad' : (lateDays >= 5 ? 'pill' : 'pill good');
+
+        const ocorr = (it.ocorrencia && String(it.ocorrencia).trim()) ? String(it.ocorrencia).trim() : '—';
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -581,6 +578,7 @@
           <td>${fmtBRL.format(Number(it.valor_mercadoria || 0))}</td>
           <td><span class="muted">${it.transportador}</span></td>
           <td>${isoToBR(it.previsao_entrega)}</td>
+          <td>${ocorr}</td>
           <td><span class="${pillClass}">${lateDays}d</span></td>
         `;
         atrasoBody.appendChild(tr);
@@ -635,5 +633,3 @@
   </script>
 </body>
 </html>
-
-
