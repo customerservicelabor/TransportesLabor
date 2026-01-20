@@ -368,7 +368,7 @@
           <div class="ttl">Notas em Atraso</div>
           <div class="badge" id="atrasoCount">— itens</div>
         </div>
-        <div class="scroll">
+     <div class="scroll" id="scrollAtraso">
           <table>
             <thead>
               <tr>
@@ -391,7 +391,7 @@
           <div class="ttl">Notas Previstas para Hoje</div>
           <div class="badge" id="hojeCount">— itens</div>
         </div>
-        <div class="scroll">
+       <div class="scroll" id="scrollHoje">
           <table>
             <thead>
               <tr>
@@ -622,6 +622,8 @@
 
       sel.addEventListener('change', render);
       render();
+            // Aguarda o DOM pintar as tabelas e então inicia auto-scroll
+      setTimeout(initAutoScroll, 300);
 
       window.addEventListener('resize', () => setGauge(perf, target));
     }
@@ -630,6 +632,79 @@
       console.error(err);
       alert('Erro ao carregar data.json. Verifique se index.html e data.json estão na mesma pasta.');
     });
+        // =========================
+    // AUTO-SCROLL (TV MODE)
+    // =========================
+    function startAutoScroll(el, opts = {}) {
+      if (!el) return;
+
+      const speedPxPerTick = opts.speedPxPerTick ?? 1;     // velocidade
+      const tickMs = opts.tickMs ?? 40;                    // frequência
+      const pauseAtEndMs = opts.pauseAtEndMs ?? 1200;      // pausa no fim
+      const pauseAtTopMs = opts.pauseAtTopMs ?? 600;       // pausa no topo
+      const resetThresholdPx = opts.resetThresholdPx ?? 2; // tolerância
+
+      let timer = null;
+      let paused = false;
+
+      const canScroll = () => el.scrollHeight > el.clientHeight + 5;
+
+      const step = () => {
+        if (paused) return;
+        if (!canScroll()) return;
+
+        const maxScrollTop = el.scrollHeight - el.clientHeight;
+        const next = el.scrollTop + speedPxPerTick;
+
+        // chegou no fim?
+        if (next >= maxScrollTop - resetThresholdPx) {
+          el.scrollTop = maxScrollTop;
+
+          paused = true;
+          setTimeout(() => {
+            // volta pro topo
+            el.scrollTop = 0;
+            setTimeout(() => { paused = false; }, pauseAtTopMs);
+          }, pauseAtEndMs);
+
+          return;
+        }
+
+        el.scrollTop = next;
+      };
+
+      const start = () => {
+        stop();
+        timer = setInterval(step, tickMs);
+      };
+
+      const stop = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+      };
+
+      // pausa se passar mouse (útil no PC; na TV não interfere)
+      el.addEventListener('mouseenter', () => { paused = true; });
+      el.addEventListener('mouseleave', () => { paused = false; });
+
+      // em touch, um toque pausa/retoma
+      el.addEventListener('touchstart', () => { paused = !paused; }, { passive:true });
+
+      start();
+      return { start, stop };
+    }
+
+    // inicia auto-scroll depois do render (importante, pois precisa do tamanho correto)
+    function initAutoScroll() {
+      const elAtraso = document.getElementById('scrollAtraso');
+      const elHoje   = document.getElementById('scrollHoje');
+
+      // você pode ajustar as velocidades individualmente
+      startAutoScroll(elAtraso, { speedPxPerTick: 1, tickMs: 40, pauseAtEndMs: 1400 });
+      startAutoScroll(elHoje,   { speedPxPerTick: 1, tickMs: 45, pauseAtEndMs: 1200 });
+    }
+
   </script>
 </body>
 </html>
+
