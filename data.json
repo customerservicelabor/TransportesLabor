@@ -5,7 +5,7 @@
     "entregas_realizadas": 1895,
     "notas_em_atraso": 18,
     "previstas_para_hoje": 19,
-    "performance_percent": 92.09,
+    "performance_percent": 96.09,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 75984.31,
     "valor_total_previsto_hoje": 92187.07
@@ -313,5 +313,6 @@
     }
   ]
 }
+
 
 
