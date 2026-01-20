@@ -4,8 +4,8 @@
     "total_notas": 2332,
     "entregas_realizadas": 1895,
     "notas_em_atraso": 18,
-    "previstas_para_hoje": 22,
-    "performance_percent": 92.03,
+    "previstas_para_hoje": 19,
+    "performance_percent": 92.09,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 75984.31,
     "valor_total_previsto_hoje": 92187.07
@@ -313,4 +313,5 @@
     }
   ]
 }
+
 
