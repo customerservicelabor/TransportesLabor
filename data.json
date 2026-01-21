@@ -1,13 +1,13 @@
 {
   "updated_at": "21/01/2026 08:33",
   "kpis": {
-    "total_notas": 2396,
-    "entregas_realizadas": 1959,
-    "notas_em_atraso": 15,
-    "previstas_para_hoje": 32,
-    "performance_percent": 92.09,
+    "total_notas": 2406,
+    "entregas_realizadas": 1967,
+    "notas_em_atraso": 14,
+    "previstas_para_hoje": 35,
+    "performance_percent": 92.12,
     "meta_performance_percent": 95.0,
-    "valor_total_em_atraso": 39380.93,
+    "valor_total_em_atraso": 39020.55,
     "valor_total_previsto_hoje": 139092.45
   },
   "notas_em_atraso": [
@@ -58,14 +58,6 @@
       "transportador": "TGL",
       "previsao_entrega": "2026-01-20",
       "ocorrencia": "Atrasado"
-    },
-    {
-      "nota_fiscal": "198954",
-      "destinatario": "LUNAV ANALISES CLINICAS LTDA",
-      "valor_mercadoria": 360.38,
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-12",
-      "ocorrencia": "Aguardando Agendamento"
     },
     {
       "nota_fiscal": "198914",
@@ -380,5 +372,6 @@
     }
   ]
 }
+
 
 
