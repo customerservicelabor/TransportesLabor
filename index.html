@@ -68,16 +68,22 @@
     .kpi .value{ font-size:26px; font-weight:800; }
 
     /* HERO PERFORMANCE */
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
     .hero{
       background:#fff;
       color:#0b1020;
       border-radius:var(--radius);
       padding:18px;
       box-shadow:var(--shadow);
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin-bottom:14px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
     }
 
     .hero h2{ margin:0 0 6px; }
@@ -88,23 +94,26 @@
       font-size:12px;
       font-weight:700;
       display:inline-block;
+      width:max-content;
     }
     .pill.good{ background:var(--good); color:#052e16; }
     .pill.bad{ background:var(--bad); color:#fff; }
 
-    /* PAINÉIS */
-    .grid2{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
+    .perf-value{
+      font-size:52px;
+      font-weight:900;
+      text-align:center;
+      margin-top:8px;
     }
 
+    /* PAINÉIS */
     .panel{
       background:rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.1);
       border-radius:var(--radius);
       overflow:hidden;
       box-shadow:var(--shadow);
+      height:100%;
     }
 
     .ph{
@@ -141,11 +150,18 @@
     }
 
     .row-done{ background:rgba(34,197,94,.18); }
+    .row-arrived{ background:rgba(245,158,11,.22); }
+    .row-left{ background:rgba(34,197,94,.28); }
 
-    /* RESPONSIVO */
+    .grid2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
     @media(max-width:1100px){
       .kpis{ grid-template-columns:repeat(3,1fr); }
-      .hero{ grid-template-columns:1fr; }
+      .hero-grid{ grid-template-columns:1fr; }
       .grid2{ grid-template-columns:1fr; }
     }
   </style>
@@ -153,102 +169,109 @@
 
 <body>
 <div class="wrap">
-  <header>
-    <h1>Painel de Entregas</h1>
-    <div class="updated" id="updatedAt">Atualizado em —</div>
-  </header>
 
-  <section class="kpis">
-    <div class="kpi"><div class="title">Total de Notas</div><div class="value" id="kTotal">—</div></div>
-    <div class="kpi"><div class="title">Entregas Realizadas</div><div class="value" id="kEntregas">—</div></div>
-    <div class="kpi"><div class="title">Notas em Atraso</div><div class="value" id="kAtraso">—</div></div>
-    <div class="kpi"><div class="title">Previstas Hoje</div><div class="value" id="kHoje">—</div></div>
-    <div class="kpi"><div class="title">Valor em Atraso</div><div class="value" id="kValorAtraso">—</div></div>
-    <div class="kpi"><div class="title">Valor Previsto Hoje</div><div class="value" id="kValorHoje">—</div></div>
-  </section>
+<header>
+  <h1>Painel de Entregas</h1>
+  <div class="updated" id="updatedAt">Atualizado em —</div>
+</header>
 
-  <section class="hero">
-    <div>
-      <h2>Performance de Entregas</h2>
-      <p>Meta operacional: <strong>95%</strong></p>
-      <span class="pill bad" id="perfStatus">Abaixo da meta</span>
+<section class="kpis">
+  <div class="kpi"><div class="title">Total de Notas</div><div class="value" id="kTotal">—</div></div>
+  <div class="kpi"><div class="title">Entregas Realizadas</div><div class="value" id="kEntregas">—</div></div>
+  <div class="kpi"><div class="title">Notas em Atraso</div><div class="value" id="kAtraso">—</div></div>
+  <div class="kpi"><div class="title">Previstas Hoje</div><div class="value" id="kHoje">—</div></div>
+  <div class="kpi"><div class="title">Valor em Atraso</div><div class="value" id="kValorAtraso">—</div></div>
+  <div class="kpi"><div class="title">Valor Previsto Hoje</div><div class="value" id="kValorHoje">—</div></div>
+</section>
+
+<section class="hero-grid">
+  <!-- PERFORMANCE -->
+  <div class="hero">
+    <h2>Performance de Entregas</h2>
+    <p>Meta operacional: <strong>95%</strong></p>
+    <span class="pill bad" id="perfStatus">Abaixo da meta</span>
+    <div class="perf-value" id="perfPct">—%</div>
+  </div>
+
+  <!-- TRANSPORTADORES -->
+  <div class="panel">
+    <div class="ph">Transportadores</div>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Transportador</th>
+            <th>Chegada</th>
+            <th>Saída</th>
+            <th>Próxima Coleta</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyTransp"></tbody>
+      </table>
     </div>
-    <div style="font-size:52px;font-weight:900;text-align:center;" id="perfPct">—%</div>
-  </section>
+  </div>
+</section>
 
-  <section class="grid2">
-    <!-- NOTAS EM ATRASO -->
-    <div class="panel">
-      <div class="ph">Notas em Atraso</div>
-      <div class="scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>NF</th>
-              <th>Destinatário</th>
-              <th>Transportador</th>
-              <th>Prev. Entrega</th>
-              <th>Ocorrência</th>
-            </tr>
-          </thead>
-          <tbody id="tbodyAtraso"></tbody>
-        </table>
-      </div>
+<section class="grid2">
+  <div class="panel">
+    <div class="ph">Notas em Atraso</div>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>NF</th>
+            <th>Destinatário</th>
+            <th>Transportador</th>
+            <th>Prev. Entrega</th>
+            <th>Ocorrência</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyAtraso"></tbody>
+      </table>
     </div>
+  </div>
 
-    <!-- PREVISTAS -->
-    <div class="panel">
-      <div class="ph">Previstas para Hoje</div>
-      <div class="scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>NF</th>
-              <th>Destinatário</th>
-              <th>Transportador</th>
-              <th>Cidade</th>
-              <th>Entrega</th>
-            </tr>
-          </thead>
-          <tbody id="tbodyHoje"></tbody>
-        </table>
-      </div>
+  <div class="panel">
+    <div class="ph">Previstas para Hoje</div>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>NF</th>
+            <th>Destinatário</th>
+            <th>Transportador</th>
+            <th>Cidade</th>
+            <th>Entrega</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyHoje"></tbody>
+      </table>
     </div>
-  </section>
+  </div>
+</section>
+
 </div>
 
 <script>
-/* ===== AUTO SCROLL SUAVE (MODELO ANTIGO) ===== */
+/* AUTO SCROLL SUAVE */
 const AUTO_SCROLL={stepPx:1,intervalMs:45,pauseEndMs:1500,pauseTopMs:800};
-let timers=[];
-
-function clearScroll(){timers.forEach(t=>clearInterval(t));timers=[];}
-
 function startScroll(el){
-  let pauseUntil=0,hover=false;
+  let pause=0,hover=false;
   el.addEventListener('mouseenter',()=>hover=true);
   el.addEventListener('mouseleave',()=>hover=false);
-
-  const t=setInterval(()=>{
-    if(hover||Date.now()<pauseUntil)return;
+  setInterval(()=>{
+    if(hover||Date.now()<pause)return;
     const max=el.scrollHeight-el.clientHeight;
     if(max<=0)return;
     if(el.scrollTop>=max-1){
-      pauseUntil=Date.now()+AUTO_SCROLL.pauseEndMs;
-      setTimeout(()=>{el.scrollTop=0;pauseUntil=Date.now()+AUTO_SCROLL.pauseTopMs;},AUTO_SCROLL.pauseEndMs);
+      pause=Date.now()+AUTO_SCROLL.pauseEndMs;
+      setTimeout(()=>{el.scrollTop=0;pause=Date.now()+AUTO_SCROLL.pauseTopMs;},AUTO_SCROLL.pauseEndMs);
       return;
     }
     el.scrollTop+=AUTO_SCROLL.stepPx;
   },AUTO_SCROLL.intervalMs);
-  timers.push(t);
 }
 
-function initScroll(){
-  clearScroll();
-  document.querySelectorAll('.scroll').forEach(startScroll);
-}
-
-/* ===== LOAD JSON ===== */
 fetch('data.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
   updatedAt.textContent='Atualizado em: '+d.updated_at;
   kTotal.textContent=d.kpis.total_notas;
@@ -257,8 +280,21 @@ fetch('data.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
   kHoje.textContent=d.kpis.previstas_para_hoje;
   kValorAtraso.textContent='R$ '+d.kpis.valor_total_em_atraso.toLocaleString('pt-BR');
   kValorHoje.textContent='R$ '+d.kpis.valor_total_previsto_hoje.toLocaleString('pt-BR');
-
   perfPct.textContent=d.kpis.performance_percent.toFixed(2)+'%';
+
+  tbodyTransp.innerHTML='';
+  d.transportadores.forEach(t=>{
+    let cls='';
+    if(t.saida) cls='row-left';
+    else if(t.chegada) cls='row-arrived';
+    tbodyTransp.innerHTML+=`
+      <tr class="${cls}">
+        <td>${t.nome}</td>
+        <td>${t.chegada||'-'}</td>
+        <td>${t.saida||'-'}</td>
+        <td>${t.proxima_coleta||'-'}</td>
+      </tr>`;
+  });
 
   tbodyAtraso.innerHTML='';
   d.notas_em_atraso.forEach(n=>{
@@ -274,9 +310,8 @@ fetch('data.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
 
   tbodyHoje.innerHTML='';
   d.notas_previstas_hoje.forEach(n=>{
-    const done=!!n.data_entrega;
     tbodyHoje.innerHTML+=`
-      <tr class="${done?'row-done':''}">
+      <tr class="${n.data_entrega?'row-done':''}">
         <td>${n.nota_fiscal}</td>
         <td>${n.destinatario}</td>
         <td>${n.transportador}</td>
@@ -285,7 +320,7 @@ fetch('data.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
       </tr>`;
   });
 
-  initScroll();
+  document.querySelectorAll('.scroll').forEach(startScroll);
 });
 </script>
 </body>
