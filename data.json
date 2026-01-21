@@ -3,24 +3,24 @@
   "kpis": {
     "total_notas": 2396,
     "entregas_realizadas": 1959,
-    "notas_em_atraso": 19,
-    "previstas_para_hoje": 32,
+    "notas_em_atraso": 14,
+    "previstas_para_hoje": 35,
     "performance_percent": 92.09,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 39020.55,
     "valor_total_previsto_hoje": 139092.45
   },
   "transportadores": [
-    { "transportador": "Azul", "chegada": "10:20", "saida": "11:45", "proxima_coleta": "22/02/2026" },
-    { "transportador": "Latam", "chegada": "10:10", "saida": "11:05", "proxima_coleta": "22/02/2026" },
-    { "transportador": "Azurelog", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Patrus", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Azul", "chegada": "10:32", "saida": "11:45", "proxima_coleta": "22/02/2026" },
+    { "transportador": "Latam", "chegada": "09:56", "saida": "11:05", "proxima_coleta": "22/02/2026" },
+    { "transportador": "Azurelog", "chegada": "10:00", "saida": "11:25", "proxima_coleta": "22/02/2026" },
+    { "transportador": "Patrus", "chegada": "13:55", "saida": "", "proxima_coleta": "" },
     { "transportador": "Schreiber", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Translovato", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Gran Cargo", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Tecmar", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Tecmar", "chegada": "10:31", "saida": "12:15", "proxima_coleta": "22/02/2026" },
     { "transportador": "TGL", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Logdi", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Logdi", "chegada": "11:23", "saida": "12:52", "proxima_coleta": "22/02/2026" },
     { "transportador": "Fedex", "chegada": "", "saida": "", "proxima_coleta": "" }
   ],
   "notas_em_atraso": [
@@ -420,3 +420,4 @@
     }
   ]
 }
+
