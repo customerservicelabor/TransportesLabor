@@ -4,801 +4,289 @@
   <meta charset="utf-8"/>
   <meta http-equiv="refresh" content="3600">
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Painel de Entregas – Indicador</title>
+  <title>Painel de Entregas</title>
 
   <style>
     :root{
       --bg:#0b1020;
-      --muted:#9aa4c0;
       --text:#e9ecf5;
+      --muted:#9aa4c0;
 
       --good:#22c55e;
       --warn:#f59e0b;
       --bad:#ef4444;
 
-      --shadow: 0 14px 30px rgba(0,0,0,.25);
       --radius:18px;
-
-      --ink:#0b1b3a;
+      --shadow:0 14px 30px rgba(0,0,0,.25);
     }
 
     *{ box-sizing:border-box; }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 30% 0%, rgba(11,134,255,.22), transparent 55%),
-                  radial-gradient(900px 700px at 80% 20%, rgba(34,197,94,.12), transparent 60%),
-                  var(--bg);
+      background: var(--bg);
       color:var(--text);
     }
 
-    .wrap{ max-width: min(1800px, 96vw); margin: 28px auto 60px; padding: 0 18px; }
+    .wrap{ max-width:1800px; margin:24px auto; padding:0 16px; }
 
     header{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:16px; margin-bottom:18px; flex-wrap:wrap;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+      flex-wrap:wrap;
+      gap:12px;
     }
-    h1{ margin:0; font-size:38px; letter-spacing:.2px; }
-    .rightHead{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
-    }
+
+    h1{ margin:0; font-size:32px; }
+
     .updated{
+      font-size:12px;
       color:var(--muted);
-      font-size:13px;
-      padding:10px 12px;
-      border:1px solid rgba(255,255,255,.10);
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.1);
       border-radius:999px;
-      background: rgba(255,255,255,.04);
-      backdrop-filter: blur(8px);
-      white-space:nowrap;
-    }
-    .filter{
-      display:flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
-      backdrop-filter: blur(8px);
-    }
-    .filter label{ font-size:12px; color: rgba(233,236,245,.80); }
-    select{
-      background: rgba(0,0,0,.25);
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 999px;
-      padding: 8px 10px;
-      font-size: 12px;
-      outline: none;
+      background:rgba(255,255,255,.05);
     }
 
     .kpis{
       display:grid;
-      grid-template-columns: repeat(6, minmax(0,1fr));
-      gap:14px;
-      margin-top:12px;
+      grid-template-columns:repeat(6,1fr);
+      gap:12px;
+      margin-bottom:14px;
     }
+
     .kpi{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      padding: 16px 16px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      min-height: 104px;
-    }
-    .kpi .title{ color: rgba(233,236,245,.85); font-size:13px; letter-spacing:.3px; }
-    .kpi .value{
-      font-size: clamp(18px, 2.2vw, 30px);
-      font-weight: 800;
-      margin: 10px 0 2px;
-      line-height: 1.1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .kpi .sub{ color:var(--muted); font-size:12px; }
-
-    /* Linha superior: Performance (branco) + Transportadores (escuro igual tabelas) */
-    .topRow{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 14px;
-      margin:16px 0 14px;
-      align-items:stretch;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:var(--radius);
+      padding:14px;
     }
 
-    /* HERO (branco) */
+    .kpi .title{ font-size:13px; color:var(--muted); }
+    .kpi .value{ font-size:26px; font-weight:800; }
+
+    /* HERO PERFORMANCE */
     .hero{
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.92);
-      border:1px solid rgba(255,255,255,.35);
-      box-shadow: var(--shadow);
-      padding: 16px 16px;
+      background:#fff;
+      color:#0b1020;
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:14px;
-      align-items:center;
-      overflow:hidden;
-      position:relative;
-      color: var(--ink);
-      min-height: 280px;
-    }
-    .hero::before{
-      content:"";
-      position:absolute; inset:-80px -120px auto auto;
-      width: 360px; height: 360px;
-      background: radial-gradient(circle at 30% 30%, rgba(11,27,58,.10), transparent 60%);
-      transform: rotate(10deg);
-      opacity:.70;
-    }
-    .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
-    .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; }
-
-    .metaLine{
-      margin-top: 8px;
-      font-size: 12px;
-      color: rgba(11,27,58,.72);
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-bottom:14px;
     }
 
-    .gaugeWrap{
-      display:flex; justify-content:center; align-items:center;
-      position:relative;
-      z-index:1;
-    }
-    .gauge{
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      position:relative;
-      box-shadow: 0 18px 40px rgba(0,0,0,.18);
-      background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
-      overflow:hidden;
-    }
-    .gauge::before{
-      content:"";
-      position:absolute;
-      left:-2px; right:-2px; bottom:-2px;
-      height: 54%;
-      background: rgba(255,255,255,.92);
-      border-top: 1px solid rgba(11,27,58,.10);
-      z-index:1;
-    }
-    .gauge::after{
-      content:"";
-      position:absolute; inset: 18px;
-      background: rgba(255,255,255,.96);
-      border-radius:50%;
-      border:1px solid rgba(11,27,58,.18);
-      z-index:2;
-    }
-
-    .gaugeCenter{
-      position:absolute;
-      top:50%; left:50%;
-      transform: translate(-50%, -54%);
-      text-align:center;
-      z-index:3;
-      width: 170px;
-    }
-    .gaugeCenter .pct{ font-size:50px; font-weight:900; line-height:1; color:var(--ink); }
-    .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
-
-    .targetDot{
-      position:absolute;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--ink);
-      box-shadow: 0 6px 14px rgba(0,0,0,.25);
-      z-index:4;
-      transform: translate(-50%, -50%);
-    }
-
-    .panel{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      min-height: 280px; /* para alinhar visualmente com a hero */
-    }
-    .panel .ph{
-      padding: 14px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.14);
-    }
-    .ph .ttl{
-      font-weight:800;
-      display:flex; align-items:center; gap:10px;
-    }
-    .badge{
-      font-size:12px;
-      padding: 6px 10px;
-      border-radius:999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: rgba(233,236,245,.92);
-      white-space:nowrap;
-    }
-
-    table{ width:100%; border-collapse:collapse; }
-    th, td{
-      padding: 10px 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      vertical-align:middle;
-      font-size:13px;
-    }
-
-    .scroll{
-      max-height: 420px;
-      overflow:auto;
-      position: relative;
-      background: rgba(0,0,0,.04);
-    }
-    /* para o painel de transportadores ficar “do mesmo tamanho” e com scroll igual */
-    .scroll.transportScroll{ max-height: 216px; }
-
-    thead th{
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      background: rgba(12,18,38,.96);
-      color: rgba(233,236,245,.85);
-      text-transform:uppercase;
-      letter-spacing:.35px;
-      font-size:11px;
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,255,255,.12);
-    }
-
-    td .muted{ color: var(--muted); font-size:12px; }
+    .hero h2{ margin:0 0 6px; }
 
     .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding: 6px 10px;
+      padding:6px 10px;
       border-radius:999px;
       font-size:12px;
       font-weight:700;
-      color:#0b1020;
-      background: var(--warn);
-      white-space:nowrap;
+      display:inline-block;
     }
-    .pill.bad{ background: var(--bad); color:#fff; }
-    .pill.good{ background: var(--good); color:#0b1020; }
+    .pill.good{ background:var(--good); color:#052e16; }
+    .pill.bad{ background:var(--bad); color:#fff; }
 
-    /* linhas com status (transportadores e previstas) */
-    tr.rowGood  td{ background: rgba(34,197,94,.12); }
-    tr.rowWarn  td{ background: rgba(245,158,11,.14); }
-    tr.rowBad   td{ background: rgba(239,68,68,.12); }
-
-    .foot{
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 12px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
+    /* PAINÉIS */
     .grid2{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 14px;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
     }
 
-    @media (max-width: 1400px){
-      .topRow{ grid-template-columns: 1fr; }
-      .panel{ min-height: unset; }
-      .scroll.transportScroll{ max-height: 320px; }
+    .panel{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
     }
 
-    @media (max-width: 1200px){
-      .kpis{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .ph{
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.1);
+      font-weight:800;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
-    @media (max-width: 980px){
-      .kpis{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .hero{ grid-template-columns: 1fr; }
-      .grid2{ grid-template-columns: 1fr; }
-      h1{ font-size:30px; }
+
+    .scroll{
+      max-height:420px;
+      overflow:auto;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:13px;
+    }
+
+    th,td{
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      text-align:left;
+    }
+
+    thead th{
+      position:sticky;
+      top:0;
+      background:#0b1020;
+      z-index:2;
+    }
+
+    .row-done{ background:rgba(34,197,94,.18); }
+
+    /* RESPONSIVO */
+    @media(max-width:1100px){
+      .kpis{ grid-template-columns:repeat(3,1fr); }
+      .hero{ grid-template-columns:1fr; }
+      .grid2{ grid-template-columns:1fr; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Painel de Entregas</h1>
-      </div>
+<div class="wrap">
+  <header>
+    <h1>Painel de Entregas</h1>
+    <div class="updated" id="updatedAt">Atualizado em —</div>
+  </header>
 
-      <div class="rightHead">
-        <div class="filter">
-          <label for="carrierFilter">Transportador</label>
-          <select id="carrierFilter">
-            <option value="__ALL__">Todos</option>
-          </select>
-        </div>
-        <div class="updated" id="updatedAt">Atualizado em: --/--/----</div>
-      </div>
-    </header>
+  <section class="kpis">
+    <div class="kpi"><div class="title">Total de Notas</div><div class="value" id="kTotal">—</div></div>
+    <div class="kpi"><div class="title">Entregas Realizadas</div><div class="value" id="kEntregas">—</div></div>
+    <div class="kpi"><div class="title">Notas em Atraso</div><div class="value" id="kAtraso">—</div></div>
+    <div class="kpi"><div class="title">Previstas Hoje</div><div class="value" id="kHoje">—</div></div>
+    <div class="kpi"><div class="title">Valor em Atraso</div><div class="value" id="kValorAtraso">—</div></div>
+    <div class="kpi"><div class="title">Valor Previsto Hoje</div><div class="value" id="kValorHoje">—</div></div>
+  </section>
 
-    <section class="kpis">
-      <div class="kpi">
-        <div class="title">Total de Notas</div>
-        <div class="value" id="kpiTotalNotas">—</div>
-        <div class="sub">Notas fiscais no período</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Entregas Realizadas</div>
-        <div class="value" id="kpiEntregas">—</div>
-        <div class="sub">Notas entregues</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Notas em Atraso</div>
-        <div class="value" id="kpiAtraso">—</div>
-        <div class="sub">Pendentes fora do prazo</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Previstas para Hoje</div>
-        <div class="value" id="kpiHoje">—</div>
-        <div class="sub">Previsão diária</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Valor em Atraso</div>
-        <div class="value" id="kpiValorAtraso">—</div>
-        <div class="sub">Somatório (filtro aplicado)</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Valor Previsto Hoje</div>
-        <div class="value" id="kpiValorHoje">—</div>
-        <div class="sub">Somatório (filtro aplicado)</div>
-      </div>
-    </section>
-
-    <!-- TOPO: performance (branco) + transportadores (escuro igual tabelas) -->
-    <section class="topRow">
-      <div class="hero">
-        <div style="position:relative; z-index:1;">
-          <h2>Performance de Entregas Atual</h2>
-          <p>
-            Indicador consolidado de entregas concluídas. A meta é manter a eficiência em 95,00% ou acima.
-            Abaixo da meta, o painel sinaliza atenção.
-          </p>
-
-          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-            <span class="badge" id="metaBadge">Meta: 95,00%</span>
-            <span class="pill" id="metaStatus">—</span>
-          </div>
-
-          <div class="metaLine" id="metaLegend">Meta no gauge: —</div>
-        </div>
-
-        <div class="gaugeWrap">
-          <div class="gauge" id="gauge">
-            <div class="gaugeCenter">
-              <div class="pct" id="perfPct">—%</div>
-              <div class="lbl">Eficiência de Entrega</div>
-            </div>
-            <div class="targetDot" id="targetDot" style="left:-9999px; top:-9999px;"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel" id="panelTransportadores">
-        <div class="ph">
-          <div class="ttl">Transportadores • Tempo Real</div>
-          <div class="badge" id="transpCount">— itens</div>
-        </div>
-        <div class="scroll transportScroll">
-          <table>
-            <thead>
-              <tr>
-                <th>Transportador</th>
-                <th>Chegada</th>
-                <th>Saída</th>
-                <th>Próxima coleta</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyTransportadores"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid2">
-      <div class="panel">
-        <div class="ph">
-          <div class="ttl">Notas em Atraso</div>
-          <div class="badge" id="atrasoCount">— itens</div>
-        </div>
-        <div class="scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>NF</th>
-                <th>Destinatário</th>
-                <th>Transportador</th>
-                <th>Prev. Entrega</th>
-                <th>Ocorrência</th>
-                <th>Atraso</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyAtraso"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="ph">
-          <div class="ttl">Notas Previstas para Hoje</div>
-          <div class="badge" id="hojeCount">— itens</div>
-        </div>
-        <div class="scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>NF</th>
-                <th>Destinatário</th>
-                <th>Transportador</th>
-                <th>Cidade destino</th>
-                <th>Data de entrega</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyHoje"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <div class="foot">
-      <div>Observação: painel alimentado via <strong>data.json</strong>.</div>
-      <div>Labor • Logística • Indicadores</div>
+  <section class="hero">
+    <div>
+      <h2>Performance de Entregas</h2>
+      <p>Meta operacional: <strong>95%</strong></p>
+      <span class="pill bad" id="perfStatus">Abaixo da meta</span>
     </div>
-  </div>
+    <div style="font-size:52px;font-weight:900;text-align:center;" id="perfPct">—%</div>
+  </section>
 
-  <script>
-    const fmtBRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
+  <section class="grid2">
+    <!-- NOTAS EM ATRASO -->
+    <div class="panel">
+      <div class="ph">Notas em Atraso</div>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>NF</th>
+              <th>Destinatário</th>
+              <th>Transportador</th>
+              <th>Prev. Entrega</th>
+              <th>Ocorrência</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyAtraso"></tbody>
+        </table>
+      </div>
+    </div>
 
-    function fmtPctBR(v){
-      return (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
+    <!-- PREVISTAS -->
+    <div class="panel">
+      <div class="ph">Previstas para Hoje</div>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>NF</th>
+              <th>Destinatário</th>
+              <th>Transportador</th>
+              <th>Cidade</th>
+              <th>Entrega</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyHoje"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ===== AUTO SCROLL SUAVE (MODELO ANTIGO) ===== */
+const AUTO_SCROLL={stepPx:1,intervalMs:45,pauseEndMs:1500,pauseTopMs:800};
+let timers=[];
+
+function clearScroll(){timers.forEach(t=>clearInterval(t));timers=[];}
+
+function startScroll(el){
+  let pauseUntil=0,hover=false;
+  el.addEventListener('mouseenter',()=>hover=true);
+  el.addEventListener('mouseleave',()=>hover=false);
+
+  const t=setInterval(()=>{
+    if(hover||Date.now()<pauseUntil)return;
+    const max=el.scrollHeight-el.clientHeight;
+    if(max<=0)return;
+    if(el.scrollTop>=max-1){
+      pauseUntil=Date.now()+AUTO_SCROLL.pauseEndMs;
+      setTimeout(()=>{el.scrollTop=0;pauseUntil=Date.now()+AUTO_SCROLL.pauseTopMs;},AUTO_SCROLL.pauseEndMs);
+      return;
     }
-
-    // Formato "universal": R$ 86.7K / R$ 1.2M
-    function fmtBRLCompactK(value){
-      const v = Number(value) || 0;
-      const abs = Math.abs(v);
-      const sign = v < 0 ? "-" : "";
-      const format1 = (n) => (Math.round(n * 10) / 10).toFixed(1);
-
-      if (abs >= 1e9)  return `R$ ${sign}${format1(abs/1e9)}B`;
-      if (abs >= 1e6)  return `R$ ${sign}${format1(abs/1e6)}M`;
-      if (abs >= 1e3)  return `R$ ${sign}${format1(abs/1e3)}K`;
-      return fmtBRL.format(v);
-    }
-
-    function parseUpdatedDate(updatedAtStr){
-      // Aceita "dd/mm/aaaa" ou "dd/mm/aaaa HH:MM"
-      const [datePart, timePart="00:00"] = String(updatedAtStr || "").split(" ");
-      const [dd, mm, yyyy] = datePart.split("/").map(Number);
-      const [HH, MM] = timePart.split(":").map(Number);
-      return new Date(yyyy, (mm||1)-1, dd||1, HH || 0, MM || 0, 0, 0);
-    }
-
-    function isoToBR(iso){
-      if (!iso) return '';
-      const [y,m,d] = iso.split("-").map(Number);
-      if (!y || !m || !d) return String(iso);
-      const dt = new Date(y, m-1, d);
-      return dt.toLocaleDateString('pt-BR');
-    }
-
-    function brToDate(br){
-      // "dd/mm/aaaa"
-      if (!br) return null;
-      const s = String(br).trim();
-      const m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-      if (!m) return null;
-      const dd = Number(m[1]), mm = Number(m[2]), yy = Number(m[3]);
-      return new Date(yy, mm-1, dd);
-    }
-
-    function daysDiff(later, earlier){
-      const ms = later.getTime() - earlier.getTime();
-      return Math.floor(ms / (1000*60*60*24));
-    }
-
-    function normalizeCarrier(s){
-      return String(s || '').trim();
-    }
-
-    function sumValues(list){
-      return list.reduce((acc, it) => acc + (Number(it.valor_mercadoria) || 0), 0);
-    }
-
-    function applyCarrierFilter(list, carrier){
-      if (!carrier || carrier === '__ALL__') return list;
-      return list.filter(it => normalizeCarrier(it.transportador) === carrier);
-    }
-
-    function buildCarrierOptions(data){
-      const carriers = new Set();
-      for (const it of (data.notas_em_atraso || [])) carriers.add(normalizeCarrier(it.transportador));
-      for (const it of (data.notas_previstas_hoje || [])) carriers.add(normalizeCarrier(it.transportador));
-      for (const it of (data.transportadores || [])) carriers.add(normalizeCarrier(it.transportador || it.nome));
-
-      const sorted = Array.from(carriers).filter(Boolean).sort((a,b) => a.localeCompare(b, 'pt-BR'));
-      const sel = document.getElementById('carrierFilter');
-
-      // evita duplicar caso o load rode novamente
-      sel.querySelectorAll('option:not([value="__ALL__"])').forEach(o => o.remove());
-
-      for (const c of sorted){
-        const opt = document.createElement('option');
-        opt.value = c;
-        opt.textContent = c;
-        sel.appendChild(opt);
-      }
-    }
-
-    function placeTargetMarker(targetPct){
-      const gauge = document.getElementById('gauge');
-      const dot = document.getElementById('targetDot');
-      if (!gauge || !dot) return;
-
-      const size = gauge.clientWidth;
-      const cx = size / 2;
-      const cy = size / 2;
-      const r = (size / 2) - 8;
-
-      const t = Math.max(0, Math.min(100, Number(targetPct) || 0));
-      const angle = Math.PI * (1 - (t / 100)); // 0% => PI; 100% => 0
-
-      const x = cx + r * Math.cos(angle);
-      const y = cy - r * Math.sin(angle);
-
-      dot.style.left = `${x}px`;
-      dot.style.top  = `${y}px`;
-    }
-
-    function setGauge(percent, target){
-      const p = Math.max(0, Math.min(100, Number(percent) || 0));
-      const t = Math.max(0, Math.min(100, Number(target) || 95));
-
-      const fillDeg = (p/100) * 180;
-
-      const root = getComputedStyle(document.documentElement);
-      const good = root.getPropertyValue('--good').trim();
-      const warn = root.getPropertyValue('--warn').trim();
-      const bad  = root.getPropertyValue('--bad').trim();
-
-      let color = good;
-      if (p < t) color = warn;
-      if (p < (t - 5)) color = bad;
-
-      const gauge = document.getElementById('gauge');
-      gauge.style.background =
-        `conic-gradient(from 180deg, ${color} 0deg, ${color} ${fillDeg}deg, rgba(11,27,58,.12) ${fillDeg}deg 360deg)`;
-
-      document.getElementById('perfPct').textContent = fmtPctBR(p);
-
-      const statusEl = document.getElementById('metaStatus');
-      const metaEl = document.getElementById('metaBadge');
-      if (metaEl) metaEl.textContent = `Meta: ${fmtPctBR(t)}`;
-
-      if (statusEl){
-        if (p >= t){
-          statusEl.className = 'pill good';
-          statusEl.textContent = 'OK — acima da meta';
-        } else {
-          statusEl.className = 'pill bad';
-          statusEl.textContent = 'Atenção — abaixo da meta';
-        }
-      }
-
-      const legend = document.getElementById('metaLegend');
-      if (legend) legend.textContent = `Meta no gauge: ${fmtPctBR(t)} (pino)`;
-
-      placeTargetMarker(t);
-    }
-
-    function renderTransportadores(data, carrier){
-      const listAll = (data.transportadores || []).map(it => ({
-        transportador: normalizeCarrier(it.transportador || it.nome || ''),
-        chegada: (it.chegada || '').trim(),
-        saida: (it.saida || '').trim(),
-        proxima_coleta: (it.proxima_coleta || it.proximaColeta || it.proxima_coleta_data || it.proxima || '').trim()
-      }));
-
-      const list = (!carrier || carrier === '__ALL__') ? listAll : listAll.filter(it => it.transportador === carrier);
-
-      document.getElementById('transpCount').textContent = `${list.length} itens`;
-
-      const body = document.getElementById('tbodyTransportadores');
-      body.innerHTML = '';
-
-      for (const it of list){
-        let rowClass = '';
-        const hasChegada = !!it.chegada;
-        const hasSaida = !!it.saida;
-
-        if (hasSaida) rowClass = 'rowGood';
-        else if (hasChegada) rowClass = 'rowWarn';
-
-        const tr = document.createElement('tr');
-        tr.className = rowClass;
-        tr.innerHTML = `
-          <td><strong>${it.transportador || '-'}</strong></td>
-          <td>${it.chegada || ''}</td>
-          <td>${it.saida || ''}</td>
-          <td>${it.proxima_coleta || ''}</td>
-        `;
-        body.appendChild(tr);
-      }
-    }
-
-    function renderTables(data, carrier){
-      const now = parseUpdatedDate(data.updated_at);
-
-      const atrasoAll = (data.notas_em_atraso || []).slice()
-        .sort((a,b) => (a.previsao_entrega > b.previsao_entrega ? 1 : -1));
-
-      const hojeAll = (data.notas_previstas_hoje || []).slice();
-
-      const atrasoList = applyCarrierFilter(atrasoAll, carrier);
-      const hojeList   = applyCarrierFilter(hojeAll, carrier);
-
-      document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
-      document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
-
-      // KPIs de valor continuam (agregado), formato compacto
-      const atrasoValue = Number(data.kpis?.valor_total_em_atraso) ? (carrier === '__ALL__' ? Number(data.kpis.valor_total_em_atraso) : sumValues(atrasoList)) : sumValues(atrasoList);
-      const hojeValue   = Number(data.kpis?.valor_total_previsto_hoje) ? (carrier === '__ALL__' ? Number(data.kpis.valor_total_previsto_hoje) : sumValues(hojeList)) : sumValues(hojeList);
-
-      document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(atrasoValue);
-      document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(hojeValue);
-
-      // ATRASO (sem coluna Valor — dado sensível)
-      const atrasoBody = document.getElementById('tbodyAtraso');
-      atrasoBody.innerHTML = '';
-
-      for (const it of atrasoList){
-        const prev = new Date(it.previsao_entrega + "T00:00:00");
-        const lateDays = Math.max(0, daysDiff(now, prev));
-        const pillClass = lateDays >= 10 ? 'pill bad' : (lateDays >= 5 ? 'pill' : 'pill good');
-
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${it.nota_fiscal}</strong></td>
-          <td>${it.destinatario}</td>
-          <td><span class="muted">${it.transportador}</span></td>
-          <td>${isoToBR(it.previsao_entrega)}</td>
-          <td>${(it.ocorrencia || '').trim()}</td>
-          <td><span class="${pillClass}">${lateDays}d</span></td>
-        `;
-        atrasoBody.appendChild(tr);
-      }
-
-      // HOJE (sem coluna Valor — dado sensível) + Data de entrega (linha verde se preenchida)
-      const hojeBody = document.getElementById('tbodyHoje');
-      hojeBody.innerHTML = '';
-
-      for (const it of hojeList){
-        const dataEntrega = (it.data_de_entrega || it.data_entrega || it.dataEntrega || '').trim();
-        const isDelivered = !!brToDate(dataEntrega);
-
-        const tr = document.createElement('tr');
-        if (isDelivered) tr.className = 'rowGood';
-
-        tr.innerHTML = `
-          <td><strong>${it.nota_fiscal}</strong></td>
-          <td>${it.destinatario}</td>
-          <td><span class="muted">${it.transportador}</span></td>
-          <td>${it.cidade_destino}</td>
-          <td>${dataEntrega}</td>
-        `;
-        hojeBody.appendChild(tr);
-      }
-
-      // Transportadores (painel ao lado)
-      renderTransportadores(data, carrier);
-    }
-
-    // =======================
-    // AUTO-SCROLL (modelo antigo)
-    // rola devagar -> pausa -> volta pro topo -> pausa -> repete
-    // =======================
-    const AUTO_SCROLL = {
-      stepPx: 1,
-      intervalMs: 45,     // mais lento (TV friendly)
-      pauseEndMs: 1200,
-      pauseTopMs: 800
-    };
-
-    let autoScrollTimers = [];
-
-    function clearAutoScroll(){
-      for (const t of autoScrollTimers) clearInterval(t);
-      autoScrollTimers = [];
-    }
-
-    function startAutoScrollOn(container){
-      if (!container) return;
-
-      container.scrollTop = 0;
-
-      let pausedUntil = 0;
-
-      const timer = setInterval(() => {
-        const now = Date.now();
-        if (now < pausedUntil) return;
-
-        const maxScrollTop = container.scrollHeight - container.clientHeight;
-        if (maxScrollTop <= 0) return;
-
-        if (container.scrollTop >= maxScrollTop - 1){
-          pausedUntil = now + AUTO_SCROLL.pauseEndMs;
-
-          setTimeout(() => {
-            container.scrollTop = 0;
-            pausedUntil = Date.now() + AUTO_SCROLL.pauseTopMs;
-          }, AUTO_SCROLL.pauseEndMs);
-
-          return;
-        }
-
-        container.scrollTop += AUTO_SCROLL.stepPx;
-
-      }, AUTO_SCROLL.intervalMs);
-
-      autoScrollTimers.push(timer);
-    }
-
-    function initAutoScroll(){
-      clearAutoScroll();
-      const scrollAreas = document.querySelectorAll('.scroll');
-      scrollAreas.forEach(startAutoScrollOn);
-    }
-
-    async function load(){
-      const res = await fetch('data.json', { cache: 'no-store' });
-      const data = await res.json();
-
-      document.getElementById('updatedAt').textContent = 'Atualizado em: ' + (data.updated_at || '--/--/----');
-
-      document.getElementById('kpiTotalNotas').textContent = (data.kpis?.total_notas ?? 0).toLocaleString('pt-BR');
-      document.getElementById('kpiEntregas').textContent   = (data.kpis?.entregas_realizadas ?? 0).toLocaleString('pt-BR');
-      document.getElementById('kpiAtraso').textContent     = (data.kpis?.notas_em_atraso ?? 0).toLocaleString('pt-BR');
-      document.getElementById('kpiHoje').textContent       = (data.kpis?.previstas_para_hoje ?? 0).toLocaleString('pt-BR');
-
-      buildCarrierOptions(data);
-
-      const perf = Number(data.kpis?.performance_percent || 0);
-      const target = Number(data.kpis?.meta_performance_percent || 95);
-      setGauge(perf, target);
-
-      const sel = document.getElementById('carrierFilter');
-
-      const render = () => {
-        renderTables(data, sel.value);
-        initAutoScroll(); // reinicia para o público na TV sempre ver o fluxo
-      };
-
-      sel.addEventListener('change', render);
-      render();
-
-      window.addEventListener('resize', () => setGauge(perf, target));
-    }
-
-    load().catch(err => {
-      console.error(err);
-      alert('Erro ao carregar data.json. Verifique se index.html e data.json estão na mesma pasta.');
-    });
-  </script>
+    el.scrollTop+=AUTO_SCROLL.stepPx;
+  },AUTO_SCROLL.intervalMs);
+  timers.push(t);
+}
+
+function initScroll(){
+  clearScroll();
+  document.querySelectorAll('.scroll').forEach(startScroll);
+}
+
+/* ===== LOAD JSON ===== */
+fetch('data.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+  updatedAt.textContent='Atualizado em: '+d.updated_at;
+  kTotal.textContent=d.kpis.total_notas;
+  kEntregas.textContent=d.kpis.entregas_realizadas;
+  kAtraso.textContent=d.kpis.notas_em_atraso;
+  kHoje.textContent=d.kpis.previstas_para_hoje;
+  kValorAtraso.textContent='R$ '+d.kpis.valor_total_em_atraso.toLocaleString('pt-BR');
+  kValorHoje.textContent='R$ '+d.kpis.valor_total_previsto_hoje.toLocaleString('pt-BR');
+
+  perfPct.textContent=d.kpis.performance_percent.toFixed(2)+'%';
+
+  tbodyAtraso.innerHTML='';
+  d.notas_em_atraso.forEach(n=>{
+    tbodyAtraso.innerHTML+=`
+      <tr>
+        <td>${n.nota_fiscal}</td>
+        <td>${n.destinatario}</td>
+        <td>${n.transportador}</td>
+        <td>${n.previsao_entrega}</td>
+        <td>${n.ocorrencia||'-'}</td>
+      </tr>`;
+  });
+
+  tbodyHoje.innerHTML='';
+  d.notas_previstas_hoje.forEach(n=>{
+    const done=!!n.data_entrega;
+    tbodyHoje.innerHTML+=`
+      <tr class="${done?'row-done':''}">
+        <td>${n.nota_fiscal}</td>
+        <td>${n.destinatario}</td>
+        <td>${n.transportador}</td>
+        <td>${n.cidade_destino}</td>
+        <td>${n.data_entrega||'-'}</td>
+      </tr>`;
+  });
+
+  initScroll();
+});
+</script>
 </body>
 </html>
