@@ -121,9 +121,7 @@
       overflow:hidden;
       position:relative;
       color: var(--ink);
-
-      /* === ALTERADO: 3/4 do tamanho (antes 260px) === */
-      min-height: 195px;
+      min-height: 260px;
     }
     .hero::before{
       content:"";
@@ -133,8 +131,21 @@
       transform: rotate(10deg);
       opacity:.70;
     }
-    .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
-    .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; }
+
+    /* ======= PERFORMANCE: TEXTO MAIOR ======= */
+    .hero h2{
+      margin:0 0 6px;
+      font-size:24px;              /* antes 20px */
+      letter-spacing:.2px;
+      color:var(--ink);
+    }
+    .hero p{
+      margin:0;
+      color: rgba(11,27,58,.78);
+      max-width: 720px;
+      font-size:14px;              /* antes padrão */
+      line-height:1.35;
+    }
 
     .metaLine{
       margin-top: 8px;
@@ -148,12 +159,10 @@
       z-index:1;
     }
     .gauge{
-      /* === ALTERADO: 3/4 (antes 210) === */
-      width: 158px; height: 158px;
-
+      width: 210px; height: 210px;
       border-radius: 50%;
       position:relative;
-      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      box-shadow: 0 22px 50px rgba(0,0,0,.22); /* mais destaque */
       background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
       overflow:hidden;
     }
@@ -168,11 +177,7 @@
     }
     .gauge::after{
       content:"";
-      position:absolute;
-
-      /* === ALTERADO proporcional (antes 18px) === */
-      inset: 14px;
-
+      position:absolute; inset: 18px;
       background: rgba(255,255,255,.96);
       border-radius:50%;
       border:1px solid rgba(11,27,58,.18);
@@ -185,17 +190,24 @@
       transform: translate(-50%, -54%);
       text-align:center;
       z-index:3;
-
-      /* === ALTERADO proporcional (antes 170px) === */
-      width: 128px;
+      width: 170px;
     }
+
+    /* ======= PERFORMANCE: % COM MAIS DESTAQUE ======= */
     .gaugeCenter .pct{
-      /* === ALTERADO proporcional (antes 52px) === */
-      font-size: 40px;
-
-      font-weight:900; line-height:1; color:var(--ink);
+      font-size:62px;              /* antes 52px */
+      font-weight:950;
+      line-height:1;
+      color:var(--ink);
+      text-shadow: 0 8px 18px rgba(0,0,0,.12);
+      letter-spacing: .2px;
     }
-    .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
+    .gaugeCenter .lbl{
+      font-size:13px;              /* antes 12px */
+      font-weight:700;
+      color: rgba(11,27,58,.80);
+      margin-top:8px;
+    }
 
     /* pino da meta */
     .targetDot{
@@ -215,13 +227,16 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
-
-      /* === ALTERADO: 3/4 do tamanho (antes 260px) === */
-      min-height: 195px;
-
+      min-height: 260px;
       display:flex;
       flex-direction:column;
     }
+
+    /* ======= SOMENTE TRANSPORTADORES MENOR (3/4) ======= */
+    .panel.transp{
+      min-height: 195px; /* 260 * 0.75 = 195 */
+    }
+
     .panel .ph{
       padding: 14px 14px;
       display:flex;
@@ -407,7 +422,7 @@
       </section>
 
       <!-- TRANSPORTADORES (painel escuro, com scroll + auto-scroll) -->
-      <div class="panel">
+      <div class="panel transp">
         <div class="ph">
           <div class="ttl">Transportadores</div>
           <div class="badge" id="transpCount">— itens</div>
@@ -656,6 +671,7 @@
       document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
       document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
 
+      // KPIs de valor em formato compacto
       document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(sumValues(atrasoList));
       document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(sumValues(hojeList));
 
@@ -786,12 +802,14 @@
 
       sel.addEventListener('change', () => {
         render();
+        // reseta scroll ao trocar filtro (para TV ficar “organizado”)
         document.getElementById('scrollAtraso').scrollTop = 0;
         document.getElementById('scrollHoje').scrollTop = 0;
       });
 
       render();
 
+      // aguarda pintar e então inicia auto-scroll
       setTimeout(initAutoScroll, 350);
 
       window.addEventListener('resize', () => setGauge(perf, target));
