@@ -3,7 +3,7 @@
   "kpis": {
     "total_notas": 2396,
     "entregas_realizadas": 1959,
-    "notas_em_atraso": 19,
+    "notas_em_atraso": 15,
     "previstas_para_hoje": 32,
     "performance_percent": 92.09,
     "meta_performance_percent": 95.0,
@@ -380,4 +380,5 @@
     }
   ]
 }
+
 
