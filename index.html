@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8"/>
-  <meta http-equiv="refresh" content="1800">
+  <meta http-equiv="refresh" content="3600">
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Painel de Entregas – Indicador</title>
 
@@ -20,6 +20,12 @@
       --radius:18px;
 
       --ink:#0b1b3a;
+
+      --rowGreen: rgba(34,197,94,.16);
+      --rowGreenBorder: rgba(34,197,94,.35);
+
+      --rowYellow: rgba(245,158,11,.18);
+      --rowYellowBorder: rgba(245,158,11,.35);
     }
 
     *{ box-sizing:border-box; }
@@ -32,13 +38,14 @@
       color:var(--text);
     }
 
-    .wrap{ max-width: min(1800px, 96vw); margin: 28px auto 60px; padding: 0 18px; }
+    .wrap{ max-width: min(1800px, 96vw); margin: 22px auto 60px; padding: 0 18px; }
 
     header{
       display:flex; align-items:flex-end; justify-content:space-between;
-      gap:16px; margin-bottom:18px; flex-wrap:wrap;
+      gap:16px; margin-bottom:14px; flex-wrap:wrap;
     }
-    h1{ margin:0; font-size:38px; letter-spacing:.2px; }
+    h1{ margin:0; font-size:36px; letter-spacing:.2px; }
+
     .rightHead{
       display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
     }
@@ -75,7 +82,7 @@
       display:grid;
       grid-template-columns: repeat(6, minmax(0,1fr));
       gap:14px;
-      margin-top:12px;
+      margin-top:10px;
     }
     .kpi{
       background: rgba(255,255,255,.06);
@@ -84,7 +91,7 @@
       padding: 16px 16px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(8px);
-      min-height: 104px;
+      min-height: 98px;
     }
     .kpi .title{ color: rgba(233,236,245,.85); font-size:13px; letter-spacing:.3px; }
     .kpi .value{
@@ -98,105 +105,24 @@
     }
     .kpi .sub{ color:var(--muted); font-size:12px; }
 
-    .hero{
-      margin:16px 0 16px;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.92);
-      border:1px solid rgba(255,255,255,.35);
-      box-shadow: var(--shadow);
-      padding: 18px 18px;
+    /* Linha principal: Performance (menor) + Transportadoras (novo) */
+    .topRow{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:center;
-      overflow:hidden;
-      position:relative;
-      color: var(--ink);
-    }
-    .hero::before{
-      content:"";
-      position:absolute; inset:-80px -120px auto auto;
-      width: 360px; height: 360px;
-      background: radial-gradient(circle at 30% 30%, rgba(11,27,58,.10), transparent 60%);
-      transform: rotate(10deg);
-      opacity:.70;
-    }
-    .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
-    .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; }
-
-    .metaLine{
-      margin-top: 8px;
-      font-size: 12px;
-      color: rgba(11,27,58,.72);
-    }
-
-    .gaugeWrap{
-      display:flex; justify-content:center; align-items:center;
-      position:relative;
-      z-index:1;
-    }
-    .gauge{
-      width: 210px; height: 210px;
-      border-radius: 50%;
-      position:relative;
-      box-shadow: 0 18px 40px rgba(0,0,0,.18);
-      background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
-      overflow:hidden;
-    }
-    .gauge::before{
-      content:"";
-      position:absolute;
-      left:-2px; right:-2px; bottom:-2px;
-      height: 54%;
-      background: rgba(255,255,255,.92);
-      border-top: 1px solid rgba(11,27,58,.10);
-      z-index:1;
-    }
-    .gauge::after{
-      content:"";
-      position:absolute; inset: 18px;
-      background: rgba(255,255,255,.96);
-      border-radius:50%;
-      border:1px solid rgba(11,27,58,.18);
-      z-index:2;
-    }
-
-    .gaugeCenter{
-      position:absolute;
-      top:50%; left:50%;
-      transform: translate(-50%, -54%);
-      text-align:center;
-      z-index:3;
-      width: 170px;
-    }
-    .gaugeCenter .pct{ font-size:52px; font-weight:900; line-height:1; color:var(--ink); }
-    .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
-
-    .targetDot{
-      position:absolute;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--ink);
-      box-shadow: 0 6px 14px rgba(0,0,0,.25);
-      z-index:4;
-      transform: translate(-50%, -50%);
-    }
-
-    .grid2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1.05fr;
       gap: 14px;
       margin-top: 14px;
+      align-items: stretch;
     }
-    .panel{
+
+    .card{
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.10);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .panel .ph{
-      padding: 14px 14px;
+    .card .ph{
+      padding: 12px 14px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -218,6 +144,94 @@
       white-space:nowrap;
     }
 
+    /* Performance "hero" compacto (branco) */
+    .heroInner{
+      background: rgba(255,255,255,.92);
+      color: var(--ink);
+      padding: 14px 14px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 12px;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .heroInner h2{ margin:0 0 6px; font-size:18px; letter-spacing:.2px; color:var(--ink); }
+    .heroInner p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; font-size: 13px; }
+
+    .metaLine{
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(11,27,58,.72);
+    }
+
+    .gaugeWrap{
+      display:flex; justify-content:center; align-items:center;
+      position:relative;
+      z-index:1;
+    }
+    .gauge{
+      width: 170px; height: 170px;
+      border-radius: 50%;
+      position:relative;
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
+      overflow:hidden;
+    }
+    .gauge::before{
+      content:"";
+      position:absolute;
+      left:-2px; right:-2px; bottom:-2px;
+      height: 54%;
+      background: rgba(255,255,255,.92);
+      border-top: 1px solid rgba(11,27,58,.10);
+      z-index:1;
+    }
+    .gauge::after{
+      content:"";
+      position:absolute; inset: 15px;
+      background: rgba(255,255,255,.96);
+      border-radius:50%;
+      border:1px solid rgba(11,27,58,.18);
+      z-index:2;
+    }
+    .gaugeCenter{
+      position:absolute;
+      top:50%; left:50%;
+      transform: translate(-50%, -54%);
+      text-align:center;
+      z-index:3;
+      width: 150px;
+    }
+    .gaugeCenter .pct{ font-size:42px; font-weight:900; line-height:1; color:var(--ink); }
+    .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
+
+    .targetDot{
+      position:absolute;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 6px 14px rgba(0,0,0,.25);
+      z-index:4;
+      transform: translate(-50%, -50%);
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding: 6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      color:#0b1020;
+      background: var(--warn);
+      white-space:nowrap;
+    }
+    .pill.bad{ background: var(--bad); color:#fff; }
+    .pill.good{ background: var(--good); color:#0b1020; }
+
+    /* Tabelas */
     table{ width:100%; border-collapse:collapse; }
     th, td{
       padding: 10px 12px;
@@ -247,20 +261,32 @@
 
     td .muted{ color: var(--muted); font-size:12px; }
 
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding: 6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:700;
-      color:#0b1020;
-      background: var(--warn);
-      white-space:nowrap;
+    /* Linhas concluídas no "previsto" */
+    tr.doneRow{
+      background: var(--rowGreen);
+      outline: 1px solid var(--rowGreenBorder);
+      outline-offset: -1px;
     }
-    .pill.bad{ background: var(--bad); color:#fff; }
-    .pill.good{ background: var(--good); color:#0b1020; }
+
+    /* Transportadoras: status por chegada/saída */
+    tr.carYellow{
+      background: var(--rowYellow);
+      outline: 1px solid var(--rowYellowBorder);
+      outline-offset: -1px;
+    }
+    tr.carGreen{
+      background: var(--rowGreen);
+      outline: 1px solid var(--rowGreenBorder);
+      outline-offset: -1px;
+    }
+
+    /* Grid das listas (Atraso e Previsto) */
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
 
     .foot{
       margin-top: 16px;
@@ -272,14 +298,15 @@
       flex-wrap:wrap;
     }
 
-    @media (max-width: 1200px){
+    @media (max-width: 1400px){
       .kpis{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .topRow{ grid-template-columns: 1fr; }
     }
     @media (max-width: 980px){
       .kpis{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .hero{ grid-template-columns: 1fr; }
       .grid2{ grid-template-columns: 1fr; }
       h1{ font-size:30px; }
+      .heroInner{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -326,55 +353,85 @@
       <div class="kpi">
         <div class="title">Valor em Atraso</div>
         <div class="value" id="kpiValorAtraso">—</div>
-        <div class="sub">Somatório (filtro aplicado)</div>
+        <div class="sub">Somatório (restrito)</div>
       </div>
       <div class="kpi">
         <div class="title">Valor Previsto Hoje</div>
         <div class="value" id="kpiValorHoje">—</div>
-        <div class="sub">Somatório (filtro aplicado)</div>
+        <div class="sub">Somatório (restrito)</div>
       </div>
     </section>
 
-    <section class="hero">
-      <div style="position:relative; z-index:1;">
-        <h2>Performance de Entregas Atual</h2>
-        <p>
-          Indicador consolidado de entregas concluídas. A meta é manter a eficiência em 95,00% ou acima.
-          Abaixo da meta, o painel sinaliza atenção.
-        </p>
-
-        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-          <span class="badge" id="metaBadge">Meta: 95,00%</span>
-          <span class="pill" id="metaStatus">—</span>
+    <!-- Linha Performance + Transportadoras -->
+    <section class="topRow">
+      <!-- Performance (compacto) -->
+      <div class="card">
+        <div class="ph">
+          <div class="ttl">Performance de Entregas Atual</div>
+          <div class="badge" id="metaBadge">Meta: —</div>
         </div>
 
-        <div class="metaLine" id="metaLegend">Meta no gauge: —</div>
-      </div>
+        <div class="heroInner">
+          <div style="position:relative; z-index:1;">
+            <p>
+              Indicador consolidado de entregas concluídas. Abaixo da meta, sinaliza atenção.
+            </p>
 
-      <div class="gaugeWrap">
-        <div class="gauge" id="gauge">
-          <div class="gaugeCenter">
-            <div class="pct" id="perfPct">—%</div>
-            <div class="lbl">Eficiência de Entrega</div>
+            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <span class="pill" id="metaStatus">—</span>
+            </div>
+
+            <div class="metaLine" id="metaLegend">Meta no gauge: —</div>
           </div>
-          <div class="targetDot" id="targetDot" style="left:-9999px; top:-9999px;"></div>
+
+          <div class="gaugeWrap">
+            <div class="gauge" id="gauge">
+              <div class="gaugeCenter">
+                <div class="pct" id="perfPct">—%</div>
+                <div class="lbl">Eficiência</div>
+              </div>
+              <div class="targetDot" id="targetDot" style="left:-9999px; top:-9999px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transportadoras (novo quadro) -->
+      <div class="card">
+        <div class="ph">
+          <div class="ttl">Transportadoras – Tempo Real</div>
+          <div class="badge">Chegada: amarelo • Saída: verde</div>
+        </div>
+
+        <div class="scroll" id="scrollCarriers">
+          <table>
+            <thead>
+              <tr>
+                <th>Transportador</th>
+                <th>Chegada</th>
+                <th>Saída</th>
+                <th>Próxima coleta</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyCarriers"></tbody>
+          </table>
         </div>
       </div>
     </section>
 
+    <!-- Listas principais -->
     <section class="grid2">
-      <div class="panel">
+      <div class="card">
         <div class="ph">
           <div class="ttl">Notas em Atraso</div>
           <div class="badge" id="atrasoCount">— itens</div>
         </div>
-     <div class="scroll" id="scrollAtraso">
+        <div class="scroll" id="scrollAtraso">
           <table>
             <thead>
               <tr>
                 <th>NF</th>
                 <th>Destinatário</th>
-                <th>Valor</th>
                 <th>Transportador</th>
                 <th>Prev. Entrega</th>
                 <th>Ocorrência</th>
@@ -386,19 +443,20 @@
         </div>
       </div>
 
-      <div class="panel">
+      <div class="card">
         <div class="ph">
           <div class="ttl">Notas Previstas para Hoje</div>
           <div class="badge" id="hojeCount">— itens</div>
         </div>
-       <div class="scroll" id="scrollHoje">
+        <div class="scroll" id="scrollHoje">
           <table>
             <thead>
               <tr>
                 <th>NF</th>
                 <th>Destinatário</th>
-                <th>Valor</th>
                 <th>Transportador</th>
+                <th>Prev. Entrega</th>
+                <th>Data Entrega</th>
                 <th>Cidade destino</th>
               </tr>
             </thead>
@@ -409,7 +467,7 @@
     </section>
 
     <div class="foot">
-      <div>Observação: painel alimentado via <strong>data.json</strong>.</div>
+      <div>Observação: painel alimentado via <strong>data.json</strong>. Valores por NF ocultados (dado sensível).</div>
       <div>Labor • Logística • Indicadores</div>
     </div>
   </div>
@@ -424,29 +482,30 @@
     function fmtBRLCompactK(value){
       const v = Number(value) || 0;
       const abs = Math.abs(v);
-
       const sign = v < 0 ? "-" : "";
       const format1 = (n) => (Math.round(n * 10) / 10).toFixed(1);
 
       if (abs >= 1e9)  return `R$ ${sign}${format1(abs/1e9)}B`;
       if (abs >= 1e6)  return `R$ ${sign}${format1(abs/1e6)}M`;
       if (abs >= 1e3)  return `R$ ${sign}${format1(abs/1e3)}K`;
-
       return fmtBRL.format(v);
     }
 
     function parseUpdatedDate(updatedAtStr){
-      const parts = String(updatedAtStr || '').split(" ");
-      const datePart = parts[0] || "01/01/1970";
-      const timePart = parts[1] || "00:00";
+      // Aceita "dd/mm/yyyy HH:MM" (se só data, assume 00:00)
+      const [datePart, timePart="00:00"] = String(updatedAtStr || "").split(" ");
       const [dd, mm, yyyy] = datePart.split("/").map(Number);
       const [HH, MM] = timePart.split(":").map(Number);
-      return new Date(yyyy, (mm || 1)-1, dd || 1, HH || 0, MM || 0, 0, 0);
+      return new Date(yyyy, (mm||1)-1, dd||1, HH||0, MM||0, 0, 0);
     }
 
     function isoToBR(iso){
-      const [y,m,d] = String(iso || '').split("-").map(Number);
-      const dt = new Date(y, (m||1)-1, d||1);
+      if (!iso) return "";
+      // se vier "dd/mm/yyyy", retorna como está
+      if (String(iso).includes("/")) return String(iso);
+      const [y,m,d] = String(iso).split("-").map(Number);
+      if (!y || !m || !d) return String(iso);
+      const dt = new Date(y, m-1, d);
       return dt.toLocaleDateString('pt-BR');
     }
 
@@ -459,10 +518,6 @@
       return String(s || '').trim();
     }
 
-    function sumValues(list){
-      return list.reduce((acc, it) => acc + (Number(it.valor_mercadoria) || 0), 0);
-    }
-
     function applyCarrierFilter(list, carrier){
       if (!carrier || carrier === '__ALL__') return list;
       return list.filter(it => normalizeCarrier(it.transportador) === carrier);
@@ -472,9 +527,12 @@
       const carriers = new Set();
       for (const it of (data.notas_em_atraso || [])) carriers.add(normalizeCarrier(it.transportador));
       for (const it of (data.notas_previstas_hoje || [])) carriers.add(normalizeCarrier(it.transportador));
+      // inclui também transportadoras do quadro “tempo real”
+      for (const it of (data.transportadoras_status || [])) carriers.add(normalizeCarrier(it.transportador));
 
       const sorted = Array.from(carriers).filter(Boolean).sort((a,b) => a.localeCompare(b, 'pt-BR'));
       const sel = document.getElementById('carrierFilter');
+      sel.innerHTML = '<option value="__ALL__">Todos</option>';
 
       for (const c of sorted){
         const opt = document.createElement('option');
@@ -489,10 +547,10 @@
       const dot = document.getElementById('targetDot');
       if (!gauge || !dot) return;
 
-      const size = gauge.clientWidth;
+      const size = gauge.clientWidth; // 170
       const cx = size / 2;
       const cy = size / 2;
-      const r = (size / 2) - 8;
+      const r = (size / 2) - 7;
 
       const t = Math.max(0, Math.min(100, Number(targetPct) || 0));
       const angle = Math.PI * (1 - (t / 100)); // 0% => PI; 100% => 0
@@ -527,6 +585,7 @@
 
       const statusEl = document.getElementById('metaStatus');
       const metaEl = document.getElementById('metaBadge');
+
       if (metaEl) metaEl.textContent = `Meta: ${fmtPctBR(t)}`;
 
       if (statusEl){
@@ -545,12 +604,97 @@
       placeTargetMarker(t);
     }
 
+    /* ==========================
+       SCROLL INFINITO (SEM GAP)
+       - Duplica o conteúdo do tbody
+       - Quando chega na metade, reposiciona sem "pulo"
+       ========================== */
+    function startInfiniteScroll(scrollEl, speedPxPerTick = 0.6, tickMs = 20){
+      if (!scrollEl) return;
+
+      // evita duplicar de novo caso rode várias vezes
+      if (scrollEl.dataset.infScroll === "1") return;
+      scrollEl.dataset.infScroll = "1";
+
+      let timer = null;
+      let paused = false;
+
+      // Pausa no hover (útil no notebook)
+      scrollEl.addEventListener('mouseenter', () => paused = true);
+      scrollEl.addEventListener('mouseleave', () => paused = false);
+
+      const step = () => {
+        if (paused) return;
+
+        scrollEl.scrollTop += speedPxPerTick;
+
+        const half = scrollEl.scrollHeight / 2;
+        if (scrollEl.scrollTop >= half){
+          // reposiciona para manter continuidade visual
+          scrollEl.scrollTop = scrollEl.scrollTop - half;
+        }
+      };
+
+      timer = setInterval(step, tickMs);
+    }
+
+    function enableInfiniteScrollOnTbody(scrollEl, tbodyEl){
+      // Só aplica se houver conteúdo suficiente para justificar
+      if (!scrollEl || !tbodyEl) return;
+
+      const rows = tbodyEl.querySelectorAll('tr').length;
+      if (rows < 6) return; // ajuste se quiser (evita loop esquisito com poucas linhas)
+
+      // duplica o conteúdo
+      tbodyEl.innerHTML = tbodyEl.innerHTML + tbodyEl.innerHTML;
+
+      // inicia rolagem
+      startInfiniteScroll(scrollEl);
+    }
+
+    function renderCarriers(data, carrier){
+      const listAll = (data.transportadoras_status || []).slice();
+      const list = (carrier && carrier !== '__ALL__')
+        ? listAll.filter(x => normalizeCarrier(x.transportador) === carrier)
+        : listAll;
+
+      const tbody = document.getElementById('tbodyCarriers');
+      tbody.innerHTML = '';
+
+      for (const it of list){
+        const chegada = String(it.chegada || '').trim();
+        const saida   = String(it.saida || '').trim();
+
+        let cls = '';
+        if (chegada && !saida) cls = 'carYellow';
+        if (saida) cls = 'carGreen';
+
+        const tr = document.createElement('tr');
+        if (cls) tr.className = cls;
+
+        tr.innerHTML = `
+          <td><strong>${it.transportador || ''}</strong></td>
+          <td>${chegada || '<span class="muted">—</span>'}</td>
+          <td>${saida || '<span class="muted">—</span>'}</td>
+          <td>${it.proxima_coleta ? isoToBR(it.proxima_coleta) : '<span class="muted">—</span>'}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+
+      // scroll infinito também no quadro de transportadoras se ficar grande
+      const scroll = document.getElementById('scrollCarriers');
+      // como este é “tempo real”, geralmente poucas linhas; se quiser forçar mesmo com poucas, remova o if no helper
+      // aqui não duplico por padrão para não ficar repetindo “igual” quando só tem 10 transportadoras.
+    }
+
     function renderTables(data, carrier){
       const now = parseUpdatedDate(data.updated_at);
 
       const atrasoAll = (data.notas_em_atraso || []).slice()
         .sort((a,b) => (a.previsao_entrega > b.previsao_entrega ? 1 : -1));
-      const hojeAll = (data.notas_previstas_hoje || []).slice();
+
+      const hojeAll = (data.notas_previstas_hoje || []).slice()
+        .sort((a,b) => (String(a.previsao_entrega||'') > String(b.previsao_entrega||'') ? 1 : -1));
 
       const atrasoList = applyCarrierFilter(atrasoAll, carrier);
       const hojeList   = applyCarrierFilter(hojeAll, carrier);
@@ -558,45 +702,65 @@
       document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
       document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
 
-      document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(sumValues(atrasoList));
-      document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(sumValues(hojeList));
+      // KPIs de valor (mantém no topo, mas as tabelas não exibem valor por NF)
+      document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(Number(data.kpis.valor_total_em_atraso || 0));
+      document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(Number(data.kpis.valor_total_previsto_hoje || 0));
 
+      /* --- Atraso --- */
       const atrasoBody = document.getElementById('tbodyAtraso');
       atrasoBody.innerHTML = '';
 
       for (const it of atrasoList){
-        const prev = new Date(String(it.previsao_entrega) + "T00:00:00");
-        const lateDays = Math.max(0, daysDiff(now, prev));
-        const pillClass = lateDays >= 10 ? 'pill bad' : (lateDays >= 5 ? 'pill' : 'pill good');
+        const prev = new Date(String(it.previsao_entrega || '') + "T00:00:00");
+        const lateDays = isNaN(prev.getTime()) ? 0 : Math.max(0, daysDiff(now, prev));
 
-        const ocorr = (it.ocorrencia && String(it.ocorrencia).trim()) ? String(it.ocorrencia).trim() : '—';
+        const occ = String(it.ocorrencia || '').trim();
+
+        let pillClass = 'pill good';
+        if (lateDays >= 5) pillClass = 'pill';
+        if (lateDays >= 10) pillClass = 'pill bad';
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><strong>${it.nota_fiscal}</strong></td>
-          <td>${it.destinatario}</td>
-          <td>${fmtBRL.format(Number(it.valor_mercadoria || 0))}</td>
-          <td><span class="muted">${it.transportador}</span></td>
-          <td>${isoToBR(it.previsao_entrega)}</td>
-          <td>${ocorr}</td>
+          <td><strong>${it.nota_fiscal || ''}</strong></td>
+          <td>${it.destinatario || ''}</td>
+          <td><span class="muted">${it.transportador || ''}</span></td>
+          <td>${it.previsao_entrega ? isoToBR(it.previsao_entrega) : ''}</td>
+          <td>${occ ? occ : '<span class="muted">—</span>'}</td>
           <td><span class="${pillClass}">${lateDays}d</span></td>
         `;
         atrasoBody.appendChild(tr);
       }
 
+      /* --- Previstas --- */
       const hojeBody = document.getElementById('tbodyHoje');
       hojeBody.innerHTML = '';
 
       for (const it of hojeList){
+        const dataEntrega = String(it.data_entrega || '').trim(); // se preenchido -> verde
         const tr = document.createElement('tr');
+        if (dataEntrega) tr.classList.add('doneRow');
+
         tr.innerHTML = `
-          <td><strong>${it.nota_fiscal}</strong></td>
-          <td>${it.destinatario}</td>
-          <td>${fmtBRL.format(Number(it.valor_mercadoria || 0))}</td>
-          <td><span class="muted">${it.transportador}</span></td>
-          <td>${it.cidade_destino}</td>
+          <td><strong>${it.nota_fiscal || ''}</strong></td>
+          <td>${it.destinatario || ''}</td>
+          <td><span class="muted">${it.transportador || ''}</span></td>
+          <td>${it.previsao_entrega ? isoToBR(it.previsao_entrega) : '<span class="muted">—</span>'}</td>
+          <td>${dataEntrega ? isoToBR(dataEntrega) : '<span class="muted">—</span>'}</td>
+          <td>${it.cidade_destino || ''}</td>
         `;
         hojeBody.appendChild(tr);
+      }
+
+      // Scroll infinito sem gap (duplica e rola)
+      const scrollAtraso = document.getElementById('scrollAtraso');
+      const scrollHoje   = document.getElementById('scrollHoje');
+
+      // Para evitar duplicação a cada troca de filtro, só aplica o loop quando estiver "Todos"
+      // e quando não tiver duplicado ainda. Se quiser também no filtro por transportador, eu ajusto depois.
+      if ((carrier === '__ALL__')){
+        enableInfiniteScrollOnTbody(scrollAtraso, atrasoBody);
+        enableInfiniteScrollOnTbody(scrollHoje, hojeBody);
       }
     }
 
@@ -604,12 +768,12 @@
       const res = await fetch('data.json', { cache: 'no-store' });
       const data = await res.json();
 
-      document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
+      document.getElementById('updatedAt').textContent = 'Atualizado em: ' + (data.updated_at || '--');
 
-      document.getElementById('kpiTotalNotas').textContent = data.kpis.total_notas.toLocaleString('pt-BR');
-      document.getElementById('kpiEntregas').textContent   = data.kpis.entregas_realizadas.toLocaleString('pt-BR');
-      document.getElementById('kpiAtraso').textContent     = data.kpis.notas_em_atraso.toLocaleString('pt-BR');
-      document.getElementById('kpiHoje').textContent       = data.kpis.previstas_para_hoje.toLocaleString('pt-BR');
+      document.getElementById('kpiTotalNotas').textContent = Number(data.kpis.total_notas || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiEntregas').textContent   = Number(data.kpis.entregas_realizadas || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiAtraso').textContent     = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiHoje').textContent       = Number(data.kpis.previstas_para_hoje || 0).toLocaleString('pt-BR');
 
       buildCarrierOptions(data);
 
@@ -618,12 +782,16 @@
       setGauge(perf, target);
 
       const sel = document.getElementById('carrierFilter');
-      const render = () => renderTables(data, sel.value);
+
+      const render = () => {
+        // IMPORTANTE: ao mudar filtro, re-renderiza sem infinito (para não duplicar repetidamente)
+        // Se você quiser infinito mesmo com filtro, eu adapto (mantendo clone controlado).
+        renderCarriers(data, sel.value);
+        renderTables(data, sel.value);
+      };
 
       sel.addEventListener('change', render);
       render();
-            // Aguarda o DOM pintar as tabelas e então inicia auto-scroll
-      setTimeout(initAutoScroll, 300);
 
       window.addEventListener('resize', () => setGauge(perf, target));
     }
@@ -632,80 +800,6 @@
       console.error(err);
       alert('Erro ao carregar data.json. Verifique se index.html e data.json estão na mesma pasta.');
     });
-        // =========================
-    // AUTO-SCROLL (TV MODE)
-    // =========================
-    function startAutoScroll(el, opts = {}) {
-      if (!el) return;
-
-      const speedPxPerTick = opts.speedPxPerTick ?? 1;     // velocidade
-      const tickMs = opts.tickMs ?? 40;                    // frequência
-      const pauseAtEndMs = opts.pauseAtEndMs ?? 1200;      // pausa no fim
-      const pauseAtTopMs = opts.pauseAtTopMs ?? 600;       // pausa no topo
-      const resetThresholdPx = opts.resetThresholdPx ?? 2; // tolerância
-
-      let timer = null;
-      let paused = false;
-
-      const canScroll = () => el.scrollHeight > el.clientHeight + 5;
-
-      const step = () => {
-        if (paused) return;
-        if (!canScroll()) return;
-
-        const maxScrollTop = el.scrollHeight - el.clientHeight;
-        const next = el.scrollTop + speedPxPerTick;
-
-        // chegou no fim?
-        if (next >= maxScrollTop - resetThresholdPx) {
-          el.scrollTop = maxScrollTop;
-
-          paused = true;
-          setTimeout(() => {
-            // volta pro topo
-            el.scrollTop = 0;
-            setTimeout(() => { paused = false; }, pauseAtTopMs);
-          }, pauseAtEndMs);
-
-          return;
-        }
-
-        el.scrollTop = next;
-      };
-
-      const start = () => {
-        stop();
-        timer = setInterval(step, tickMs);
-      };
-
-      const stop = () => {
-        if (timer) clearInterval(timer);
-        timer = null;
-      };
-
-      // pausa se passar mouse (útil no PC; na TV não interfere)
-      el.addEventListener('mouseenter', () => { paused = true; });
-      el.addEventListener('mouseleave', () => { paused = false; });
-
-      // em touch, um toque pausa/retoma
-      el.addEventListener('touchstart', () => { paused = !paused; }, { passive:true });
-
-      start();
-      return { start, stop };
-    }
-
-    // inicia auto-scroll depois do render (importante, pois precisa do tamanho correto)
-    function initAutoScroll() {
-      const elAtraso = document.getElementById('scrollAtraso');
-      const elHoje   = document.getElementById('scrollHoje');
-
-      // você pode ajustar as velocidades individualmente
-      startAutoScroll(elAtraso, { speedPxPerTick: 1, tickMs: 40, pauseAtEndMs: 1400 });
-      startAutoScroll(elHoje,   { speedPxPerTick: 1, tickMs: 45, pauseAtEndMs: 1200 });
-    }
-
   </script>
 </body>
 </html>
-
-
