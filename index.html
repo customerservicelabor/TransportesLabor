@@ -113,11 +113,14 @@
       background: rgba(255,255,255,.92);
       border:1px solid rgba(255,255,255,.35);
       box-shadow: var(--shadow);
+
+      /* Ajuste para reduzir “vazio”: coluna do gauge fixa + conteúdo esquerda com grid interno */
       padding: 18px 18px;
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:center;
+      grid-template-columns: 1fr 320px;
+      gap: 18px;
+      align-items: center;
+
       overflow:hidden;
       position:relative;
       color: var(--ink);
@@ -132,23 +135,60 @@
       opacity:.70;
     }
 
-    /* ======= PERFORMANCE: TEXTO MAIOR ======= */
+    /* bloco esquerdo do hero com melhor “ocupação” */
+    .heroLeft{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-rows: auto auto auto auto;
+      gap: 10px;
+      align-content: center;
+    }
+
     .hero h2{
-      margin:0 0 6px;
-      font-size:24px;              /* antes 20px */
+      margin:0;
+      font-size: 22px;
       letter-spacing:.2px;
-      color:var(--ink);
+      color: var(--ink);
     }
     .hero p{
       margin:0;
+      font-size: 14px;
+      line-height: 1.35;
       color: rgba(11,27,58,.78);
-      max-width: 720px;
-      font-size:14px;              /* antes padrão */
-      line-height:1.35;
+    }
+
+    /* mini KPIs dentro do hero (preenche o “vazio”) */
+    .heroStats{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 2px;
+    }
+    .hstat{
+      border-radius: 14px;
+      border: 1px solid rgba(11,27,58,.12);
+      background: rgba(255,255,255,.78);
+      padding: 10px 10px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
+    }
+    .hstat .t{
+      font-size: 11px;
+      color: rgba(11,27,58,.70);
+      letter-spacing: .2px;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hstat .v{
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1;
     }
 
     .metaLine{
-      margin-top: 8px;
       font-size: 12px;
       color: rgba(11,27,58,.72);
     }
@@ -159,10 +199,10 @@
       z-index:1;
     }
     .gauge{
-      width: 210px; height: 210px;
+      width: 240px; height: 240px;
       border-radius: 50%;
       position:relative;
-      box-shadow: 0 22px 50px rgba(0,0,0,.22); /* mais destaque */
+      box-shadow: 0 22px 55px rgba(0,0,0,.22);
       background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
       overflow:hidden;
     }
@@ -190,26 +230,23 @@
       transform: translate(-50%, -54%);
       text-align:center;
       z-index:3;
-      width: 170px;
+      width: 190px;
     }
-
-    /* ======= PERFORMANCE: % COM MAIS DESTAQUE ======= */
     .gaugeCenter .pct{
-      font-size:62px;              /* antes 52px */
-      font-weight:950;
-      line-height:1;
+      font-size: 68px;
+      font-weight: 950;
+      letter-spacing: -1px;
+      line-height: 1;
       color:var(--ink);
-      text-shadow: 0 8px 18px rgba(0,0,0,.12);
-      letter-spacing: .2px;
+      text-shadow: 0 10px 24px rgba(0,0,0,.12);
     }
     .gaugeCenter .lbl{
-      font-size:13px;              /* antes 12px */
-      font-weight:700;
-      color: rgba(11,27,58,.80);
-      margin-top:8px;
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(11,27,58,.78);
+      margin-top: 8px;
     }
 
-    /* pino da meta */
     .targetDot{
       position:absolute;
       width: 10px; height: 10px;
@@ -232,11 +269,8 @@
       flex-direction:column;
     }
 
-    /* ======= SOMENTE TRANSPORTADORES MENOR (3/4) ======= */
-    .panel.transp{
-      min-height: 195px; /* 260 * 0.75 = 195 */
-    }
-
+    /* Transportadores menor (como você já vinha pedindo) */
+    .panel.transpPanel{ min-height: 190px; }
     .panel .ph{
       padding: 14px 14px;
       display:flex;
@@ -276,6 +310,8 @@
       background: rgba(0,0,0,.04);
       flex: 1 1 auto;
     }
+    .panel.transpPanel .scroll{ max-height: 260px; }
+
     thead th{
       position: sticky;
       top: 0;
@@ -306,7 +342,6 @@
     .pill.bad{ background: var(--bad); color:#fff; }
     .pill.good{ background: var(--good); color:#0b1020; }
 
-    /* Linhas do quadro transportadores */
     .rowArrived{ background: rgba(245,158,11,.16); }
     .rowLeft{ background: rgba(34,197,94,.18); }
 
@@ -330,10 +365,11 @@
     @media (max-width: 1200px){
       .kpis{ grid-template-columns: repeat(3, minmax(0,1fr)); }
       .topRow{ grid-template-columns: 1fr; }
+      .hero{ grid-template-columns: 1fr; }
+      .heroStats{ grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
     @media (max-width: 980px){
       .kpis{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .hero{ grid-template-columns: 1fr; }
       .grid2{ grid-template-columns: 1fr; }
       h1{ font-size:30px; }
     }
@@ -395,16 +431,36 @@
     <section class="topRow">
       <!-- PERFORMANCE (com GAUGE) -->
       <section class="hero">
-        <div style="position:relative; z-index:1;">
+        <div class="heroLeft">
           <h2>Performance de Entregas Atual</h2>
           <p>
-            Indicador consolidado de entregas concluídas. A meta é manter a eficiência em 95,00% ou acima.
+            Indicador consolidado de entregas concluídas. Meta: <strong>95,00%</strong>.
             Abaixo da meta, o painel sinaliza atenção.
           </p>
 
-          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
             <span class="badge" id="metaBadge">Meta: 95,00%</span>
             <span class="pill" id="metaStatus">—</span>
+          </div>
+
+          <!-- MINI-KPIs (preenche o espaço vazio) -->
+          <div class="heroStats" aria-label="Resumo rápido">
+            <div class="hstat">
+              <div class="t">Total de notas</div>
+              <div class="v" id="heroTotalNotas">—</div>
+            </div>
+            <div class="hstat">
+              <div class="t">Entregas</div>
+              <div class="v" id="heroEntregas">—</div>
+            </div>
+            <div class="hstat">
+              <div class="t">Em atraso</div>
+              <div class="v" id="heroAtraso">—</div>
+            </div>
+            <div class="hstat">
+              <div class="t">Prev. hoje</div>
+              <div class="v" id="heroHoje">—</div>
+            </div>
           </div>
 
           <div class="metaLine" id="metaLegend">Meta no gauge: —</div>
@@ -421,8 +477,8 @@
         </div>
       </section>
 
-      <!-- TRANSPORTADORES (painel escuro, com scroll + auto-scroll) -->
-      <div class="panel transp">
+      <!-- TRANSPORTADORES -->
+      <div class="panel transpPanel">
         <div class="ph">
           <div class="ttl">Transportadores</div>
           <div class="badge" id="transpCount">— itens</div>
@@ -502,7 +558,6 @@
       return (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
     }
 
-    // Formato "universal": R$ 86.7K / R$ 1.2M
     function fmtBRLCompactK(value){
       const v = Number(value) || 0;
       const abs = Math.abs(v);
@@ -557,7 +612,6 @@
       const sorted = Array.from(carriers).filter(Boolean).sort((a,b) => a.localeCompare(b, 'pt-BR'));
       const sel = document.getElementById('carrierFilter');
 
-      // evita duplicar opções em reloads
       sel.querySelectorAll('option:not([value="__ALL__"])').forEach(o => o.remove());
 
       for (const c of sorted){
@@ -671,7 +725,6 @@
       document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
       document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
 
-      // KPIs de valor em formato compacto
       document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(sumValues(atrasoList));
       document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(sumValues(hojeList));
 
@@ -714,9 +767,6 @@
       }
     }
 
-    // =========================
-    // AUTO-SCROLL (TV MODE)
-    // =========================
     function startAutoScroll(el, opts = {}) {
       if (!el) return;
 
@@ -765,7 +815,6 @@
 
       el.addEventListener('mouseenter', () => { paused = true; });
       el.addEventListener('mouseleave', () => { paused = false; });
-
       el.addEventListener('touchstart', () => { paused = !paused; }, { passive:true });
 
       start();
@@ -789,6 +838,12 @@
       document.getElementById('kpiAtraso').textContent     = data.kpis.notas_em_atraso.toLocaleString('pt-BR');
       document.getElementById('kpiHoje').textContent       = data.kpis.previstas_para_hoje.toLocaleString('pt-BR');
 
+      /* Preenche também os mini-KPIs do hero (para reduzir espaço vazio) */
+      document.getElementById('heroTotalNotas').textContent = data.kpis.total_notas.toLocaleString('pt-BR');
+      document.getElementById('heroEntregas').textContent   = data.kpis.entregas_realizadas.toLocaleString('pt-BR');
+      document.getElementById('heroAtraso').textContent     = data.kpis.notas_em_atraso.toLocaleString('pt-BR');
+      document.getElementById('heroHoje').textContent       = data.kpis.previstas_para_hoje.toLocaleString('pt-BR');
+
       buildCarrierOptions(data);
 
       const perf = Number(data.kpis.performance_percent || 0);
@@ -802,14 +857,12 @@
 
       sel.addEventListener('change', () => {
         render();
-        // reseta scroll ao trocar filtro (para TV ficar “organizado”)
         document.getElementById('scrollAtraso').scrollTop = 0;
         document.getElementById('scrollHoje').scrollTop = 0;
       });
 
       render();
 
-      // aguarda pintar e então inicia auto-scroll
       setTimeout(initAutoScroll, 350);
 
       window.addEventListener('resize', () => setGauge(perf, target));
