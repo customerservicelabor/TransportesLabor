@@ -38,10 +38,12 @@
       display:flex; align-items:flex-end; justify-content:space-between;
       gap:16px; margin-bottom:18px; flex-wrap:wrap;
     }
-    h1{ margin:0; font-size:38px; letter-spacing:.2px; }
+    h1{ margin:0; font-size:38px; }
+
     .rightHead{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
     }
+
     .updated{
       color:var(--muted);
       font-size:13px;
@@ -49,16 +51,14 @@
       border:1px solid rgba(255,255,255,.10);
       border-radius:999px;
       background: rgba(255,255,255,.04);
-      backdrop-filter: blur(8px);
-      white-space:nowrap;
     }
+
     .filter{
       display:flex; align-items:center; gap:8px;
       padding:8px 10px;
       border:1px solid rgba(255,255,255,.10);
       border-radius:999px;
       background: rgba(255,255,255,.04);
-      backdrop-filter: blur(8px);
     }
     .filter label{ font-size:12px; color: rgba(233,236,245,.80); }
     select{
@@ -68,9 +68,9 @@
       border-radius: 999px;
       padding: 8px 10px;
       font-size: 12px;
-      outline: none;
     }
 
+    /* KPIs */
     .kpis{
       display:grid;
       grid-template-columns: repeat(6, minmax(0,1fr));
@@ -81,712 +81,244 @@
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.10);
       border-radius: var(--radius);
-      padding: 16px 16px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      min-height: 104px;
+      padding: 16px;
+      min-height: 96px;
     }
-    .kpi .title{ color: rgba(233,236,245,.85); font-size:13px; letter-spacing:.3px; }
+    .kpi .title{ font-size:13px; color: rgba(233,236,245,.85); }
     .kpi .value{
-      font-size: clamp(18px, 2.2vw, 30px);
+      font-size: clamp(18px, 2vw, 28px);
       font-weight: 800;
-      margin: 10px 0 2px;
-      line-height: 1.1;
+      margin-top: 6px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .kpi .sub{ color:var(--muted); font-size:12px; }
+    .kpi .sub{ font-size:12px; color:var(--muted); }
 
-    /* ======= LINHA: PERFORMANCE + TRANSPORTADORES ======= */
-    .topRow{
-      margin:16px 0 16px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      align-items: stretch;
-    }
-
-    /* HERO (branco) */
+    /* HERO (PERFORMANCE) – ALTURA REDUZIDA */
     .hero{
+      margin-top:16px;
       border-radius: var(--radius);
       background: rgba(255,255,255,.92);
-      border:1px solid rgba(255,255,255,.35);
-      box-shadow: var(--shadow);
-      padding: 18px 18px;
+      color: var(--ink);
+      padding:14px;
       display:grid;
       grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:center;
-      overflow:hidden;
-      position:relative;
-      color: var(--ink);
-      min-height: 260px;
-    }
-    .hero::before{
-      content:"";
-      position:absolute; inset:-80px -120px auto auto;
-      width: 360px; height: 360px;
-      background: radial-gradient(circle at 30% 30%, rgba(11,27,58,.10), transparent 60%);
-      transform: rotate(10deg);
-      opacity:.70;
-    }
-    .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
-    .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; }
-
-    .metaLine{
-      margin-top: 8px;
-      font-size: 12px;
-      color: rgba(11,27,58,.72);
+      gap:12px;
+      min-height:175px;
     }
 
-    .gaugeWrap{
-      display:flex; justify-content:center; align-items:center;
-      position:relative;
-      z-index:1;
+    .hero h2{ margin:0 0 6px; font-size:18px; }
+    .hero p{ margin:0; font-size:13px; }
+
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.15);
+      background:#fff;
     }
+
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+    }
+    .pill.good{ background: var(--good); color:#0b1020; }
+    .pill.bad{ background: var(--bad); color:#fff; }
+
+    /* GAUGE REDUZIDO */
     .gauge{
-      width: 210px; height: 210px;
-      border-radius: 50%;
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      background: conic-gradient(from 180deg, var(--good) 0deg 120deg, #ddd 120deg);
       position:relative;
-      box-shadow: 0 18px 40px rgba(0,0,0,.18);
-      background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
-      overflow:hidden;
     }
-    .gauge::before{
-      content:"";
-      position:absolute;
-      left:-2px; right:-2px; bottom:-2px;
-      height: 54%;
-      background: rgba(255,255,255,.92);
-      border-top: 1px solid rgba(11,27,58,.10);
-      z-index:1;
-    }
+
     .gauge::after{
       content:"";
-      position:absolute; inset: 18px;
-      background: rgba(255,255,255,.96);
+      position:absolute;
+      inset:14px;
+      background:#fff;
       border-radius:50%;
-      border:1px solid rgba(11,27,58,.18);
-      z-index:2;
     }
 
     .gaugeCenter{
       position:absolute;
-      top:50%; left:50%;
-      transform: translate(-50%, -54%);
-      text-align:center;
-      z-index:3;
-      width: 170px;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      z-index:2;
     }
-    .gaugeCenter .pct{ font-size:52px; font-weight:900; line-height:1; color:var(--ink); }
-    .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
 
-    /* pino da meta */
-    .targetDot{
-      position:absolute;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--ink);
-      box-shadow: 0 6px 14px rgba(0,0,0,.25);
-      z-index:4;
-      transform: translate(-50%, -50%);
+    .gaugeCenter .pct{
+      font-size:40px;
+      font-weight:900;
     }
 
     /* PAINÉIS */
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+
     .panel{
       background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.10);
       overflow:hidden;
-      min-height: 260px;
-      display:flex;
-      flex-direction:column;
     }
-    .panel .ph{
-      padding: 14px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.14);
-      flex: 0 0 auto;
-    }
-    .ph .ttl{
+
+    .ph{
+      padding:12px;
       font-weight:800;
-      display:flex; align-items:center; gap:10px;
-    }
-    .badge{
-      font-size:12px;
-      padding: 6px 10px;
-      border-radius:999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: rgba(233,236,245,.92);
-      white-space:nowrap;
+      background: rgba(0,0,0,.15);
+      display:flex;
+      justify-content:space-between;
     }
 
     table{ width:100%; border-collapse:collapse; }
     th, td{
-      padding: 10px 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      vertical-align:middle;
+      padding:8px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
       font-size:13px;
     }
 
-    .scroll{
-      max-height: 420px;
-      overflow:auto;
-      position: relative;
-      background: rgba(0,0,0,.04);
-      flex: 1 1 auto;
-    }
     thead th{
       position: sticky;
       top: 0;
-      z-index: 5;
       background: rgba(12,18,38,.96);
-      color: rgba(233,236,245,.85);
-      text-transform:uppercase;
-      letter-spacing:.35px;
       font-size:11px;
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,255,255,.12);
+      text-transform:uppercase;
     }
 
-    td .muted{ color: var(--muted); font-size:12px; }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding: 6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:700;
-      color:#0b1020;
-      background: var(--warn);
-      white-space:nowrap;
-    }
-    .pill.bad{ background: var(--bad); color:#fff; }
-    .pill.good{ background: var(--good); color:#0b1020; }
-
-    /* Linhas do quadro transportadores */
-    .rowArrived{ background: rgba(245,158,11,.16); }
-    .rowLeft{ background: rgba(34,197,94,.18); }
-
-    .grid2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 14px;
+    .scroll{
+      max-height:420px;
+      overflow:auto;
     }
 
-    .foot{
-      margin-top: 16px;
-      color: var(--muted);
-      font-size: 12px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
+    /* RESPONSIVO */
     @media (max-width: 1200px){
-      .kpis{ grid-template-columns: repeat(3, minmax(0,1fr)); }
-      .topRow{ grid-template-columns: 1fr; }
+      .kpis{ grid-template-columns: repeat(3,1fr); }
     }
-    @media (max-width: 980px){
-      .kpis{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .hero{ grid-template-columns: 1fr; }
-      .grid2{ grid-template-columns: 1fr; }
-      h1{ font-size:30px; }
+    @media (max-width: 900px){
+      .kpis{ grid-template-columns: repeat(2,1fr); }
+      .hero{ grid-template-columns:1fr; }
+      .grid2{ grid-template-columns:1fr; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div>
-        <h1>Painel de Entregas</h1>
-      </div>
+<div class="wrap">
 
-      <div class="rightHead">
-        <div class="filter">
-          <label for="carrierFilter">Transportador</label>
-          <select id="carrierFilter">
-            <option value="__ALL__">Todos</option>
-          </select>
-        </div>
-        <div class="updated" id="updatedAt">Atualizado em: --/--/----</div>
-      </div>
-    </header>
+<header>
+  <h1>Painel de Entregas</h1>
+  <div class="rightHead">
+    <div class="filter">
+      <label>Transportador</label>
+      <select id="carrierFilter">
+        <option value="__ALL__">Todos</option>
+      </select>
+    </div>
+    <div class="updated" id="updatedAt">Atualizado em: —</div>
+  </div>
+</header>
 
-    <section class="kpis">
-      <div class="kpi">
-        <div class="title">Total de Notas</div>
-        <div class="value" id="kpiTotalNotas">—</div>
-        <div class="sub">Notas fiscais no período</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Entregas Realizadas</div>
-        <div class="value" id="kpiEntregas">—</div>
-        <div class="sub">Notas entregues</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Notas em Atraso</div>
-        <div class="value" id="kpiAtraso">—</div>
-        <div class="sub">Pendentes fora do prazo</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Previstas para Hoje</div>
-        <div class="value" id="kpiHoje">—</div>
-        <div class="sub">Previsão diária</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Valor em Atraso</div>
-        <div class="value" id="kpiValorAtraso">—</div>
-        <div class="sub">Somatório (filtro aplicado)</div>
-      </div>
-      <div class="kpi">
-        <div class="title">Valor Previsto Hoje</div>
-        <div class="value" id="kpiValorHoje">—</div>
-        <div class="sub">Somatório (filtro aplicado)</div>
-      </div>
-    </section>
+<section class="kpis">
+  <div class="kpi"><div class="title">Total de Notas</div><div class="value" id="kpiTotalNotas">—</div></div>
+  <div class="kpi"><div class="title">Entregas Realizadas</div><div class="value" id="kpiEntregas">—</div></div>
+  <div class="kpi"><div class="title">Notas em Atraso</div><div class="value" id="kpiAtraso">—</div></div>
+  <div class="kpi"><div class="title">Previstas Hoje</div><div class="value" id="kpiHoje">—</div></div>
+  <div class="kpi"><div class="title">Valor em Atraso</div><div class="value" id="kpiValorAtraso">—</div></div>
+  <div class="kpi"><div class="title">Valor Previsto Hoje</div><div class="value" id="kpiValorHoje">—</div></div>
+</section>
 
-    <!-- PERFORMANCE + TRANSPORTADORES -->
-    <section class="topRow">
-      <!-- PERFORMANCE (com GAUGE) -->
-      <section class="hero">
-        <div style="position:relative; z-index:1;">
-          <h2>Performance de Entregas Atual</h2>
-          <p>
-            Indicador consolidado de entregas concluídas. A meta é manter a eficiência em 95,00% ou acima.
-            Abaixo da meta, o painel sinaliza atenção.
-          </p>
-
-          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-            <span class="badge" id="metaBadge">Meta: 95,00%</span>
-            <span class="pill" id="metaStatus">—</span>
-          </div>
-
-          <div class="metaLine" id="metaLegend">Meta no gauge: —</div>
-        </div>
-
-        <div class="gaugeWrap">
-          <div class="gauge" id="gauge">
-            <div class="gaugeCenter">
-              <div class="pct" id="perfPct">—%</div>
-              <div class="lbl">Eficiência de Entrega</div>
-            </div>
-            <div class="targetDot" id="targetDot" style="left:-9999px; top:-9999px;"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TRANSPORTADORES (painel escuro, com scroll + auto-scroll) -->
-      <div class="panel">
-        <div class="ph">
-          <div class="ttl">Transportadores</div>
-          <div class="badge" id="transpCount">— itens</div>
-        </div>
-        <div class="scroll" id="scrollTransp">
-          <table>
-            <thead>
-              <tr>
-                <th>Transportador</th>
-                <th>Chegada</th>
-                <th>Saída</th>
-                <th>Próxima coleta</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyTransp"></tbody>
-          </table>
-        </div>
+<section class="hero">
+  <div>
+    <h2>Performance de Entregas Atual</h2>
+    <p>Meta operacional: 95%</p>
+    <div style="margin-top:8px; display:flex; gap:8px;">
+      <span class="badge" id="metaBadge">Meta: 95%</span>
+      <span class="pill" id="metaStatus">—</span>
+    </div>
+  </div>
+  <div style="display:flex; justify-content:center;">
+    <div class="gauge">
+      <div class="gaugeCenter">
+        <div class="pct" id="perfPct">—%</div>
+        <div style="font-size:12px;">Eficiência</div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="grid2">
-      <div class="panel">
-        <div class="ph">
-          <div class="ttl">Notas em Atraso</div>
-          <div class="badge" id="atrasoCount">— itens</div>
-        </div>
-        <div class="scroll" id="scrollAtraso">
-          <table>
-            <thead>
-              <tr>
-                <th>NF</th>
-                <th>Destinatário</th>
-                <th>Valor</th>
-                <th>Transportador</th>
-                <th>Prev. Entrega</th>
-                <th>Ocorrência</th>
-                <th>Atraso</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyAtraso"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="ph">
-          <div class="ttl">Notas Previstas para Hoje</div>
-          <div class="badge" id="hojeCount">— itens</div>
-        </div>
-        <div class="scroll" id="scrollHoje">
-          <table>
-            <thead>
-              <tr>
-                <th>NF</th>
-                <th>Destinatário</th>
-                <th>Valor</th>
-                <th>Transportador</th>
-                <th>Cidade destino</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyHoje"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <div class="foot">
-      <div>Observação: painel alimentado via <strong>data.json</strong>.</div>
-      <div>Labor • Logística • Indicadores</div>
+<section class="grid2">
+  <div class="panel">
+    <div class="ph">Notas em Atraso <span id="atrasoCount">—</span></div>
+    <div class="scroll" id="scrollAtraso">
+      <table>
+        <thead>
+          <tr>
+            <th>NF</th><th>Destinatário</th><th>Transportador</th><th>Prev.</th><th>Ocorrência</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyAtraso"></tbody>
+      </table>
     </div>
   </div>
 
-  <script>
-    const fmtBRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
+  <div class="panel">
+    <div class="ph">Previstas para Hoje <span id="hojeCount">—</span></div>
+    <div class="scroll" id="scrollHoje">
+      <table>
+        <thead>
+          <tr>
+            <th>NF</th><th>Destinatário</th><th>Transportador</th><th>Cidade</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyHoje"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+async function load(){
+  const r = await fetch('data.json',{cache:'no-store'});
+  const d = await r.json();
+
+  updatedAt.textContent = 'Atualizado em: ' + d.updated_at;
+
+  kpiTotalNotas.textContent = d.kpis.total_notas;
+  kpiEntregas.textContent = d.kpis.entregas_realizadas;
+  kpiAtraso.textContent = d.kpis.notas_em_atraso;
+  kpiHoje.textContent = d.kpis.previstas_para_hoje;
+  kpiValorAtraso.textContent = 'R$ ' + d.kpis.valor_total_em_atraso.toLocaleString('pt-BR');
+  kpiValorHoje.textContent = 'R$ ' + d.kpis.valor_total_previsto_hoje.toLocaleString('pt-BR');
+
+  perfPct.textContent = d.kpis.performance_percent.toFixed(2) + '%';
+
+  metaStatus.textContent =
+    d.kpis.performance_percent >= d.kpis.meta_performance_percent
+    ? 'OK'
+    : 'Atenção';
+
+  metaStatus.className =
+    d.kpis.performance_percent >= d.kpis.meta_performance_percent
+    ? 'pill good'
+    : 'pill bad';
+}
+load();
+</script>
 
-    function fmtPctBR(v){
-      return (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
-    }
-
-    // Formato "universal": R$ 86.7K / R$ 1.2M
-    function fmtBRLCompactK(value){
-      const v = Number(value) || 0;
-      const abs = Math.abs(v);
-      const sign = v < 0 ? "-" : "";
-      const format1 = (n) => (Math.round(n * 10) / 10).toFixed(1);
-
-      if (abs >= 1e9)  return `R$ ${sign}${format1(abs/1e9)}B`;
-      if (abs >= 1e6)  return `R$ ${sign}${format1(abs/1e6)}M`;
-      if (abs >= 1e3)  return `R$ ${sign}${format1(abs/1e3)}K`;
-
-      return fmtBRL.format(v);
-    }
-
-    function parseUpdatedDate(updatedAtStr){
-      const parts = String(updatedAtStr || '').split(" ");
-      const datePart = parts[0] || "01/01/1970";
-      const timePart = parts[1] || "00:00";
-      const [dd, mm, yyyy] = datePart.split("/").map(Number);
-      const [HH, MM] = timePart.split(":").map(Number);
-      return new Date(yyyy, (mm || 1)-1, dd || 1, HH || 0, MM || 0, 0, 0);
-    }
-
-    function isoToBR(iso){
-      const [y,m,d] = String(iso || '').split("-").map(Number);
-      const dt = new Date(y, (m||1)-1, d||1);
-      return dt.toLocaleDateString('pt-BR');
-    }
-
-    function daysDiff(later, earlier){
-      const ms = later.getTime() - earlier.getTime();
-      return Math.floor(ms / (1000*60*60*24));
-    }
-
-    function normalizeCarrier(s){
-      return String(s || '').trim();
-    }
-
-    function sumValues(list){
-      return list.reduce((acc, it) => acc + (Number(it.valor_mercadoria) || 0), 0);
-    }
-
-    function applyCarrierFilter(list, carrier){
-      if (!carrier || carrier === '__ALL__') return list;
-      return list.filter(it => normalizeCarrier(it.transportador) === carrier);
-    }
-
-    function buildCarrierOptions(data){
-      const carriers = new Set();
-      for (const it of (data.notas_em_atraso || [])) carriers.add(normalizeCarrier(it.transportador));
-      for (const it of (data.notas_previstas_hoje || [])) carriers.add(normalizeCarrier(it.transportador));
-
-      const sorted = Array.from(carriers).filter(Boolean).sort((a,b) => a.localeCompare(b, 'pt-BR'));
-      const sel = document.getElementById('carrierFilter');
-
-      // evita duplicar opções em reloads
-      sel.querySelectorAll('option:not([value="__ALL__"])').forEach(o => o.remove());
-
-      for (const c of sorted){
-        const opt = document.createElement('option');
-        opt.value = c;
-        opt.textContent = c;
-        sel.appendChild(opt);
-      }
-    }
-
-    function placeTargetMarker(targetPct){
-      const gauge = document.getElementById('gauge');
-      const dot = document.getElementById('targetDot');
-      if (!gauge || !dot) return;
-
-      const size = gauge.clientWidth;
-      const cx = size / 2;
-      const cy = size / 2;
-      const r = (size / 2) - 8;
-
-      const t = Math.max(0, Math.min(100, Number(targetPct) || 0));
-      const angle = Math.PI * (1 - (t / 100)); // 0% => PI; 100% => 0
-
-      const x = cx + r * Math.cos(angle);
-      const y = cy - r * Math.sin(angle);
-
-      dot.style.left = `${x}px`;
-      dot.style.top  = `${y}px`;
-    }
-
-    function setGauge(percent, target){
-      const p = Math.max(0, Math.min(100, Number(percent) || 0));
-      const t = Math.max(0, Math.min(100, Number(target) || 95));
-
-      const fillDeg = (p/100) * 180;
-
-      const root = getComputedStyle(document.documentElement);
-      const good = root.getPropertyValue('--good').trim();
-      const warn = root.getPropertyValue('--warn').trim();
-      const bad  = root.getPropertyValue('--bad').trim();
-
-      let color = good;
-      if (p < t) color = warn;
-      if (p < (t - 5)) color = bad;
-
-      const gauge = document.getElementById('gauge');
-      gauge.style.background =
-        `conic-gradient(from 180deg, ${color} 0deg, ${color} ${fillDeg}deg, rgba(11,27,58,.12) ${fillDeg}deg 360deg)`;
-
-      document.getElementById('perfPct').textContent = fmtPctBR(p);
-
-      const statusEl = document.getElementById('metaStatus');
-      const metaEl = document.getElementById('metaBadge');
-      if (metaEl) metaEl.textContent = `Meta: ${fmtPctBR(t)}`;
-
-      if (statusEl){
-        if (p >= t){
-          statusEl.className = 'pill good';
-          statusEl.textContent = 'OK — acima da meta';
-        } else {
-          statusEl.className = 'pill bad';
-          statusEl.textContent = 'Atenção — abaixo da meta';
-        }
-      }
-
-      const legend = document.getElementById('metaLegend');
-      if (legend) legend.textContent = `Meta no gauge: ${fmtPctBR(t)} (pino)`;
-
-      placeTargetMarker(t);
-    }
-
-    function renderTransportadores(data){
-      const list = Array.isArray(data.transportadores) ? data.transportadores : [];
-      const body = document.getElementById('tbodyTransp');
-      body.innerHTML = '';
-
-      document.getElementById('transpCount').textContent = `${list.length} itens`;
-
-      for (const it of list){
-        // aceita "transportador" ou "nome"
-        const nome = (it.transportador ?? it.nome ?? '').toString().trim();
-        const chegada = (it.chegada ?? '').toString().trim();
-        const saida = (it.saida ?? '').toString().trim();
-        const prox = (it.proxima_coleta ?? it.proximaColeta ?? it.proxima_coleta_data ?? '').toString().trim();
-
-        let cls = '';
-        if (saida) cls = 'rowLeft';
-        else if (chegada) cls = 'rowArrived';
-
-        const tr = document.createElement('tr');
-        tr.className = cls;
-        tr.innerHTML = `
-          <td><strong>${nome || '—'}</strong></td>
-          <td>${chegada || '—'}</td>
-          <td>${saida || '—'}</td>
-          <td>${prox || '—'}</td>
-        `;
-        body.appendChild(tr);
-      }
-    }
-
-    function renderTables(data, carrier){
-      const now = parseUpdatedDate(data.updated_at);
-
-      const atrasoAll = (data.notas_em_atraso || []).slice()
-        .sort((a,b) => (a.previsao_entrega > b.previsao_entrega ? 1 : -1));
-      const hojeAll = (data.notas_previstas_hoje || []).slice();
-
-      const atrasoList = applyCarrierFilter(atrasoAll, carrier);
-      const hojeList   = applyCarrierFilter(hojeAll, carrier);
-
-      document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
-      document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
-
-      // KPIs de valor em formato compacto
-      document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(sumValues(atrasoList));
-      document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(sumValues(hojeList));
-
-      const atrasoBody = document.getElementById('tbodyAtraso');
-      atrasoBody.innerHTML = '';
-
-      for (const it of atrasoList){
-        const prev = new Date(String(it.previsao_entrega) + "T00:00:00");
-        const lateDays = Math.max(0, daysDiff(now, prev));
-        const pillClass = lateDays >= 10 ? 'pill bad' : (lateDays >= 5 ? 'pill' : 'pill good');
-
-        const ocorr = (it.ocorrencia && String(it.ocorrencia).trim()) ? String(it.ocorrencia).trim() : '—';
-
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${it.nota_fiscal}</strong></td>
-          <td>${it.destinatario}</td>
-          <td>${fmtBRL.format(Number(it.valor_mercadoria || 0))}</td>
-          <td><span class="muted">${it.transportador}</span></td>
-          <td>${isoToBR(it.previsao_entrega)}</td>
-          <td>${ocorr}</td>
-          <td><span class="${pillClass}">${lateDays}d</span></td>
-        `;
-        atrasoBody.appendChild(tr);
-      }
-
-      const hojeBody = document.getElementById('tbodyHoje');
-      hojeBody.innerHTML = '';
-
-      for (const it of hojeList){
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td><strong>${it.nota_fiscal}</strong></td>
-          <td>${it.destinatario}</td>
-          <td>${fmtBRL.format(Number(it.valor_mercadoria || 0))}</td>
-          <td><span class="muted">${it.transportador}</span></td>
-          <td>${it.cidade_destino}</td>
-        `;
-        hojeBody.appendChild(tr);
-      }
-    }
-
-    // =========================
-    // AUTO-SCROLL (TV MODE)
-    // =========================
-    function startAutoScroll(el, opts = {}) {
-      if (!el) return;
-
-      const speedPxPerTick = opts.speedPxPerTick ?? 1;
-      const tickMs = opts.tickMs ?? 40;
-      const pauseAtEndMs = opts.pauseAtEndMs ?? 1400;
-      const pauseAtTopMs = opts.pauseAtTopMs ?? 700;
-      const resetThresholdPx = opts.resetThresholdPx ?? 2;
-
-      let timer = null;
-      let paused = false;
-
-      const canScroll = () => el.scrollHeight > el.clientHeight + 5;
-
-      const step = () => {
-        if (paused) return;
-        if (!canScroll()) return;
-
-        const maxScrollTop = el.scrollHeight - el.clientHeight;
-        const next = el.scrollTop + speedPxPerTick;
-
-        if (next >= maxScrollTop - resetThresholdPx) {
-          el.scrollTop = maxScrollTop;
-
-          paused = true;
-          setTimeout(() => {
-            el.scrollTop = 0;
-            setTimeout(() => { paused = false; }, pauseAtTopMs);
-          }, pauseAtEndMs);
-
-          return;
-        }
-
-        el.scrollTop = next;
-      };
-
-      const start = () => {
-        stop();
-        timer = setInterval(step, tickMs);
-      };
-
-      const stop = () => {
-        if (timer) clearInterval(timer);
-        timer = null;
-      };
-
-      el.addEventListener('mouseenter', () => { paused = true; });
-      el.addEventListener('mouseleave', () => { paused = false; });
-
-      el.addEventListener('touchstart', () => { paused = !paused; }, { passive:true });
-
-      start();
-      return { start, stop };
-    }
-
-    function initAutoScroll() {
-      startAutoScroll(document.getElementById('scrollAtraso'), { speedPxPerTick: 1, tickMs: 45, pauseAtEndMs: 1500 });
-      startAutoScroll(document.getElementById('scrollHoje'),   { speedPxPerTick: 1, tickMs: 50, pauseAtEndMs: 1400 });
-      startAutoScroll(document.getElementById('scrollTransp'), { speedPxPerTick: 1, tickMs: 55, pauseAtEndMs: 1200 });
-    }
-
-    async function load(){
-      const res = await fetch('data.json', { cache: 'no-store' });
-      const data = await res.json();
-
-      document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
-
-      document.getElementById('kpiTotalNotas').textContent = data.kpis.total_notas.toLocaleString('pt-BR');
-      document.getElementById('kpiEntregas').textContent   = data.kpis.entregas_realizadas.toLocaleString('pt-BR');
-      document.getElementById('kpiAtraso').textContent     = data.kpis.notas_em_atraso.toLocaleString('pt-BR');
-      document.getElementById('kpiHoje').textContent       = data.kpis.previstas_para_hoje.toLocaleString('pt-BR');
-
-      buildCarrierOptions(data);
-
-      const perf = Number(data.kpis.performance_percent || 0);
-      const target = Number(data.kpis.meta_performance_percent || 95);
-      setGauge(perf, target);
-
-      renderTransportadores(data);
-
-      const sel = document.getElementById('carrierFilter');
-      const render = () => renderTables(data, sel.value);
-
-      sel.addEventListener('change', () => {
-        render();
-        // reseta scroll ao trocar filtro (para TV ficar “organizado”)
-        document.getElementById('scrollAtraso').scrollTop = 0;
-        document.getElementById('scrollHoje').scrollTop = 0;
-      });
-
-      render();
-
-      // aguarda pintar e então inicia auto-scroll
-      setTimeout(initAutoScroll, 350);
-
-      window.addEventListener('resize', () => setGauge(perf, target));
-    }
-
-    load().catch(err => {
-      console.error(err);
-      alert('Erro ao carregar data.json. Verifique se index.html e data.json estão na mesma pasta.');
-    });
-  </script>
 </body>
 </html>
