@@ -20,6 +20,10 @@
       --radius:18px;
 
       --ink:#0b1b3a;
+
+      /* >>> ALTURA PADRÃO DA LINHA SUPERIOR (Performance + Status Coleta) */
+      /* Aproximadamente +25% vs. o “compacto” atual. Ajuste fino aqui se quiser. */
+      --topRowH: 400px;
     }
 
     *{ box-sizing:border-box; }
@@ -78,7 +82,7 @@
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      align-items: start;           /* <<< NÃO ESTICA MAIS */
+      align-items: stretch; /* <<< agora ambos ficam do mesmo tamanho */
     }
 
     /* HERO (branco) */
@@ -95,10 +99,8 @@
       position:relative;
       color: var(--ink);
 
-      /* <<< REMOVE esticamento/altura mínima */
-      min-height: unset;
-      height: auto;
-      align-self: start;
+      /* >>> Altura aumentada (+25%) e igual ao quadro da direita */
+      height: var(--topRowH);
     }
     .hero::before{
       content:"";
@@ -118,6 +120,7 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px;
       width: 100%;
+      flex: 0 0 auto;
     }
     .miniKpi{
       border-radius: 14px;
@@ -157,8 +160,8 @@
       align-items: center;
       width: 100%;
 
-      /* <<< não “força” a ocupar o resto */
-      flex: 0 0 auto;
+      /* >>> ocupa o restante do card com “boa distribuição” */
+      flex: 1 1 auto;
     }
     .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
     .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; font-size: 13px; line-height: 1.35; }
@@ -260,10 +263,11 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
-      min-height: 290px;
       display:flex;
       flex-direction:column;
-      align-self: start; /* <<< também não estica */
+
+      /* >>> Igual ao quadro de performance */
+      height: var(--topRowH);
     }
     .panel .ph{
       padding: 14px 14px;
@@ -365,11 +369,17 @@
       .topRow{ grid-template-columns: 1fr; }
       .miniKpis{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .perfRow{ grid-template-columns: 1fr; }
+
+      /* em telas menores, não fixa altura */
+      .hero, .panel{ height: auto; }
       .gauge{ margin: 4px 0 8px; }
     }
     @media (max-width: 980px){
       .grid2{ grid-template-columns: 1fr; }
       h1{ font-size:30px; }
+
+      /* em telas menores, não fixa altura */
+      .hero, .panel{ height: auto; }
     }
   </style>
 </head>
@@ -443,7 +453,7 @@
 
       <div class="panel">
         <div class="ph">
-          <div class="ttl">Transportadores</div>
+          <div class="ttl">Status de Coleta Transportadores</div>
           <div class="badge" id="transpCount">— itens</div>
         </div>
 
@@ -475,7 +485,7 @@
     </section>
 
     <section class="grid2">
-      <div class="panel">
+      <div class="panel" style="height:auto;">
         <div class="ph">
           <div class="ttl">Notas em Atraso</div>
           <div class="badge" id="atrasoCount">— itens</div>
@@ -497,7 +507,7 @@
         </div>
       </div>
 
-      <div class="panel">
+      <div class="panel" style="height:auto;">
         <div class="ph">
           <div class="ttl">Notas Previstas para Hoje</div>
           <div class="badge" id="hojeCount">— itens</div>
@@ -808,6 +818,7 @@
       document.getElementById('kpiAtraso').textContent     = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
       document.getElementById('kpiHoje').textContent       = Number(data.kpis.previstas_para_hoje || 0).toLocaleString('pt-BR');
 
+      // Valores vêm do JSON (manual) — sem somar tabela
       document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(data.kpis.valor_total_em_atraso);
       document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(data.kpis.valor_total_previsto_hoje);
 
