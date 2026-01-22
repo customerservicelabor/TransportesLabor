@@ -1,9 +1,9 @@
 {
-  "updated_at": "22/01/2026 14:50",
+  "updated_at": "22/01/2026 16:40",
   "kpis": {
     "total_notas": 2510,
     "entregas_realizadas": 2045,
-    "notas_em_atraso": 23,
+    "notas_em_atraso": 22,
     "previstas_para_hoje": 25,
     "performance_percent": 92.21,
     "meta_performance_percent": 95.0,
@@ -15,11 +15,11 @@
     { "transportador": "Latam", "chegada": "09:55", "saida": "10:42", "proxima_coleta": "23/01/2025" },
     { "transportador": "Azurelog", "chegada": "10:33", "saida": "11:13", "proxima_coleta": "23/01/2025" },
     { "transportador": "Patrus", "chegada": "14:!8", "saida": "", "proxima_coleta": "23/01/2025" },
-    { "transportador": "Schreiber", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Schreiber", "chegada": "14:20", "saida": "", "proxima_coleta": "23/01/2025" },
     { "transportador": "Translovato", "chegada": "13:28", "saida": "", "proxima_coleta": "23/01/2025" },
     { "transportador": "Gran Cargo", "chegada": "14:48", "saida": "", "proxima_coleta": "23/01/2025" },
     { "transportador": "Tecmar", "chegada": "11:43", "saida": "12:54", "proxima_coleta": "23/01/2025" },
-    { "transportador": "TGL", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "TGL", "chegada": "15:00", "saida": "", "proxima_coleta": "23/01/2025" },
     { "transportador": "Logdi", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Fedex", "chegada": "", "saida": "", "proxima_coleta": "" }
   ],
@@ -121,14 +121,6 @@
       "valor_mercadoria": 0
     },
     {
-      "nota_fiscal": "199133",
-      "destinatario": "MULTMEDIC ASSESSORIA BIOMEDICA LTDA M",
-      "transportador": "LATAM",
-      "previsao_entrega": "2026-01-21",
-      "ocorrencia": "Atrasado",
-      "valor_mercadoria": 0
-    },
-    {
       "nota_fiscal": "199116",
       "destinatario": "ANGELINA ROSA GIOANNETTI CALLOU",
       "transportador": "FEDEX",
@@ -215,7 +207,7 @@
       "destinatario": "MEDPOA",
       "transportador": "TRANSLOVATO",
       "cidade_destino": "PORTO ALEGRE - RS",
-      "data_entrega": "",
+      "data_entrega": "22/01/2026",
       "valor_mercadoria": 0
     },
     {
@@ -239,7 +231,7 @@
       "destinatario": "HISHOO COMERCIO IMPORTACAO EXPORTACAO E",
       "transportador": "SCHREIBER",
       "cidade_destino": "SAO PAULO - SP",
-      "data_entrega": "",
+      "data_entrega": "22/01/2026",
       "valor_mercadoria": 0
     },
     {
@@ -303,7 +295,7 @@
       "destinatario": "CBS MEDICO CIENTIFICA COMERCIO E REPRESENTACAO LTD",
       "transportador": "SCHREIBER",
       "cidade_destino": "SAO PAULO - SP",
-      "data_entrega": "",
+      "data_entrega": "22/01/2026",
       "valor_mercadoria": 0
     },
     {
@@ -404,6 +396,7 @@
     }
   ]
 }
+
 
 
 
