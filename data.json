@@ -1,24 +1,24 @@
 {
-  "updated_at": "22/01/2026 11:49",
+  "updated_at": "22/01/2026 13:30",
   "kpis": {
-    "total_notas": 2478,
-    "entregas_realizadas": 2015,
-    "notas_em_atraso": 27,
+    "total_notas": 2510,
+    "entregas_realizadas": 2045,
+    "notas_em_atraso": 24,
     "previstas_para_hoje": 25,
     "performance_percent": 92.21,
     "meta_performance_percent": 95.0,
-    "valor_total_em_atraso": 96091.74,
+    "valor_total_em_atraso": 120186.1,
     "valor_total_previsto_hoje": 163227.9
   },
   "transportadores": [
-    { "transportador": "Azul", "chegada": "10:30", "saida": "11:30", "proxima_coleta": "23/01/2026" },
-    { "transportador": "Latam", "chegada": "09:55", "saida": "10:50", "proxima_coleta": "23/01/2026" },
-    { "transportador": "Azurelog", "chegada": "10:33", "saida": "11:15", "proxima_coleta": "23/01/2026" },
+    { "transportador": "Azul", "chegada": "10:30", "saida": "11:23", "proxima_coleta": "23/01/2025" },
+    { "transportador": "Latam", "chegada": "09:55", "saida": "10:42", "proxima_coleta": "23/01/2025" },
+    { "transportador": "Azurelog", "chegada": "10:33", "saida": "11:13", "proxima_coleta": "23/01/2025" },
     { "transportador": "Patrus", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Schreiber", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Translovato", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Translovato", "chegada": "13:28", "saida": "", "proxima_coleta": "" },
     { "transportador": "Gran Cargo", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Tecmar", "chegada": "11:43", "saida": "", "proxima_coleta": "23/01/2026" },
+    { "transportador": "Tecmar", "chegada": "11:43", "saida": "12:54", "proxima_coleta": "23/01/2025" },
     { "transportador": "TGL", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Logdi", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Fedex", "chegada": "", "saida": "", "proxima_coleta": "" }
@@ -37,14 +37,6 @@
       "destinatario": "ANDRETTA MEDICAMENTOS LTDA",
       "transportador": "FEDEX",
       "previsao_entrega": "2026-01-21",
-      "ocorrencia": "Atrasado",
-      "valor_mercadoria": 0
-    },
-    {
-      "nota_fiscal": "199441",
-      "destinatario": "CASA MEDICA COM. PROD. HOSPITALARES LTDA",
-      "transportador": "TRANSLOVATO",
-      "previsao_entrega": "2026-01-19",
       "ocorrencia": "Atrasado",
       "valor_mercadoria": 0
     },
@@ -121,27 +113,11 @@
       "valor_mercadoria": 0
     },
     {
-      "nota_fiscal": "199222",
-      "destinatario": "R F BARILE LTDA",
-      "transportador": "AZUL",
-      "previsao_entrega": "2026-01-21",
-      "ocorrencia": "ZenDesk: 39850",
-      "valor_mercadoria": 0
-    },
-    {
       "nota_fiscal": "199188",
       "destinatario": "EDLAB COMERCIO E IMPORTACAO LTDA",
       "transportador": "PATRUS",
       "previsao_entrega": "2026-01-21",
       "ocorrencia": "Atrasado",
-      "valor_mercadoria": 0
-    },
-    {
-      "nota_fiscal": "199157",
-      "destinatario": "IMPACTA MED DISTRI MEDICAMENTO MA HOS LT",
-      "transportador": "TGL",
-      "previsao_entrega": "2026-01-21",
-      "ocorrencia": "Agendada",
       "valor_mercadoria": 0
     },
     {
@@ -263,7 +239,7 @@
       "destinatario": "LOGFARMA DISTRIBUICAO E SERVICOS LTDA",
       "transportador": "SCHREIBER",
       "cidade_destino": "SANTO ANDRE - SP",
-      "data_entrega": "",
+      "data_entrega": "22/01/2026",
       "valor_mercadoria": 0
     },
     {
@@ -343,7 +319,7 @@
       "destinatario": "MINUZZI & PINTARELLI PRODUTOS MEDICO-HOS",
       "transportador": "TGL",
       "cidade_destino": "CURITIBA - PR",
-      "data_entrega": "",
+      "data_entrega": "22/01/2026",
       "valor_mercadoria": 0
     },
     {
@@ -367,7 +343,7 @@
       "destinatario": "GNETEC COM REP PROD ODONTOLOGICOS L",
       "transportador": "AZUL",
       "cidade_destino": "ANAPOLIS - GO",
-      "data_entrega": "",
+      "data_entrega": "22/01/2025",
       "valor_mercadoria": 0
     },
     {
@@ -433,16 +409,6 @@
       "cidade_destino": "MANAUS - AM",
       "data_entrega": "",
       "valor_mercadoria": 0
-    },
-    {
-      "nota_fiscal": "198911",
-      "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI",
-      "transportador": "TECMAR",
-      "cidade_destino": "NATAL - RN",
-      "data_entrega": "",
-      "valor_mercadoria": 0
     }
   ]
 }
-
-
