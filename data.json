@@ -1,5 +1,5 @@
 {
-  "updated_at": "22/01/2026 09:25",
+  "updated_at": "22/01/2026 11:49",
   "kpis": {
     "total_notas": 2478,
     "entregas_realizadas": 2015,
@@ -11,14 +11,14 @@
     "valor_total_previsto_hoje": 163227.9
   },
   "transportadores": [
-    { "transportador": "Azul", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Latam", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Azurelog", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Azul", "chegada": "10:30", "saida": "11:30", "proxima_coleta": "23/01/2026" },
+    { "transportador": "Latam", "chegada": "09:55", "saida": "10:50", "proxima_coleta": "23/01/2026" },
+    { "transportador": "Azurelog", "chegada": "10:33", "saida": "11:15", "proxima_coleta": "23/01/2026" },
     { "transportador": "Patrus", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Schreiber", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Translovato", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Gran Cargo", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Tecmar", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Tecmar", "chegada": "11:43", "saida": "", "proxima_coleta": "23/01/2026" },
     { "transportador": "TGL", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Logdi", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Fedex", "chegada": "", "saida": "", "proxima_coleta": "" }
@@ -444,4 +444,5 @@
     }
   ]
 }
+
 
