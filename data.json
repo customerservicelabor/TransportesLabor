@@ -1,5 +1,5 @@
 {
-  "updated_at": "22/01/2026 13:30",
+  "updated_at": "22/01/2026 14:20",
   "kpis": {
     "total_notas": 2510,
     "entregas_realizadas": 2045,
@@ -14,7 +14,7 @@
     { "transportador": "Azul", "chegada": "10:30", "saida": "11:23", "proxima_coleta": "23/01/2025" },
     { "transportador": "Latam", "chegada": "09:55", "saida": "10:42", "proxima_coleta": "23/01/2025" },
     { "transportador": "Azurelog", "chegada": "10:33", "saida": "11:13", "proxima_coleta": "23/01/2025" },
-    { "transportador": "Patrus", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Patrus", "chegada": "14:!8", "saida": "", "proxima_coleta": "" },
     { "transportador": "Schreiber", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Translovato", "chegada": "13:28", "saida": "", "proxima_coleta": "" },
     { "transportador": "Gran Cargo", "chegada": "", "saida": "", "proxima_coleta": "" },
@@ -412,3 +412,4 @@
     }
   ]
 }
+
