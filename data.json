@@ -383,7 +383,7 @@
       "destinatario": "NEWCARE COME",
       "transportador": "PATRUS",
       "cidade_destino": "PATOS DE MINAS - MG",
-      "data_entrega": "",
+      "data_entrega": "22/01/2026",
       "valor_mercadoria": 0
     },
     {
@@ -412,5 +412,6 @@
     }
   ]
 }
+
 
 
