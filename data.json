@@ -3,7 +3,7 @@
   "kpis": {
     "total_notas": 2510,
     "entregas_realizadas": 2045,
-    "notas_em_atraso": 24,
+    "notas_em_atraso": 23,
     "previstas_para_hoje": 25,
     "performance_percent": 92.21,
     "meta_performance_percent": 95.0,
@@ -174,14 +174,6 @@
       "transportador": "FEDEX",
       "previsao_entrega": "2026-01-13",
       "ocorrencia": "Ticket 39622",
-      "valor_mercadoria": 0
-    },
-    {
-      "nota_fiscal": "198850",
-      "destinatario": "ALFA EXCELENCIA DIAGNOSTICA LTDA",
-      "transportador": "PATRUS",
-      "previsao_entrega": "2026-01-12",
-      "ocorrencia": "Atrasado",
       "valor_mercadoria": 0
     },
     {
@@ -412,6 +404,7 @@
     }
   ]
 }
+
 
 
 
