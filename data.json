@@ -351,7 +351,7 @@
       "destinatario": "J S DISTRIBUIDORA MEDICAMENTOS LTDA",
       "transportador": "PATRUS",
       "cidade_destino": "TRES CORACOES - MG",
-      "data_entrega": "",
+      "data_entrega": "22/01/2026",
       "valor_mercadoria": 0
     },
     {
@@ -396,6 +396,7 @@
     }
   ]
 }
+
 
 
 
