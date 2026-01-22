@@ -78,7 +78,7 @@
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      align-items: stretch;
+      align-items: start;           /* <<< NÃO ESTICA MAIS */
     }
 
     /* HERO (branco) */
@@ -94,7 +94,11 @@
       overflow:hidden;
       position:relative;
       color: var(--ink);
-      min-height: 290px; /* um pouco maior, já que removemos os cards de cima */
+
+      /* <<< REMOVE esticamento/altura mínima */
+      min-height: unset;
+      height: auto;
+      align-self: start;
     }
     .hero::before{
       content:"";
@@ -148,11 +152,13 @@
       position:relative;
       z-index:1;
       display:grid;
-      grid-template-columns: 1.35fr .65fr; /* mais espaço pro texto/cards, menos pro gauge */
+      grid-template-columns: 1.35fr .65fr;
       gap: 12px;
       align-items: center;
       width: 100%;
-      flex: 1 1 auto;
+
+      /* <<< não “força” a ocupar o resto */
+      flex: 0 0 auto;
     }
     .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
     .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; font-size: 13px; line-height: 1.35; }
@@ -193,7 +199,6 @@
       position:relative;
       z-index:1;
     }
-    /* gauge menor, para dar mais foco nos números de notas */
     .gauge{
       width: 170px; height: 170px;
       border-radius: 50%;
@@ -228,7 +233,6 @@
       z-index:3;
       width: 150px;
     }
-    /* diminui um pouco o número p/ não cortar */
     .gaugeCenter .pct{
       font-size: 42px;
       font-weight: 950;
@@ -239,7 +243,6 @@
     }
     .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
 
-    /* pino da meta */
     .targetDot{
       position:absolute;
       width: 10px; height: 10px;
@@ -260,6 +263,7 @@
       min-height: 290px;
       display:flex;
       flex-direction:column;
+      align-self: start; /* <<< também não estica */
     }
     .panel .ph{
       padding: 14px 14px;
@@ -276,7 +280,6 @@
       display:flex; align-items:center; gap:10px;
     }
 
-    /* mini-cards dentro do painel (valores manuais do JSON) */
     .panelMetrics{
       padding: 10px 12px;
       display:grid;
@@ -337,11 +340,8 @@
 
     td .muted{ color: var(--muted); font-size:12px; }
 
-    /* Linhas do quadro transportadores */
     .rowArrived{ background: rgba(245,158,11,.16); }
     .rowLeft{ background: rgba(34,197,94,.18); }
-
-    /* Linha entregue (tabela previstas) */
     .rowDelivered{ background: rgba(34,197,94,.18); }
 
     .grid2{
@@ -392,11 +392,8 @@
       </div>
     </header>
 
-    <!-- PERFORMANCE + TRANSPORTADORES -->
     <section class="topRow">
-      <!-- PERFORMANCE (cards de notas + gauge menor) -->
       <section class="hero">
-        <!-- cards de números (ponta a ponta) -->
         <div class="miniKpis" aria-label="KPIs de notas">
           <div class="miniKpi">
             <div class="t">Total de Notas</div>
@@ -416,7 +413,6 @@
           </div>
         </div>
 
-        <!-- performance abaixo -->
         <div class="perfRow">
           <div style="position:relative; z-index:1;">
             <h2>Performance de Entregas Atual</h2>
@@ -445,7 +441,6 @@
         </div>
       </section>
 
-      <!-- TRANSPORTADORES (com valores manuais do JSON acima) -->
       <div class="panel">
         <div class="ph">
           <div class="ttl">Transportadores</div>
@@ -537,7 +532,6 @@
       return (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
     }
 
-    // Formato "universal": R$ 86.7K / R$ 1.2M
     function fmtBRLCompactK(value){
       const v = Number(value) || 0;
       const abs = Math.abs(v);
@@ -589,7 +583,6 @@
       const sorted = Array.from(carriers).filter(Boolean).sort((a,b) => a.localeCompare(b, 'pt-BR'));
       const sel = document.getElementById('carrierFilter');
 
-      // evita duplicar opções em reloads
       sel.querySelectorAll('option:not([value="__ALL__"])').forEach(o => o.remove());
 
       for (const c of sorted){
@@ -611,7 +604,7 @@
       const r = (size / 2) - 7;
 
       const t = Math.max(0, Math.min(100, Number(targetPct) || 0));
-      const angle = Math.PI * (1 - (t / 100)); // 0% => PI; 100% => 0
+      const angle = Math.PI * (1 - (t / 100));
 
       const x = cx + r * Math.cos(angle);
       const y = cy - r * Math.sin(angle);
@@ -639,7 +632,6 @@
       gauge.style.background =
         `conic-gradient(from 180deg, ${color} 0deg, ${color} ${fillDeg}deg, rgba(11,27,58,.12) ${fillDeg}deg 360deg)`;
 
-      // mantém % sem cortar
       document.getElementById('perfPct').textContent = fmtPctBR(p);
 
       const statusEl = document.getElementById('metaStatus');
@@ -745,9 +737,6 @@
       }
     }
 
-    // =========================
-    // AUTO-SCROLL (TV MODE)
-    // =========================
     function startAutoScroll(el, opts = {}) {
       if (!el) return;
 
@@ -796,7 +785,6 @@
 
       el.addEventListener('mouseenter', () => { paused = true; });
       el.addEventListener('mouseleave', () => { paused = false; });
-
       el.addEventListener('touchstart', () => { paused = !paused; }, { passive:true });
 
       start();
@@ -815,13 +803,11 @@
 
       document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
 
-      // cards de notas no topo do quadro de performance
       document.getElementById('kpiTotalNotas').textContent = Number(data.kpis.total_notas || 0).toLocaleString('pt-BR');
       document.getElementById('kpiEntregas').textContent   = Number(data.kpis.entregas_realizadas || 0).toLocaleString('pt-BR');
       document.getElementById('kpiAtraso').textContent     = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
       document.getElementById('kpiHoje').textContent       = Number(data.kpis.previstas_para_hoje || 0).toLocaleString('pt-BR');
 
-      // valores manuais do JSON (não somar tabelas)
       document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(data.kpis.valor_total_em_atraso);
       document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(data.kpis.valor_total_previsto_hoje);
 
@@ -838,16 +824,13 @@
 
       sel.addEventListener('change', () => {
         render();
-        // reseta scroll ao trocar filtro (para TV ficar “organizado”)
         document.getElementById('scrollAtraso').scrollTop = 0;
         document.getElementById('scrollHoje').scrollTop = 0;
       });
 
       render();
 
-      // aguarda pintar e então inicia auto-scroll
       setTimeout(initAutoScroll, 350);
-
       window.addEventListener('resize', () => setGauge(perf, target));
     }
 
