@@ -247,7 +247,7 @@
       "destinatario": "DIAGNOSTICOS DA AMERICA S.A",
       "transportador": "TGL",
       "cidade_destino": "CASCAVEL - PR",
-      "data_entrega": "",
+      "data_entrega": "22/01/2026",
       "valor_mercadoria": 0
     },
     {
@@ -396,6 +396,7 @@
     }
   ]
 }
+
 
 
 
