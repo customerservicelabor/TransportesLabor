@@ -1,17 +1,7 @@
 {
     "updated_at": "23/01/2026 15:40",
     
-      "audio_announcement": {
-    "enabled": true,
-    "id": "2026-01-23T13:50:00-03:00_PATRUS",
-    "type": "transportadora_chegada",
-    "message": "Transportadora Patrus chegou no CD de Itajaí às treze horas e cinquenta minutos.",
-    "transportador": "Patrus",
-    "cd": "Itajaí",
-    "horario_chegada": "13:50",
-    "created_at": "2026-01-23T13:50:00-03:00",
-    "ttl_minutes": 180
-  },
+     "audio_announcement": { "enabled": false }
     
   "kpis": {
     "total_notas": 108,
@@ -149,6 +139,7 @@
     { "nota_fiscal": "198921", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "cidade_destino": "NATAL - RN", "data_entrega": "", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
