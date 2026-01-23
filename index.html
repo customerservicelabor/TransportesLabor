@@ -807,9 +807,67 @@
       startAutoScroll(document.getElementById('scrollTransp'), { speedPxPerTick: 1, tickMs: 55, pauseAtEndMs: 1200 });
     }
 
+    /* ==========================
+       ÁUDIO (TTS) — GATILHO VIA JSON
+       ========================== */
+    const AUDIO_STORAGE_KEY = "last_audio_announcement_id_v1";
+
+    function parseISODateSafe(iso){
+      const t = Date.parse(String(iso || ''));
+      return Number.isFinite(t) ? t : NaN;
+    }
+
+    function isAnnouncementExpired(createdAtISO, ttlMinutes){
+      const createdMs = parseISODateSafe(createdAtISO);
+      if (!Number.isFinite(createdMs)) return false; // se não vier data válida, não expira
+      const ttl = Number(ttlMinutes) || 0;
+      if (ttl <= 0) return false; // ttl <= 0 => sem expiração
+      return (Date.now() - createdMs) > (ttl * 60 * 1000);
+    }
+
+    function speakPTBR(text){
+      if (!text) return;
+      if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) return;
+
+      // Evita fila/duplicidade
+      window.speechSynthesis.cancel();
+
+      const u = new SpeechSynthesisUtterance(String(text));
+      u.lang = "pt-BR";
+      u.rate = 1.0;
+      u.pitch = 1.0;
+
+      window.speechSynthesis.speak(u);
+    }
+
+    function tryPlayAnnouncement(data){
+      const ann = data?.audio_announcement;
+      if (!ann || ann.enabled !== true) return;
+
+      const id = String(ann.id || '').trim();
+      const msg = String(ann.message || '').trim();
+      if (!id || !msg) return;
+
+      // Evita tocar anúncio antigo
+      if (isAnnouncementExpired(ann.created_at, ann.ttl_minutes)) return;
+
+      const lastId = localStorage.getItem(AUDIO_STORAGE_KEY);
+      if (lastId === id) return; // já tocou nesta TV
+
+      // Marca antes de falar (evita repetição caso dê erro/reload)
+      localStorage.setItem(AUDIO_STORAGE_KEY, id);
+
+      // Dispara fala
+      speakPTBR(msg);
+    }
+
     async function load(){
-      const res = await fetch('data.json', { cache: 'no-store' });
+      // cache-buster para minimizar cache do GitHub Pages/CDN
+      const res = await fetch(`data.json?t=${Date.now()}`, { cache: 'no-store' });
       const data = await res.json();
+
+      // >>> NOVO: tenta tocar anúncio (se houver)
+      tryPlayAnnouncement(data);
 
       document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
 
