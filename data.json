@@ -1,5 +1,5 @@
 {
-  "updated_at": "23/01/2026 10:49",
+  "updated_at": "23/01/2026 11:12",
   "kpis": {
     "total_notas": 2574,
     "entregas_realizadas": 2092,
@@ -11,9 +11,9 @@
     "valor_total_previsto_hoje": 342659.02
   },
   "transportadores": [
-    { "transportador": "Azul", "chegada": "10:37", "saida": "", "proxima_coleta": "26/01/2026" },
-    { "transportador": "Latam", "chegada": "10:03", "saida": "", "proxima_coleta": "26/01/2026" },
-    { "transportador": "Azurelog", "chegada": "10:35", "saida": "", "proxima_coleta": "26/01/2026" },
+    { "transportador": "Azul", "chegada": "10:37", "saida": "10:55", "proxima_coleta": "26/01/2026" },
+    { "transportador": "Latam", "chegada": "10:03", "saida": "11:10", "proxima_coleta": "26/01/2026" },
+    { "transportador": "Azurelog", "chegada": "10:35", "saida": "11:05", "proxima_coleta": "26/01/2026" },
     { "transportador": "Patrus", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Schreiber", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Translovato", "chegada": "", "saida": "", "proxima_coleta": "" },
@@ -131,3 +131,4 @@
     { "nota_fiscal": "198921", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "cidade_destino": "NATAL - RN", "data_entrega": "", "valor_mercadoria": 0 }
   ]
 }
+
