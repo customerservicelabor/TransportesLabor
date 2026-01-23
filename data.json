@@ -1,8 +1,5 @@
 {
     "updated_at": "23/01/2026 15:40",
-    
-     "audio_announcement": { "enabled": false }
-    
   "kpis": {
     "total_notas": 108,
     "entregas_realizadas": 51,
@@ -139,6 +136,7 @@
     { "nota_fiscal": "198921", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "cidade_destino": "NATAL - RN", "data_entrega": "", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
