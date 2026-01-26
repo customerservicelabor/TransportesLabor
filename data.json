@@ -1,5 +1,5 @@
 {
-  "updated_at": "23/01/2026 18:15",
+  "updated_at": "26/01/2026 12:02",
   "kpis": {
     "total_notas": 1110,
     "entregas_realizadas": 625,
@@ -137,3 +137,4 @@
     { "nota_fiscal": "148318", "destinatario": "LABOR - HEALTH SUPPLY", "transportador": "PATRUS", "cidade_destino": "ITAJAI - SC", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
