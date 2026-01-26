@@ -1,8 +1,8 @@
 {
   "updated_at": "26/01/2026 17:08",
   "kpis": {
-    "total_notas": 1119,
-    "entregas_realizadas": 638,
+    "total_notas": 1133,
+    "entregas_realizadas": 665,
     "notas_em_atraso": 23,
     "previstas_para_hoje": 83,
     "performance_percent": 94.88,
@@ -14,13 +14,13 @@
     { "transportador": "Azul", "chegada": "11:14", "saida": "11:49", "proxima_coleta": "27/01/2026" },
     { "transportador": "Latam", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Azurelog", "chegada": "10:43", "saida": "11:41", "proxima_coleta": "27/01/2026" },
-    { "transportador": "Patrus", "chegada": "14:01", "saida": "", "proxima_coleta": "27/01/2026" },
-    { "transportador": "Schreiber", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Patrus", "chegada": "14:01", "saida": "16:00", "proxima_coleta": "27/01/2026" },
+    { "transportador": "Schreiber", "chegada": "14:31", "saida": "", "proxima_coleta": "" },
     { "transportador": "Translovato", "chegada": "13:56", "saida": "", "proxima_coleta": "27/01/2026" },
     { "transportador": "Gran Cargo", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Tecmar", "chegada": "13:36", "saida": "14:15", "proxima_coleta": "27/01/2026" },
-    { "transportador": "TGL", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Logdi", "chegada": "14:46", "saida": "", "proxima_coleta": "" },
+    { "transportador": "TGL", "chegada": "14:35", "saida": "15:50", "proxima_coleta": "27/01/2026" },
+    { "transportador": "Logdi", "chegada": "14:46", "saida": "17:00", "proxima_coleta": "27/01/2026" },
     { "transportador": "Fedex", "chegada": "11:50", "saida": "11:50", "proxima_coleta": "27/01/2026" }
   ],
   "notas_em_atraso": [
@@ -134,6 +134,7 @@
     { "nota_fiscal": "148318", "destinatario": "LABOR - HEALTH SUPPLY", "transportador": "PATRUS", "cidade_destino": "ITAJAI - SC", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
