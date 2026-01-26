@@ -1,9 +1,9 @@
 {
-  "updated_at": "26/01/2026 14:12",
+  "updated_at": "26/01/2026 17:08",
   "kpis": {
     "total_notas": 1119,
     "entregas_realizadas": 638,
-    "notas_em_atraso": 25,
+    "notas_em_atraso": 23,
     "previstas_para_hoje": 83,
     "performance_percent": 94.88,
     "meta_performance_percent": 95.0,
@@ -32,12 +32,10 @@
     { "nota_fiscal": "199518", "destinatario": "INOVA MED PRODUTOS HOSP E LABORAT LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
     { "nota_fiscal": "199477", "destinatario": "ANDRETTA MEDICAMENTOS LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "199440", "destinatario": "ITAPETININGA PRODUTOS MEDICOS LTDA ME", "transportador": "PATRUS", "previsao_entrega": "2026-01-23", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199431", "destinatario": "DENTMED MAT MEDICOS E ODONTOLOGICOS LTDA", "transportador": "PATRUS", "previsao_entrega": "2026-01-23", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "199417", "destinatario": "CASA MEDICA COM. PROD. HOSPITALARES LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "199415", "destinatario": "MARJOELE BRAGA", "transportador": "FEDEX", "previsao_entrega": "2026-01-23", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "199414", "destinatario": "LABNORTE MATERIAIS PARA LABORATORIO", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "199396", "destinatario": "LABORATORIO DE ANALISES CLINICAS DR. WILLY CARLOS JUNG LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199389", "destinatario": "BIO SCAN", "transportador": "PATRUS", "previsao_entrega": "2026-01-22", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "199301", "destinatario": "JS DIAGNOSTICOS LTDA", "transportador": "TRANSLOVATO", "previsao_entrega": "2026-01-21", "ocorrencia": "Aguard. Baixa", "valor_mercadoria": 0 },
     { "nota_fiscal": "199191", "destinatario": "RF PROD HOSPITALARES ODONTOLOGICOS LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-23", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "199116", "destinatario": "ANGELINA ROSA GIOANNETTI CALLOU", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Posto Fiscal", "valor_mercadoria": 0 },
@@ -136,6 +134,7 @@
     { "nota_fiscal": "148318", "destinatario": "LABOR - HEALTH SUPPLY", "transportador": "PATRUS", "cidade_destino": "ITAJAI - SC", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
