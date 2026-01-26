@@ -1,9 +1,9 @@
 {
-  "updated_at": "26/01/2026 12:02",
+  "updated_at": "26/01/2026 14:12",
   "kpis": {
-    "total_notas": 1110,
-    "entregas_realizadas": 625,
-    "notas_em_atraso": 26,
+    "total_notas": 1119,
+    "entregas_realizadas": 638,
+    "notas_em_atraso": 25,
     "previstas_para_hoje": 83,
     "performance_percent": 94.88,
     "meta_performance_percent": 95.0,
@@ -46,7 +46,6 @@
     { "nota_fiscal": "199098", "destinatario": "LABORATORIO CLEMENTINO FRAGA LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "199077", "destinatario": "RIBEIRO ERRE COMERCIO E REPRESENTACOES L", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "198954", "destinatario": "LUNAV ANALISES CLINICAS LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
-    { "nota_fiscal": "198950", "destinatario": "MANAUARA COM PROD SERV HOSPITALARES LTDA", "transportador": "LATAM", "previsao_entrega": "2026-01-22", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
     { "nota_fiscal": "198944", "destinatario": "GLOBALMOR COMERCIO DE ARTIGOS HOSPITALARES LTDA", "transportador": "LATAM", "previsao_entrega": "2026-01-21", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
     { "nota_fiscal": "198911", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "previsao_entrega": "2026-01-22", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "197610", "destinatario": "MANAUARA COM PROD SERV HOSPITALARES LTDA", "transportador": "LATAM", "previsao_entrega": "2025-12-19", "ocorrencia": "Extravio", "valor_mercadoria": 0 }
@@ -73,7 +72,7 @@
     { "nota_fiscal": "199773", "destinatario": "MEDICAL LAGE COM PROD MED HOSPITALARES", "transportador": "SCHREIBER", "cidade_destino": "MOGI DAS CRUZES - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199769", "destinatario": "NEUPHARMA DISTRIBUICAO DE MAT. MED. HOSPITALAR LTD", "transportador": "SCHREIBER", "cidade_destino": "SAO PAULO - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199765", "destinatario": "BLUEMED COMERCIAL LTDA", "transportador": "SCHREIBER", "cidade_destino": "SAO PAULO - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199763", "destinatario": "CASA MEDICA COM. PROD. HOSPITALARES LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "LONDRINA - PR", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199763", "destinatario": "CASA MEDICA COM. PROD. HOSPITALARES LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "LONDRINA - PR", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199744", "destinatario": "IN VITRO LAB ANALISES CLINICAS LTDA", "transportador": "SCHREIBER", "cidade_destino": "LIMEIRA - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199678", "destinatario": "SIDD COMERCIAL DISTRIBUIDORA MEDICAMENTO", "transportador": "TGL", "cidade_destino": "CACHOEIRINHA - RS", "data_entrega": "", "valor_mercadoria": 0 },
     { "nota_fiscal": "199666", "destinatario": "CONEXMED HOSPITALAR", "transportador": "AZUL", "cidade_destino": "SALVADOR - BA", "data_entrega": "21/01/2026", "valor_mercadoria": 0 },
@@ -105,7 +104,7 @@
     { "nota_fiscal": "199427", "destinatario": "ARKIMEDES CENTRO MEDICO LTDA.", "transportador": "SCHREIBER", "cidade_destino": "SAO ROQUE - SP", "data_entrega": "22/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199422", "destinatario": "RM HOSP. LTDA", "transportador": "AZURELOG", "cidade_destino": "GOIANIA - GO", "data_entrega": "20/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199410", "destinatario": "LAB DE ANALISES CLINICAS JOAO PAULO II", "transportador": "PATRUS", "cidade_destino": "FERNANDOPOLIS - SP", "data_entrega": "", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199403", "destinatario": "ABEMED PRODUTOS MEDICO CIENTIFICOS LTDA EPP.", "transportador": "PATRUS", "cidade_destino": "SAO JOSE DO RIO PARDO - SP", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199403", "destinatario": "ABEMED PRODUTOS MEDICO CIENTIFICOS LTDA EPP.", "transportador": "PATRUS", "cidade_destino": "SAO JOSE DO RIO PARDO - SP", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199397", "destinatario": "M&A SUPRA COMERCIAL LTDA", "transportador": "PATRUS", "cidade_destino": "LAURO DE FREITAS - BA", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199388", "destinatario": "MARCELO DIB", "transportador": "PATRUS", "cidade_destino": "UBERLANDIA - MG", "data_entrega": "", "valor_mercadoria": 0 },
     { "nota_fiscal": "199383", "destinatario": "CIRURGICA PIRASSUNUNGA LTDA", "transportador": "PATRUS", "cidade_destino": "PIRASSUNUNGA - SP", "data_entrega": "", "valor_mercadoria": 0 },
@@ -131,10 +130,11 @@
     { "nota_fiscal": "199219", "destinatario": "URTIFARMA COM DE INST E MAT PARA USO MEDIC LTDA", "transportador": "LATAM", "cidade_destino": "MANAUS - AM", "data_entrega": "16/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199155", "destinatario": "ERIKA FARIAS VELOSO DE OLIVEIRA EIRELI", "transportador": "FEDEX", "cidade_destino": "TERESINA - PI", "data_entrega": "", "valor_mercadoria": 0 },
     { "nota_fiscal": "199144", "destinatario": "TNH CLINICA RADIOLOGICA EIRELI", "transportador": "FEDEX", "cidade_destino": "ATALAIA - AL", "data_entrega": "21/01/2026", "valor_mercadoria": 0 },
-    { "nota_fiscal": "198961", "destinatario": "DIAGNOSTICOS DA AMERICA S.A", "transportador": "PATRUS", "cidade_destino": "DUQUE DE CAXIAS - RJ", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "198961", "destinatario": "DIAGNOSTICOS DA AMERICA S.A", "transportador": "PATRUS", "cidade_destino": "DUQUE DE CAXIAS - RJ", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "198901", "destinatario": "W. S. COMERCIO E SERVICOS EIRELI", "transportador": "TECMAR", "cidade_destino": "MOSSORO - RN", "data_entrega": "19/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "148320", "destinatario": "LABOR - HEALTH SUPPLY", "transportador": "PATRUS", "cidade_destino": "ITAJAI - SC", "data_entrega": "22/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "148318", "destinatario": "LABOR - HEALTH SUPPLY", "transportador": "PATRUS", "cidade_destino": "ITAJAI - SC", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
