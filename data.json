@@ -1,9 +1,9 @@
 {
-  "updated_at": "26/01/2026 17:08",
+  "updated_at": "26/01/2026 17:38",
   "kpis": {
     "total_notas": 1133,
     "entregas_realizadas": 665,
-    "notas_em_atraso": 23,
+    "notas_em_atraso": 21,
     "previstas_para_hoje": 83,
     "performance_percent": 94.88,
     "meta_performance_percent": 95.0,
@@ -24,7 +24,6 @@
     { "transportador": "Fedex", "chegada": "11:50", "saida": "11:50", "proxima_coleta": "27/01/2026" }
   ],
   "notas_em_atraso": [
-    { "nota_fiscal": "199831", "destinatario": "DIAGNOSTICOS DA AMERICA", "transportador": "TRANSLOVATO", "previsao_entrega": "2026-01-23", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
     { "nota_fiscal": "199724", "destinatario": "UNILABOR LABORATORIO DE ANALISES CLINICAS S/C LTDA", "transportador": "TRANSLOVATO", "previsao_entrega": "2026-01-23", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
     { "nota_fiscal": "199657", "destinatario": "SAUDMED DISTRIBUIDORA PRODUTOS HOSPITALA", "transportador": "TRANSLOVATO", "previsao_entrega": "2026-01-23", "ocorrencia": "Aguard. Baixa", "valor_mercadoria": 0 },
     { "nota_fiscal": "199597", "destinatario": "PORTO VITAL COMERCIO DE PRODUTOS PARA A", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Cliente Fechado", "valor_mercadoria": 0 },
@@ -45,7 +44,6 @@
     { "nota_fiscal": "199077", "destinatario": "RIBEIRO ERRE COMERCIO E REPRESENTACOES L", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "198954", "destinatario": "LUNAV ANALISES CLINICAS LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
     { "nota_fiscal": "198944", "destinatario": "GLOBALMOR COMERCIO DE ARTIGOS HOSPITALARES LTDA", "transportador": "LATAM", "previsao_entrega": "2026-01-21", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
-    { "nota_fiscal": "198911", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "previsao_entrega": "2026-01-22", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "197610", "destinatario": "MANAUARA COM PROD SERV HOSPITALARES LTDA", "transportador": "LATAM", "previsao_entrega": "2025-12-19", "ocorrencia": "Extravio", "valor_mercadoria": 0 }
   ],
   "notas_previstas_hoje": [
@@ -134,6 +132,7 @@
     { "nota_fiscal": "148318", "destinatario": "LABOR - HEALTH SUPPLY", "transportador": "PATRUS", "cidade_destino": "ITAJAI - SC", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
