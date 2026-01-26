@@ -1,9 +1,9 @@
 {
-  "updated_at": "26/01/2026 09:16",
+  "updated_at": "26/01/2026 09:57",
   "kpis": {
     "total_notas": 1094,
-    "entregas_realizadas": 619,
-    "notas_em_atraso": 37,
+    "entregas_realizadas": 620,
+    "notas_em_atraso": 36,
     "previstas_para_hoje": 83,
     "performance_percent": 94.83,
     "meta_performance_percent": 95.0,
@@ -52,7 +52,6 @@
     { "nota_fiscal": "199109", "destinatario": "DIAGNOSTICOS DA AMERICA S.A .", "transportador": "LOGDI", "previsao_entrega": "2026-01-22", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
     { "nota_fiscal": "199098", "destinatario": "LABORATORIO CLEMENTINO FRAGA LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "199077", "destinatario": "RIBEIRO ERRE COMERCIO E REPRESENTACOES L", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199019", "destinatario": "SOU MAIS SAUDE COMERCIO DE EQUIPAMENTOS MEDICOS EIRELI", "transportador": "GRAN CARGO", "previsao_entrega": "2026-01-23", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "198954", "destinatario": "LUNAV ANALISES CLINICAS LTDA", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
     { "nota_fiscal": "198950", "destinatario": "MANAUARA COM PROD SERV HOSPITALARES LTDA", "transportador": "LATAM", "previsao_entrega": "2026-01-22", "ocorrencia": "Atrasado", "valor_mercadoria": 0 },
     { "nota_fiscal": "198944", "destinatario": "GLOBALMOR COMERCIO DE ARTIGOS HOSPITALARES LTDA", "transportador": "LATAM", "previsao_entrega": "2026-01-21", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
@@ -148,3 +147,4 @@
     { "nota_fiscal": "148318", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "cidade_destino": "NATAL - RN", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
