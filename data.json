@@ -20,7 +20,7 @@
     { "transportador": "Gran Cargo", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Tecmar", "chegada": "13:36", "saida": "", "proxima_coleta": "27/01/2026" },
     { "transportador": "TGL", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Logdi", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Logdi", "chegada": "14:46", "saida": "", "proxima_coleta": "" },
     { "transportador": "Fedex", "chegada": "11:50", "saida": "11:50", "proxima_coleta": "27/01/2026" }
   ],
   "notas_em_atraso": [
@@ -136,6 +136,7 @@
     { "nota_fiscal": "148318", "destinatario": "LABOR - HEALTH SUPPLY", "transportador": "PATRUS", "cidade_destino": "ITAJAI - SC", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
