@@ -14,14 +14,14 @@
     { "transportador": "Azul", "chegada": "11:14", "saida": "11:49", "proxima_coleta": "27/01/2026" },
     { "transportador": "Latam", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Azurelog", "chegada": "10:43", "saida": "11:41", "proxima_coleta": "27/01/2026" },
-    { "transportador": "Patrus", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Patrus", "chegada": "14:01", "saida": "", "proxima_coleta": "27/01/2026" },
     { "transportador": "Schreiber", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Translovato", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Translovato", "chegada": "13:56", "saida": "", "proxima_coleta": "27/01/2026" },
     { "transportador": "Gran Cargo", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Tecmar", "chegada": "", "saida": "", "proxima_coleta": "" },
+    { "transportador": "Tecmar", "chegada": "13:36", "saida": "", "proxima_coleta": "27/01/2026" },
     { "transportador": "TGL", "chegada": "", "saida": "", "proxima_coleta": "" },
     { "transportador": "Logdi", "chegada": "", "saida": "", "proxima_coleta": "" },
-    { "transportador": "Fedex", "chegada": "11:50", "saida": "", "proxima_coleta": "27/01/2026" }
+    { "transportador": "Fedex", "chegada": "11:50", "saida": "11:50", "proxima_coleta": "27/01/2026" }
   ],
   "notas_em_atraso": [
     { "nota_fiscal": "199831", "destinatario": "DIAGNOSTICOS DA AMERICA", "transportador": "TRANSLOVATO", "previsao_entrega": "2026-01-23", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
@@ -136,5 +136,6 @@
     { "nota_fiscal": "148318", "destinatario": "LABOR - HEALTH SUPPLY", "transportador": "PATRUS", "cidade_destino": "ITAJAI - SC", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
 
