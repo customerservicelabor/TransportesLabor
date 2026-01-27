@@ -5,7 +5,7 @@
     "entregas_realizadas": 742,
     "notas_em_atraso": 16,
     "previstas_para_hoje": 91,
-    "entregues_hoje": 72,
+    "entregues_hoje": 73,
     "performance_percent": 96.40,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 90725.19,
@@ -121,7 +121,7 @@
     { "nota_fiscal": "199425", "destinatario": "DINAEL DE SOUZA BERALDO ME", "transportador": "PATRUS", "cidade_destino": "ALFENAS - MG", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199405", "destinatario": "ESSENCIAL COMERCIO DE PRODUTOS PARA SAUDE LTDA", "transportador": "LATAM", "cidade_destino": "MANAUS - AM", "data_entrega": "19/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199351", "destinatario": "EMBRAMEDICA PRODUTOS DE LABORATORIOS LTDA", "transportador": "FEDEX", "cidade_destino": "SAO LUIS - MA", "data_entrega": "", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199348", "destinatario": "TOP VIDA DISTRIBUIDORA HOSPITALAR LTDA M", "transportador": "PATRUS", "cidade_destino": "SALVADOR - BA", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199348", "destinatario": "TOP VIDA DISTRIBUIDORA HOSPITALAR LTDA M", "transportador": "PATRUS", "cidade_destino": "SALVADOR - BA", "data_entrega": "27/01/2025", "valor_mercadoria": 0 },
     { "nota_fiscal": "199340", "destinatario": "FARMATEC PRODUTOS FARMACEUTICOS LTDA", "transportador": "AZURELOG", "cidade_destino": "ANAPOLIS - GO", "data_entrega": "19/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199309", "destinatario": "INSTRUMENTAL TECNICO LTDA", "transportador": "LATAM", "cidade_destino": "MANAUS - AM", "data_entrega": "16/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199262", "destinatario": "PAULO GAMA RIBEIRO ME", "transportador": "LOGDI", "cidade_destino": "RIBEIRA DO POMBAL - BA", "data_entrega": "", "valor_mercadoria": 0 },
@@ -136,6 +136,7 @@
     { "nota_fiscal": "198911", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "cidade_destino": "NATAL - RN", "data_entrega": "", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
