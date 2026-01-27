@@ -1,14 +1,14 @@
 {
-  "updated_at": "27/01/2026 13:50",
+  "updated_at": "27/01/2026 14:10",
   "kpis": {
     "total_notas": 1199,
     "entregas_realizadas": 723,
-    "notas_em_atraso": 18,
+    "notas_em_atraso": 17,
     "previstas_para_hoje": 92,
     "entregues_hoje": 65,
     "performance_percent": 96.27,
     "meta_performance_percent": 95.0,
-    "valor_total_em_atraso": 93862.37,
+    "valor_total_em_atraso": 93143.11,
     "valor_total_previsto_hoje": 472224.74
   },
   "transportadores": [
@@ -154,14 +154,6 @@
       "valor_mercadoria": 0
     },
     {
-      "nota_fiscal": "199657",
-      "destinatario": "SAUDMED DISTRIBUIDORA PRODUTOS HOSPITALA",
-      "transportador": "TRANSLOVATO",
-      "previsao_entrega": "2026-01-23",
-      "ocorrencia": "Atrasada",
-      "valor_mercadoria": 0
-    },
-    {
       "nota_fiscal": "199301",
       "destinatario": "JS DIAGNOSTICOS LTDA",
       "transportador": "TRANSLOVATO",
@@ -265,3 +257,4 @@
     { "nota_fiscal": "198872", "destinatario": "M GOMES MONTEL LUNARDI LTDA", "transportador": "GRAN CARGO", "cidade_destino": "SAO GERALDO DO ARAGUAIA - PA", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
