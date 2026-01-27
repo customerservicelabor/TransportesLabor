@@ -5,7 +5,7 @@
     "entregas_realizadas": 742,
     "notas_em_atraso": 16,
     "previstas_para_hoje": 91,
-    "entregues_hoje": 73,
+    "entregues_hoje": 74,
     "performance_percent": 96.40,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 90725.19,
@@ -87,7 +87,7 @@
     { "nota_fiscal": "199609", "destinatario": "ATIVA MEDICO CIRURGICA EIRELI", "transportador": "PATRUS", "cidade_destino": "JUIZ DE FORA - MG", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199604", "destinatario": "AFRAMED PRODUTOS HOSPITALARES LTDA", "transportador": "PATRUS", "cidade_destino": "MARICA - RJ", "data_entrega": "", "valor_mercadoria": 0 },
     { "nota_fiscal": "199598", "destinatario": "NUTRIME SER MEDICO NUTRICA PARE ENTER LT", "transportador": "PATRUS", "cidade_destino": "CAMPOS DOS GOYTACAZES - RJ", "data_entrega": "", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199597", "destinatario": "PORTO VITAL COMERCIO DE PRODUTOS PARA A", "transportador": "FEDEX", "cidade_destino": "PORTO ALEGRE - RS", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199597", "destinatario": "PORTO VITAL COMERCIO DE PRODUTOS PARA A", "transportador": "FEDEX", "cidade_destino": "PORTO ALEGRE - RS", "data_entrega": "27/01/2025", "valor_mercadoria": 0 },
     { "nota_fiscal": "199596", "destinatario": "SINERGIA ATACADISTA EIRELI", "transportador": "TRANSLOVATO", "cidade_destino": "VILA VELHA - ES", "data_entrega": "22/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199591", "destinatario": "CIRURGICA VITORIA COMERCIO DE MEDICAMENTOS LTDA", "transportador": "PATRUS", "cidade_destino": "UCHOA - SP", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199586", "destinatario": "AHCOR COM PRODUTOS ODONTOLOGICOS LTDA", "transportador": "AZUL", "cidade_destino": "CASTANHAL - PA", "data_entrega": "21/01/2026", "valor_mercadoria": 0 },
@@ -136,6 +136,7 @@
     { "nota_fiscal": "198911", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "cidade_destino": "NATAL - RN", "data_entrega": "", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
