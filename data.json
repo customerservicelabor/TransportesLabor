@@ -5,7 +5,7 @@
     "entregas_realizadas": 638,
     "notas_em_atraso": 21,
     "previstas_para_hoje": 91,
-    "entregues_hoje": 61,
+    "entregues_hoje": 63,
     "performance_percent": 96.14,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 100276.44,
@@ -213,7 +213,7 @@
     { "nota_fiscal": "199854", "destinatario": "INSTITUTO PARANAENSE HEMOTERAPIA E HEMAT", "transportador": "TGL", "cidade_destino": "CURITIBA - PR", "data_entrega": "", "valor_mercadoria": 0 },
     { "nota_fiscal": "199845", "destinatario": "SURYA DENTAL COMERCIO DE PRODUTOS ODONTOLOGICOS E", "transportador": "SCHREIBER", "cidade_destino": "SANTANA DE PARNAIBA - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199840", "destinatario": "RICARDO COELHO", "transportador": "TRANSLOVATO", "cidade_destino": "JABOTICABAL - SP", "data_entrega": "", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199834", "destinatario": "PEGASUS SOLUCOES CORPORATIVAS LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "SANTO ANTONIO DA PLATINA - PR", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199834", "destinatario": "PEGASUS SOLUCOES CORPORATIVAS LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "SANTO ANTONIO DA PLATINA - PR", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199830", "destinatario": "LUIZ GUSTAVO LIMA GOMES", "transportador": "SCHREIBER", "cidade_destino": "APARECIDA - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199812", "destinatario": "CARDIOLIFE CLINICA DE ESPECIALIDADES ME", "transportador": "SCHREIBER", "cidade_destino": "LORENA - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199801", "destinatario": "CEMED COM IMPORT EXPORT DISTRIB LTDA", "transportador": "SCHREIBER", "cidade_destino": "ITU - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
@@ -226,7 +226,7 @@
     { "nota_fiscal": "199719", "destinatario": "DRESCH E RODRIGUES DISTRIB VETERIN LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "PATO BRANCO - PR", "data_entrega": "", "valor_mercadoria": 0 },
     { "nota_fiscal": "199718", "destinatario": "E B COMERCIO DE MATERIAIS HOSPITALARES L", "transportador": "AZUL", "cidade_destino": "PALMAS - TO", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199715", "destinatario": "DENTAL PAULO KANDA MATERIAIS ODONTOLOGICOS LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "ARACATUBA - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199698", "destinatario": "BIG HOSPITALAR COM DE PROD PARA SAUDE LT", "transportador": "TRANSLOVATO", "cidade_destino": "SANTA LUZIA - MG", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199698", "destinatario": "BIG HOSPITALAR COM DE PROD PARA SAUDE LT", "transportador": "TRANSLOVATO", "cidade_destino": "SANTA LUZIA - MG", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199690", "destinatario": "BANDEIRANTES LAB PROD FARMACEUTICOS E HOSPITALARES", "transportador": "AZUL", "cidade_destino": "NATAL - RN", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199689", "destinatario": "ANDRETTA MEDICAMENTOS LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "FRANCISCO BELTRAO - PR", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199679", "destinatario": "CIRURGICA RIO PRETANA LTDA", "transportador": "PATRUS", "cidade_destino": "SAO JOSE DO RIO PRETO - SP", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
@@ -288,5 +288,6 @@
     { "nota_fiscal": "198872", "destinatario": "M GOMES MONTEL LUNARDI LTDA", "transportador": "GRAN CARGO", "cidade_destino": "SAO GERALDO DO ARAGUAIA - PA", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
 
