@@ -4,7 +4,7 @@
     "total_notas": 1207,
     "entregas_realizadas": 742,
     "notas_em_atraso": 16,
-    "previstas_para_hoje": 91,
+    "previstas_para_hoje": 90,
     "entregues_hoje": 75,
     "performance_percent": 96.40,
     "meta_performance_percent": 95.0,
@@ -136,6 +136,7 @@
     { "nota_fiscal": "198911", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "cidade_destino": "NATAL - RN", "data_entrega": "", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
