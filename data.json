@@ -3,12 +3,12 @@
   "kpis": {
     "total_notas": 1162,
     "entregas_realizadas": 698,
-    "notas_em_atraso": 24,
+    "notas_em_atraso": 23,
     "previstas_para_hoje": 91,
     "entregues_hoje": 61,
     "performance_percent": 96.14,
     "meta_performance_percent": 95.0,
-    "valor_total_em_atraso": 131730.18,
+    "valor_total_em_atraso": 129924.53,
     "valor_total_previsto_hoje": 472287.96
   },
   "transportadores": [
@@ -31,7 +31,6 @@
     { "nota_fiscal": "674031", "destinatario": "RECIFE - PE", "transportador": "LOGDI", "previsao_entrega": "2026-01-22", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
     { "nota_fiscal": "674972", "destinatario": "DUQUE DE CAXIAS - RJ", "transportador": "PATRUS", "previsao_entrega": "2026-01-23", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
     { "nota_fiscal": "675284", "destinatario": "CACHOEIRINHA - RS", "transportador": "TGL", "previsao_entrega": "2026-01-26", "ocorrencia": "Aguard. Baixa", "valor_mercadoria": 0 },
-    { "nota_fiscal": "675041", "destinatario": "CHAPECO - SC", "transportador": "TGL", "previsao_entrega": "2026-01-26", "ocorrencia": "Aguard. Baixa", "valor_mercadoria": 0 },
     { "nota_fiscal": "675124", "destinatario": "PORTO ALEGRE - RS", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Cliente Fechado", "valor_mercadoria": 0 },
     { "nota_fiscal": "674577", "destinatario": "LONDRINA - PR", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
     { "nota_fiscal": "674563", "destinatario": "FRANCISCO BELTRAO - PR", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
@@ -144,5 +143,6 @@
     { "nota_fiscal": "198872", "destinatario": "M GOMES MONTEL LUNARDI LTDA", "transportador": "GRAN CARGO", "cidade_destino": "SAO GERALDO DO ARAGUAIA - PA", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
 
