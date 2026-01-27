@@ -21,8 +21,6 @@
 
       --ink:#0b1b3a;
 
-      /* >>> ALTURA PADRÃO DA LINHA SUPERIOR (Performance + Status Coleta) */
-      /* Aproximadamente +25% vs. o “compacto” atual. Ajuste fino aqui se quiser. */
       --topRowH: 400px;
     }
 
@@ -76,16 +74,14 @@
       outline: none;
     }
 
-    /* ======= LINHA: PERFORMANCE + TRANSPORTADORES ======= */
     .topRow{
       margin:16px 0 16px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      align-items: stretch; /* <<< agora ambos ficam do mesmo tamanho */
+      align-items: stretch;
     }
 
-    /* HERO (branco) */
     .hero{
       border-radius: var(--radius);
       background: rgba(255,255,255,.92);
@@ -98,8 +94,6 @@
       overflow:hidden;
       position:relative;
       color: var(--ink);
-
-      /* >>> Altura aumentada (+25%) e igual ao quadro da direita */
       height: var(--topRowH);
     }
     .hero::before{
@@ -112,7 +106,6 @@
       pointer-events:none;
     }
 
-    /* Mini cards dentro do HERO */
     .miniKpis{
       position:relative;
       z-index:1;
@@ -150,7 +143,6 @@
       white-space:nowrap;
     }
 
-    /* Linha de conteúdo da performance */
     .perfRow{
       position:relative;
       z-index:1;
@@ -159,18 +151,12 @@
       gap: 12px;
       align-items: center;
       width: 100%;
-
-      /* >>> ocupa o restante do card com “boa distribuição” */
       flex: 1 1 auto;
     }
     .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
     .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; font-size: 13px; line-height: 1.35; }
 
-    .metaLine{
-      margin-top: 8px;
-      font-size: 12px;
-      color: rgba(11,27,58,.72);
-    }
+    .metaLine{ margin-top: 8px; font-size: 12px; color: rgba(11,27,58,.72); }
 
     .badge{
       font-size:12px;
@@ -197,11 +183,7 @@
     .pill.bad{ background: var(--bad); color:#fff; }
     .pill.good{ background: var(--good); color:#0b1020; }
 
-    .gaugeWrap{
-      display:flex; justify-content:center; align-items:center;
-      position:relative;
-      z-index:1;
-    }
+    .gaugeWrap{ display:flex; justify-content:center; align-items:center; position:relative; z-index:1; }
     .gauge{
       width: 170px; height: 170px;
       border-radius: 50%;
@@ -256,7 +238,6 @@
       transform: translate(-50%, -50%);
     }
 
-    /* PAINÉIS */
     .panel{
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.10);
@@ -265,8 +246,6 @@
       overflow:hidden;
       display:flex;
       flex-direction:column;
-
-      /* >>> Igual ao quadro de performance */
       height: var(--topRowH);
     }
     .panel .ph{
@@ -279,10 +258,7 @@
       background: rgba(0,0,0,.14);
       flex: 0 0 auto;
     }
-    .ph .ttl{
-      font-weight:800;
-      display:flex; align-items:center; gap:10px;
-    }
+    .ph .ttl{ font-weight:800; display:flex; align-items:center; gap:10px; }
 
     .panelMetrics{
       padding: 10px 12px;
@@ -369,16 +345,12 @@
       .topRow{ grid-template-columns: 1fr; }
       .miniKpis{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .perfRow{ grid-template-columns: 1fr; }
-
-      /* em telas menores, não fixa altura */
       .hero, .panel{ height: auto; }
       .gauge{ margin: 4px 0 8px; }
     }
     @media (max-width: 980px){
       .grid2{ grid-template-columns: 1fr; }
       h1{ font-size:30px; }
-
-      /* em telas menores, não fixa altura */
       .hero, .panel{ height: auto; }
     }
   </style>
@@ -417,8 +389,6 @@
             <div class="t">Notas em Atraso</div>
             <div class="v" id="kpiAtraso">—</div>
           </div>
-
-          <!-- ✅ ALTERADO: título e valor "Previsto hoje / Entregue" -->
           <div class="miniKpi">
             <div class="t">Previsto hoje / Entregue</div>
             <div class="v" id="kpiHojeEntregue">—</div>
@@ -477,7 +447,6 @@
                 <th>Transportador</th>
                 <th>Chegada</th>
                 <th>Saída</th>
-                <!-- ✅ ALTERADO: header -->
                 <th>Horário da coleta</th>
               </tr>
             </thead>
@@ -679,8 +648,8 @@
         const chegada = (it.chegada ?? '').toString().trim();
         const saida = (it.saida ?? '').toString().trim();
 
-        // Mantém o mesmo campo do JSON, só mudou o nome no header
-        const prox = (it.proxima_coleta ?? it.proximaColeta ?? it.proxima_coleta_data ?? '').toString().trim();
+        // ✅ NOVO: somente "agendado"
+        const agendado = (it.agendado ?? '').toString().trim();
 
         let cls = '';
         if (saida) cls = 'rowLeft';
@@ -692,7 +661,7 @@
           <td><strong>${nome || '—'}</strong></td>
           <td>${chegada || '—'}</td>
           <td>${saida || '—'}</td>
-          <td>${prox || '—'}</td>
+          <td>${agendado || '—'}</td>
         `;
         body.appendChild(tr);
       }
@@ -812,9 +781,6 @@
       startAutoScroll(document.getElementById('scrollTransp'), { speedPxPerTick: 1, tickMs: 55, pauseAtEndMs: 1200 });
     }
 
-    /* ==========================
-       ÁUDIO (TTS) — GATILHO VIA JSON
-       ========================== */
     const AUDIO_STORAGE_KEY = "last_audio_announcement_id_v1";
 
     function parseISODateSafe(iso){
@@ -824,9 +790,9 @@
 
     function isAnnouncementExpired(createdAtISO, ttlMinutes){
       const createdMs = parseISODateSafe(createdAtISO);
-      if (!Number.isFinite(createdMs)) return false; // se não vier data válida, não expira
+      if (!Number.isFinite(createdMs)) return false;
       const ttl = Number(ttlMinutes) || 0;
-      if (ttl <= 0) return false; // ttl <= 0 => sem expiração
+      if (ttl <= 0) return false;
       return (Date.now() - createdMs) > (ttl * 60 * 1000);
     }
 
@@ -834,7 +800,6 @@
       if (!text) return;
       if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) return;
 
-      // Evita fila/duplicidade
       window.speechSynthesis.cancel();
 
       const u = new SpeechSynthesisUtterance(String(text));
@@ -853,25 +818,19 @@
       const msg = String(ann.message || '').trim();
       if (!id || !msg) return;
 
-      // Evita tocar anúncio antigo
       if (isAnnouncementExpired(ann.created_at, ann.ttl_minutes)) return;
 
       const lastId = localStorage.getItem(AUDIO_STORAGE_KEY);
-      if (lastId === id) return; // já tocou nesta TV
+      if (lastId === id) return;
 
-      // Marca antes de falar (evita repetição caso dê erro/reload)
       localStorage.setItem(AUDIO_STORAGE_KEY, id);
-
-      // Dispara fala
       speakPTBR(msg);
     }
 
     async function load(){
-      // cache-buster para minimizar cache do GitHub Pages/CDN
       const res = await fetch(`data.json?t=${Date.now()}`, { cache: 'no-store' });
       const data = await res.json();
 
-      // >>> NOVO: tenta tocar anúncio (se houver)
       tryPlayAnnouncement(data);
 
       document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
@@ -880,13 +839,11 @@
       document.getElementById('kpiEntregas').textContent   = Number(data.kpis.entregas_realizadas || 0).toLocaleString('pt-BR');
       document.getElementById('kpiAtraso').textContent     = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
 
-      // ✅ ALTERADO: "Previsto hoje / Entregue"
       const previstasHoje = Number(data.kpis.previstas_para_hoje || 0);
-      const entreguesHoje = Number(data.kpis.entregues_hoje || 0); // <<< você vai incluir no JSON
+      const entreguesHoje = Number(data.kpis.entregues_hoje || 0);
       document.getElementById('kpiHojeEntregue').textContent =
         `${previstasHoje.toLocaleString('pt-BR')} / ${entreguesHoje.toLocaleString('pt-BR')}`;
 
-      // Valores vêm do JSON (manual) — sem somar tabela
       document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(data.kpis.valor_total_em_atraso);
       document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(data.kpis.valor_total_previsto_hoje);
 
