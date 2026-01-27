@@ -20,9 +20,9 @@
     { "transportador": "Fedex", "chegada": "", "saida": "", "agendado": "13:00" },
     { "transportador": "Translovato", "chegada": "13:26", "saida": "15:00", "agendado": "14:00" },
     { "transportador": "Patrus", "chegada": "14:30", "saida": "15:50", "agendado": "14:30" },
-    { "transportador": "Gran Cargo", "chegada": "", "saida": "", "agendado": "15:00" },
+    { "transportador": "Gran Cargo", "chegada": "15:58", "saida": "", "agendado": "15:00" },
     { "transportador": "Schreiber", "chegada": "15:05", "saida": "", "agendado": "16:30" },
-    { "transportador": "TGL", "chegada": "", "saida": "", "agendado": "17:00" }
+    { "transportador": "TGL", "chegada": "15:52", "saida": "", "agendado": "17:00" }
   ],
   "notas_em_atraso": [
     { "nota_fiscal": "199512", "destinatario": "DISFARMOC DIST DE PROD FARMACEUTICOS LTD", "transportador": "AZUL", "previsao_entrega": "2026-01-26", "ocorrencia": "Recusada", "valor_mercadoria": 0 },
@@ -136,6 +136,7 @@
     { "nota_fiscal": "198911", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "cidade_destino": "NATAL - RN", "data_entrega": "", "valor_mercadoria": 0 }
   ]
 }
+
 
 
 
