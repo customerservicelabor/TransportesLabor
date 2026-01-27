@@ -1,12 +1,12 @@
 {
-  "updated_at": "27/01/2026 08:50",
+  "updated_at": "27/01/2026 09:10",
   "kpis": {
-    "total_notas": 1162,
-    "entregas_realizadas": 698,
+    "total_notas": 1119,
+    "entregas_realizadas": 638,
     "notas_em_atraso": 23,
     "previstas_para_hoje": 91,
     "entregues_hoje": 61,
-    "performance_percent": 96.14,
+    "performance_percent": 94.88,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 129924.53,
     "valor_total_previsto_hoje": 472287.96
@@ -25,29 +25,190 @@
     { "transportador": "Fedex", "chegada": "", "saida": "", "agendado": "13:00" }
   ],
   "notas_em_atraso": [
-    { "nota_fiscal": "674932", "destinatario": "MONTES CLAROS - MG", "transportador": "AZUL", "previsao_entrega": "2026-01-26", "ocorrencia": "Recusada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "673646", "destinatario": "MANAUS - AM", "transportador": "LATAM", "previsao_entrega": "2026-01-21", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
-    { "nota_fiscal": "670808", "destinatario": "MANAUS - AM", "transportador": "LATAM", "previsao_entrega": "2025-12-19", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674031", "destinatario": "RECIFE - PE", "transportador": "LOGDI", "previsao_entrega": "2026-01-22", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674972", "destinatario": "DUQUE DE CAXIAS - RJ", "transportador": "PATRUS", "previsao_entrega": "2026-01-23", "ocorrencia": "Aguard. Agendamento", "valor_mercadoria": 0 },
-    { "nota_fiscal": "675284", "destinatario": "CACHOEIRINHA - RS", "transportador": "TGL", "previsao_entrega": "2026-01-26", "ocorrencia": "Aguard. Baixa", "valor_mercadoria": 0 },
-    { "nota_fiscal": "675124", "destinatario": "PORTO ALEGRE - RS", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Cliente Fechado", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674577", "destinatario": "LONDRINA - PR", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674563", "destinatario": "FRANCISCO BELTRAO - PR", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674705", "destinatario": "LONDRINA - PR", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674611", "destinatario": "URUGUAIANA - RS", "transportador": "FEDEX", "previsao_entrega": "2026-01-23", "ocorrencia": "Atrasada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674720", "destinatario": "CIANORTE - PR", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674665", "destinatario": "PORTO UNIAO - SC", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
-    { "nota_fiscal": "673660", "destinatario": "NOSSA SENHORA DO SOCORRO - SE", "transportador": "FEDEX", "previsao_entrega": "2026-01-23", "ocorrencia": "Atrasada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "673878", "destinatario": "BARBALHA - CE", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Posto Fiscal", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674013", "destinatario": "TERESINA - PI", "transportador": "FEDEX", "previsao_entrega": "2026-01-23", "ocorrencia": "Atrasada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674025", "destinatario": "FORTALEZA - CE", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "673886", "destinatario": "SAO LUIS - MA", "transportador": "FEDEX", "previsao_entrega": "2026-01-22", "ocorrencia": "Atrasada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "672424", "destinatario": "CANOAS - RS", "transportador": "FEDEX", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "675495", "destinatario": "PONTA GROSSA - PR", "transportador": "TRANSLOVATO", "previsao_entrega": "2026-01-26", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
-    { "nota_fiscal": "675391", "destinatario": "CASCAVEL - PR", "transportador": "TRANSLOVATO", "previsao_entrega": "2026-01-23", "ocorrencia": "Extravio", "valor_mercadoria": 0 },
-    { "nota_fiscal": "675248", "destinatario": "FOZ DO IGUACU - PR", "transportador": "TRANSLOVATO", "previsao_entrega": "2026-01-23", "ocorrencia": "Atrasada", "valor_mercadoria": 0 },
-    { "nota_fiscal": "674476", "destinatario": "SANTANA DO PARAISO - MG", "transportador": "TRANSLOVATO", "previsao_entrega": "2026-01-21", "ocorrencia": "Atrasada", "valor_mercadoria": 0 }
+    {
+      "nota_fiscal": "199512",
+      "destinatario": "DISFARMOC DIST DE PROD FARMACEUTICOS LTD",
+      "transportador": "AZUL",
+      "previsao_entrega": "2026-01-26",
+      "ocorrencia": "Recusada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "198944",
+      "destinatario": "GLOBALMOR COMERCIO DE ARTIGOS HOSPITALARES LTDA",
+      "transportador": "LATAM",
+      "previsao_entrega": "2026-01-21",
+      "ocorrencia": "Extravio",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "197610",
+      "destinatario": "MANAUARA COM PROD SERV HOSPITALARES LTDA",
+      "transportador": "LATAM",
+      "previsao_entrega": "2025-12-19",
+      "ocorrencia": "Extravio",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199109",
+      "destinatario": "DIAGNOSTICOS DA AMERICA S.A .",
+      "transportador": "LOGDI",
+      "previsao_entrega": "2026-01-22",
+      "ocorrencia": "Aguard. Agendamento",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199525",
+      "destinatario": "DIAGNOSTICOS DA AMERICA S.A",
+      "transportador": "PATRUS",
+      "previsao_entrega": "2026-01-23",
+      "ocorrencia": "Aguard. Agendamento",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199678",
+      "destinatario": "SIDD COMERCIAL DISTRIBUIDORA MEDICAMENTO",
+      "transportador": "TGL",
+      "previsao_entrega": "2026-01-26",
+      "ocorrencia": "Aguard. Baixa",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199597",
+      "destinatario": "PORTO VITAL COMERCIO DE PRODUTOS PARA A",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-22",
+      "ocorrencia": "Cliente Fechado",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199518",
+      "destinatario": "INOVA MED PRODUTOS HOSP E LABORAT LTDA",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-22",
+      "ocorrencia": "Extravio",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199477",
+      "destinatario": "ANDRETTA MEDICAMENTOS LTDA",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-21",
+      "ocorrencia": "Extravio",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199417",
+      "destinatario": "CASA MEDICA COM. PROD. HOSPITALARES LTDA",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-21",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199415",
+      "destinatario": "MARJOELE BRAGA",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-23",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199414",
+      "destinatario": "LABNORTE MATERIAIS PARA LABORATORIO",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-21",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199396",
+      "destinatario": "LABORATORIO DE ANALISES CLINICAS DR. WILLY CARLOS JUNG LTDA",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-21",
+      "ocorrencia": "Extravio",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199191",
+      "destinatario": "RF PROD HOSPITALARES ODONTOLOGICOS LTDA",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-23",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199116",
+      "destinatario": "ANGELINA ROSA GIOANNETTI CALLOU",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-21",
+      "ocorrencia": "Posto Fiscal",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199115",
+      "destinatario": "DICOREL DISTRIB MEDICAMENTOS EIRELI",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-23",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199098",
+      "destinatario": "LABORATORIO CLEMENTINO FRAGA LTDA",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-21",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199077",
+      "destinatario": "RIBEIRO ERRE COMERCIO E REPRESENTACOES L",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-22",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "198954",
+      "destinatario": "LUNAV ANALISES CLINICAS LTDA",
+      "transportador": "FEDEX",
+      "previsao_entrega": "2026-01-21",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199780",
+      "destinatario": "UNIMED PONTA GROSSA COOPERATIVA DE TRABA",
+      "transportador": "TRANSLOVATO",
+      "previsao_entrega": "2026-01-26",
+      "ocorrencia": "Extravio",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199724",
+      "destinatario": "UNILABOR LABORATORIO DE ANALISES CLINICAS S/C LTDA",
+      "transportador": "TRANSLOVATO",
+      "previsao_entrega": "2026-01-23",
+      "ocorrencia": "Extravio",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199657",
+      "destinatario": "SAUDMED DISTRIBUIDORA PRODUTOS HOSPITALA",
+      "transportador": "TRANSLOVATO",
+      "previsao_entrega": "2026-01-23",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    },
+    {
+      "nota_fiscal": "199301",
+      "destinatario": "JS DIAGNOSTICOS LTDA",
+      "transportador": "TRANSLOVATO",
+      "previsao_entrega": "2026-01-21",
+      "ocorrencia": "Atrasada",
+      "valor_mercadoria": 0
+    }
   ],
   "notas_previstas_hoje": [
     { "nota_fiscal": "199938", "destinatario": "DSS ATIVIDADES VETERINARIAS S S", "transportador": "SCHREIBER", "cidade_destino": "FLORIANOPOLIS - SC", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
@@ -143,6 +304,3 @@
     { "nota_fiscal": "198872", "destinatario": "M GOMES MONTEL LUNARDI LTDA", "transportador": "GRAN CARGO", "cidade_destino": "SAO GERALDO DO ARAGUAIA - PA", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
-
-
-
