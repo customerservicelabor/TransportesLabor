@@ -1,12 +1,12 @@
 {
-  "updated_at": "27/01/2026 08:30",
+  "updated_at": "27/01/2026 08:50",
   "kpis": {
     "total_notas": 1162,
     "entregas_realizadas": 698,
     "notas_em_atraso": 24,
     "previstas_para_hoje": 91,
     "entregues_hoje": 61,
-    "performance_percent": 94.88,
+    "performance_percent": 96.14,
     "meta_performance_percent": 95.0,
     "valor_total_em_atraso": 131730.18,
     "valor_total_previsto_hoje": 472287.96
@@ -144,4 +144,5 @@
     { "nota_fiscal": "198872", "destinatario": "M GOMES MONTEL LUNARDI LTDA", "transportador": "GRAN CARGO", "cidade_destino": "SAO GERALDO DO ARAGUAIA - PA", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
