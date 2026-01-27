@@ -417,9 +417,11 @@
             <div class="t">Notas em Atraso</div>
             <div class="v" id="kpiAtraso">—</div>
           </div>
+
+          <!-- ✅ ALTERADO: título e valor "Previsto hoje / Entregue" -->
           <div class="miniKpi">
-            <div class="t">Previstas para Hoje</div>
-            <div class="v" id="kpiHoje">—</div>
+            <div class="t">Previsto hoje / Entregue</div>
+            <div class="v" id="kpiHojeEntregue">—</div>
           </div>
         </div>
 
@@ -475,7 +477,8 @@
                 <th>Transportador</th>
                 <th>Chegada</th>
                 <th>Saída</th>
-                <th>Próxima coleta</th>
+                <!-- ✅ ALTERADO: header -->
+                <th>Horário da coleta</th>
               </tr>
             </thead>
             <tbody id="tbodyTransp"></tbody>
@@ -675,6 +678,8 @@
         const nome = (it.transportador ?? it.nome ?? '').toString().trim();
         const chegada = (it.chegada ?? '').toString().trim();
         const saida = (it.saida ?? '').toString().trim();
+
+        // Mantém o mesmo campo do JSON, só mudou o nome no header
         const prox = (it.proxima_coleta ?? it.proximaColeta ?? it.proxima_coleta_data ?? '').toString().trim();
 
         let cls = '';
@@ -874,7 +879,12 @@
       document.getElementById('kpiTotalNotas').textContent = Number(data.kpis.total_notas || 0).toLocaleString('pt-BR');
       document.getElementById('kpiEntregas').textContent   = Number(data.kpis.entregas_realizadas || 0).toLocaleString('pt-BR');
       document.getElementById('kpiAtraso').textContent     = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
-      document.getElementById('kpiHoje').textContent       = Number(data.kpis.previstas_para_hoje || 0).toLocaleString('pt-BR');
+
+      // ✅ ALTERADO: "Previsto hoje / Entregue"
+      const previstasHoje = Number(data.kpis.previstas_para_hoje || 0);
+      const entreguesHoje = Number(data.kpis.entregues_hoje || 0); // <<< você vai incluir no JSON
+      document.getElementById('kpiHojeEntregue').textContent =
+        `${previstasHoje.toLocaleString('pt-BR')} / ${entreguesHoje.toLocaleString('pt-BR')}`;
 
       // Valores vêm do JSON (manual) — sem somar tabela
       document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(data.kpis.valor_total_em_atraso);
@@ -910,5 +920,3 @@
   </script>
 </body>
 </html>
-
-
