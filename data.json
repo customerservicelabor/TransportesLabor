@@ -1,14 +1,14 @@
 {
-  "updated_at": "27/01/2026 09:10",
+  "updated_at": "27/01/2026 10:15",
   "kpis": {
     "total_notas": 1119,
     "entregas_realizadas": 638,
-    "notas_em_atraso": 23,
+    "notas_em_atraso": 21,
     "previstas_para_hoje": 91,
     "entregues_hoje": 61,
     "performance_percent": 96.14,
     "meta_performance_percent": 95.0,
-    "valor_total_em_atraso": 129924.53,
+    "valor_total_em_atraso": 100276.44,
     "valor_total_previsto_hoje": 472287.96
   },
   "transportadores": [
@@ -90,14 +90,6 @@
       "valor_mercadoria": 0
     },
     {
-      "nota_fiscal": "199477",
-      "destinatario": "ANDRETTA MEDICAMENTOS LTDA",
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-21",
-      "ocorrencia": "Extravio",
-      "valor_mercadoria": 0
-    },
-    {
       "nota_fiscal": "199417",
       "destinatario": "CASA MEDICA COM. PROD. HOSPITALARES LTDA",
       "transportador": "FEDEX",
@@ -135,14 +127,6 @@
       "transportador": "FEDEX",
       "previsao_entrega": "2026-01-23",
       "ocorrencia": "Atrasada",
-      "valor_mercadoria": 0
-    },
-    {
-      "nota_fiscal": "199116",
-      "destinatario": "ANGELINA ROSA GIOANNETTI CALLOU",
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-21",
-      "ocorrencia": "Posto Fiscal",
       "valor_mercadoria": 0
     },
     {
@@ -304,4 +288,5 @@
     { "nota_fiscal": "198872", "destinatario": "M GOMES MONTEL LUNARDI LTDA", "transportador": "GRAN CARGO", "cidade_destino": "SAO GERALDO DO ARAGUAIA - PA", "data_entrega": "22/01/2026", "valor_mercadoria": 0 }
   ]
 }
+
 
