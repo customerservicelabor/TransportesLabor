@@ -69,7 +69,7 @@
     { "nota_fiscal": "199752", "destinatario": "CASA DO MEDICO PRODUTOS HOSPITALARES LTD", "transportador": "TRANSLOVATO", "cidade_destino": "RIBEIRAO PRETO - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199731", "destinatario": "FRANCISCO ALINGERI JUNIOR PROD HOSP ME", "transportador": "TRANSLOVATO", "cidade_destino": "JACAREZINHO - PR", "data_entrega": "", "valor_mercadoria": 0 },
     { "nota_fiscal": "199729", "destinatario": "CLINICA VITALCARDIO LTDA", "transportador": "AZUL", "cidade_destino": "BRASILIA - DF", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199727", "destinatario": "COML CAV COM PROD HOSPITALARES EIRELI", "transportador": "TRANSLOVATO", "cidade_destino": "ARAPONGAS - PR", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199727", "destinatario": "COML CAV COM PROD HOSPITALARES EIRELI", "transportador": "TRANSLOVATO", "cidade_destino": "ARAPONGAS - PR", "data_entrega": "27/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199720", "destinatario": "DENTAL VELOX LTDA", "transportador": "AZUL", "cidade_destino": "BELO HORIZONTE - MG", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199719", "destinatario": "DRESCH E RODRIGUES DISTRIB VETERIN LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "PATO BRANCO - PR", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199718", "destinatario": "E B COMERCIO DE MATERIAIS HOSPITALARES L", "transportador": "AZUL", "cidade_destino": "PALMAS - TO", "data_entrega": "26/01/2026", "valor_mercadoria": 0 },
@@ -104,12 +104,12 @@
     { "nota_fiscal": "199544", "destinatario": "DISAMED SUPRIMENTOS MEDICOS LTDA", "transportador": "PATRUS", "cidade_destino": "RIO DE JANEIRO - RJ", "data_entrega": "22/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199540", "destinatario": "TECFARM DIST E COM LTDA", "transportador": "PATRUS", "cidade_destino": "SANTOS - SP", "data_entrega": "23/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199539", "destinatario": "CIRURGICA PORTO LTDA.", "transportador": "LATAM", "cidade_destino": "BELO HORIZONTE - MG", "data_entrega": "", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199537", "destinatario": "DASA", "transportador": "TGL", "cidade_destino": "BARUERI - SP", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199537", "destinatario": "DASA", "transportador": "TGL", "cidade_destino": "BARUERI - SP", "data_entrega": "27/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199536", "destinatario": "LAB BITTAR LTDA", "transportador": "LATAM", "cidade_destino": "NITEROI - RJ", "data_entrega": "19/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199528", "destinatario": "IMPACTA SERVICOS COMERCIO E LOCACAO EQUI", "transportador": "PATRUS", "cidade_destino": "TUPA - SP", "data_entrega": "", "valor_mercadoria": 0 },
     { "nota_fiscal": "199527", "destinatario": "C.A DISTRIBUIDORA DE PRODUTOS HOSPITALAR", "transportador": "AZURELOG", "cidade_destino": "APARECIDA DE GOIANIA - GO", "data_entrega": "20/01/2026", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199523", "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S", "transportador": "TGL", "cidade_destino": "BARUERI - SP", "data_entrega": "", "valor_mercadoria": 0 },
-    { "nota_fiscal": "199519", "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S", "transportador": "TGL", "cidade_destino": "BARUERI - SP", "data_entrega": "", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199523", "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S", "transportador": "TGL", "cidade_destino": "BARUERI - SP", "data_entrega": "27/01/2026", "valor_mercadoria": 0 },
+    { "nota_fiscal": "199519", "destinatario": "CIENTIFICALAB PRODUTOS LABORATORIAIS E S", "transportador": "TGL", "cidade_destino": "BARUERI - SP", "data_entrega": "27/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199514", "destinatario": "NEWCARE COME", "transportador": "TRANSLOVATO", "cidade_destino": "PATOS DE MINAS - MG", "data_entrega": "21/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199510", "destinatario": "UNIMED OESTE DO PARA COOPERATIVA DE TRABALHO MEDICO (62496)", "transportador": "LATAM", "cidade_destino": "SANTAREM - PA", "data_entrega": "19/01/2026", "valor_mercadoria": 0 },
     { "nota_fiscal": "199508", "destinatario": "LABORATORIO SAO PAULO ANALISES CLINICAS", "transportador": "PATRUS", "cidade_destino": "ARACATUBA - SP", "data_entrega": "22/01/2026", "valor_mercadoria": 0 },
@@ -136,3 +136,4 @@
     { "nota_fiscal": "198911", "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI", "transportador": "TECMAR", "cidade_destino": "NATAL - RN", "data_entrega": "", "valor_mercadoria": 0 }
   ]
 }
+
