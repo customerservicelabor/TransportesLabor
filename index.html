@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="refresh" content="600">
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Painel de Fluxo Operacional – Indicador</title>
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --muted:#9aa4c0;
+      --text:#e9ecf5;
+
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+
+      --shadow: 0 14px 30px rgba(0,0,0,.25);
+      --radius:18px;
+
+      --ink:#0b1b3a;
+
+      --topRowH: 400px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 30% 0%, rgba(11,134,255,.22), transparent 55%),
+                  radial-gradient(900px 700px at 80% 20%, rgba(34,197,94,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+
+    .wrap{ max-width: min(1800px, 96vw); margin: 28px auto 60px; padding: 0 18px; }
+
+    header{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:16px; margin-bottom:18px; flex-wrap:wrap;
+    }
+    h1{ margin:0; font-size:38px; letter-spacing:.2px; }
+
+    .rightHead{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .updated{
+      color:var(--muted);
+      font-size:13px;
+      padding:10px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+      white-space:nowrap;
+    }
+    .filter{
+      display:flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+    }
+    .filter label{ font-size:12px; color: rgba(233,236,245,.80); }
+    select{
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .topRow{
+      margin:16px 0 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .hero{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(255,255,255,.35);
+      box-shadow: var(--shadow);
+      padding: 16px 16px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      overflow:hidden;
+      position:relative;
+      color: var(--ink);
+      height: auto; /* ✅ agora a hero ajusta pela altura do conteúdo */
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-80px -120px auto auto;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle at 30% 30%, rgba(11,27,58,.10), transparent 60%);
+      transform: rotate(10deg);
+      opacity:.70;
+      pointer-events:none;
+    }
+
+    .miniKpis{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr)); /* ✅ agora são 3 cards */
+      gap: 10px;
+      width: 100%;
+      flex: 0 0 auto;
+    }
+    .miniKpi{
+      border-radius: 14px;
+      border: 1px solid rgba(11,27,58,.10);
+      background: rgba(255,255,255,.85);
+      padding: 10px 10px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.10);
+      min-height: 70px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .miniKpi .t{
+      font-size: 12px;
+      color: rgba(11,27,58,.72);
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .miniKpi .v{
+      margin-top: 6px;
+      font-weight: 900;
+      font-size: clamp(22px, 2.2vw, 34px);
+      line-height: 1.05;
+      color: var(--ink);
+      white-space:nowrap;
+    }
+
+    .panel{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      height: var(--topRowH);
+    }
+    .panel .ph{
+      padding: 14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+      flex: 0 0 auto;
+    }
+    .ph .ttl{ font-weight:800; display:flex; align-items:center; gap:10px; }
+
+    table{ width:100%; border-collapse:collapse; }
+    th, td{
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      vertical-align:middle;
+      font-size:13px;
+    }
+
+    .scroll{
+      max-height: 420px;
+      overflow:auto;
+      position: relative;
+      background: rgba(0,0,0,.04);
+      flex: 1 1 auto;
+    }
+    thead th{
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(12,18,38,.96);
+      color: rgba(233,236,245,.85);
+      text-transform:uppercase;
+      letter-spacing:.35px;
+      font-size:11px;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    td .muted{ color: var(--muted); font-size:12px; }
+
+    .rowArrived{ background: rgba(245,158,11,.16); }
+    .rowLeft{ background: rgba(34,197,94,.18); }
+    .rowDelivered{ background: rgba(34,197,94,.18); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .foot{
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 1200px){
+      .topRow{ grid-template-columns: 1fr; }
+      .miniKpis{ grid-template-columns: 1fr; }
+      .hero, .panel{ height: auto; }
+    }
+    @media (max-width: 980px){
+      .grid2{ grid-template-columns: 1fr; }
+      h1{ font-size:30px; }
+      .hero, .panel{ height: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Painel de Fluxo Operacional</h1>
+      </div>
+
+      <div class="rightHead">
+        <div class="filter">
+          <label for="carrierFilter">Transportador</label>
+          <select id="carrierFilter">
+            <option value="__ALL__">Todos</option>
+          </select>
+        </div>
+        <div class="updated" id="updatedAt">Atualizado em: --/--/----</div>
+      </div>
+    </header>
+
+    <!-- ✅ Topo: Esquerda (3 cards + transportadores embaixo) | Direita (Gestão de Pedidos) -->
+    <section class="topRow">
+      <section class="hero">
+        <div class="miniKpis" aria-label="KPIs do dia">
+          <div class="miniKpi">
+            <div class="t">Notas em Atraso</div>
+            <div class="v" id="kpiAtraso">—</div>
+          </div>
+          <div class="miniKpi">
+            <div class="t">Previstas para Hoje</div>
+            <div class="v" id="kpiPrevistasHoje">—</div>
+          </div>
+          <div class="miniKpi">
+            <div class="t">Entregas Realizadas Hoje</div>
+            <div class="v" id="kpiEntreguesHoje">—</div>
+          </div>
+        </div>
+
+        <!-- ✅ Transportadores agora ficam abaixo dos 3 cards -->
+        <div class="panel" style="height:auto; margin-top:12px;">
+          <div class="ph">
+            <div class="ttl">Status de Coleta Transportadores</div>
+            <div class="badge" id="transpCount">— itens</div>
+          </div>
+
+          <div class="scroll" id="scrollTransp">
+            <table>
+              <thead>
+                <tr>
+                  <th>Transportador</th>
+                  <th>Chegada</th>
+                  <th>Saída</th>
+                  <th>Horário da coleta</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyTransp"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ✅ Lugar antigo do painel de transportadores: vira Gestão de Pedidos -->
+      <div class="panel">
+        <div class="ph">
+          <div class="ttl">Gestão de Pedidos</div>
+          <div class="badge" id="pedidosCount">— itens</div>
+        </div>
+
+        <div class="scroll" id="scrollPedidos">
+          <table>
+            <thead>
+              <tr>
+                <th>Pedidos</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyPedidos"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid2">
+      <div class="panel" style="height:auto;">
+        <div class="ph">
+          <div class="ttl">Notas em Atraso</div>
+          <div class="badge" id="atrasoCount">— itens</div>
+        </div>
+        <div class="scroll" id="scrollAtraso">
+          <table>
+            <thead>
+              <tr>
+                <th>NF</th>
+                <th>Destinatário</th>
+                <th>Transportador</th>
+                <th>Prev. Entrega</th>
+                <th>Ocorrência</th>
+                <th>Atraso</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyAtraso"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel" style="height:auto;">
+        <div class="ph">
+          <div class="ttl">Notas Previstas para Hoje</div>
+          <div class="badge" id="hojeCount">— itens</div>
+        </div>
+        <div class="scroll" id="scrollHoje">
+          <table>
+            <thead>
+              <tr>
+                <th>NF</th>
+                <th>Destinatário</th>
+                <th>Transportador</th>
+                <th>Cidade destino</th>
+                <th>Data de entrega</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyHoje"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot">
+      <div>Observação: painel alimentado via <strong>data.json</strong>.</div>
+      <div>Labor • Fluxo Operacional • Indicadores</div>
+    </div>
+  </div>
+
+  <script>
+    const fmtBRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
+
+    function parseUpdatedDate(updatedAtStr){
+      const parts = String(updatedAtStr || '').split(" ");
+      const datePart = parts[0] || "01/01/1970";
+      const timePart = parts[1] || "00:00";
+      const [dd, mm, yyyy] = datePart.split("/").map(Number);
+      const [HH, MM] = timePart.split(":").map(Number);
+      return new Date(yyyy, (mm || 1)-1, dd || 1, HH || 0, MM || 0, 0, 0);
+    }
+
+    function isoToBR(iso){
+      const [y,m,d] = String(iso || '').split("-").map(Number);
+      const dt = new Date(y, (m||1)-1, d||1);
+      return dt.toLocaleDateString('pt-BR');
+    }
+
+    function daysDiff(later, earlier){
+      const ms = later.getTime() - earlier.getTime();
+      return Math.floor(ms / (1000*60*60*24));
+    }
+
+    function normalizeCarrier(s){
+      return String(s || '').trim();
+    }
+
+    function applyCarrierFilter(list, carrier){
+      if (!carrier || carrier === '__ALL__') return list;
+      return list.filter(it => normalizeCarrier(it.transportador) === carrier);
+    }
+
+    function buildCarrierOptions(data){
+      const carriers = new Set();
+      for (const it of (data.notas_em_atraso || [])) carriers.add(normalizeCarrier(it.transportador));
+      for (const it of (data.notas_previstas_hoje || [])) carriers.add(normalizeCarrier(it.transportador));
+      for (const it of (data.transportadores || [])) carriers.add(normalizeCarrier(it.transportador || it.nome));
+
+      const sorted = Array.from(carriers).filter(Boolean).sort((a,b) => a.localeCompare(b, 'pt-BR'));
+      const sel = document.getElementById('carrierFilter');
+
+      sel.querySelectorAll('option:not([value="__ALL__"])').forEach(o => o.remove());
+
+      for (const c of sorted){
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c;
+        sel.appendChild(opt);
+      }
+    }
+
+    function renderTransportadores(data){
+      const list = Array.isArray(data.transportadores) ? data.transportadores : [];
+      const body = document.getElementById('tbodyTransp');
+      body.innerHTML = '';
+
+      document.getElementById('transpCount').textContent = `${list.length} itens`;
+
+      for (const it of list){
+        const nome = (it.transportador ?? it.nome ?? '').toString().trim();
+        const chegada = (it.chegada ?? '').toString().trim();
+        const saida = (it.saida ?? '').toString().trim();
+
+        // ✅ somente "agendado" (como já estava)
+        const agendado = (it.agendado ?? '').toString().trim();
+
+        let cls = '';
+        if (saida) cls = 'rowLeft';
+        else if (chegada) cls = 'rowArrived';
+
+        const tr = document.createElement('tr');
+        tr.className = cls;
+        tr.innerHTML = `
+          <td><strong>${nome || '—'}</strong></td>
+          <td>${chegada || '—'}</td>
+          <td>${saida || '—'}</td>
+          <td>${agendado || '—'}</td>
+        `;
+        body.appendChild(tr);
+      }
+    }
+
+    function renderPedidos(data){
+      const list = Array.isArray(data.pedidos_status) ? data.pedidos_status : [];
+      const body = document.getElementById('tbodyPedidos');
+      body.innerHTML = '';
+
+      document.getElementById('pedidosCount').textContent = `${list.length} itens`;
+
+      if (!list.length){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="3">—</td>`;
+        body.appendChild(tr);
+        return;
+      }
+
+      for (const it of list){
+        const status = (it.status ?? it.pedidos ?? '').toString().trim() || '—';
+        const qtd = Number(it.quantidade ?? it.qtd ?? 0) || 0;
+
+        const vRaw = it.valor;
+        const valorNum = Number(String(vRaw ?? 0).replace(/\./g,'').replace(',','.')) || Number(vRaw) || 0;
+        const valorFmt = status.toLowerCase() === 'total'
+          ? `<strong>${fmtBRL.format(valorNum)}</strong>`
+          : fmtBRL.format(valorNum);
+
+        const tr = document.createElement('tr');
+        if (status.toLowerCase() === 'total') tr.className = 'rowLeft';
+
+        tr.innerHTML = `
+          <td><strong>${status}</strong></td>
+          <td>${qtd.toLocaleString('pt-BR')}</td>
+          <td>${valorFmt}</td>
+        `;
+        body.appendChild(tr);
+      }
+    }
+
+    function renderTables(data, carrier){
+      const now = parseUpdatedDate(data.updated_at);
+
+      const atrasoAll = (data.notas_em_atraso || []).slice()
+        .sort((a,b) => (a.previsao_entrega > b.previsao_entrega ? 1 : -1));
+      const hojeAll = (data.notas_previstas_hoje || []).slice();
+
+      const atrasoList = applyCarrierFilter(atrasoAll, carrier);
+      const hojeList   = applyCarrierFilter(hojeAll, carrier);
+
+      document.getElementById('atrasoCount').textContent = `${atrasoList.length} itens`;
+      document.getElementById('hojeCount').textContent   = `${hojeList.length} itens`;
+
+      const atrasoBody = document.getElementById('tbodyAtraso');
+      atrasoBody.innerHTML = '';
+
+      for (const it of atrasoList){
+        const prev = new Date(String(it.previsao_entrega) + "T00:00:00");
+        const lateDays = Math.max(0, daysDiff(now, prev));
+        const pillClass = lateDays >= 10 ? 'pill bad' : (lateDays >= 5 ? 'pill' : 'pill good');
+
+        const ocorr = (it.ocorrencia && String(it.ocorrencia).trim()) ? String(it.ocorrencia).trim() : '—';
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${it.nota_fiscal}</strong></td>
+          <td>${it.destinatario}</td>
+          <td><span class="muted">${it.transportador}</span></td>
+          <td>${isoToBR(it.previsao_entrega)}</td>
+          <td>${ocorr}</td>
+          <td><span class="${pillClass}">${lateDays}d</span></td>
+        `;
+        atrasoBody.appendChild(tr);
+      }
+
+      const hojeBody = document.getElementById('tbodyHoje');
+      hojeBody.innerHTML = '';
+
+      for (const it of hojeList){
+        const dataEntrega = (it.data_entrega ?? '').toString().trim();
+        const tr = document.createElement('tr');
+        if (dataEntrega) tr.className = 'rowDelivered';
+
+        tr.innerHTML = `
+          <td><strong>${it.nota_fiscal}</strong></td>
+          <td>${it.destinatario}</td>
+          <td><span class="muted">${it.transportador}</span></td>
+          <td>${it.cidade_destino || '—'}</td>
+          <td>${dataEntrega || '—'}</td>
+        `;
+        hojeBody.appendChild(tr);
+      }
+    }
+
+    function startAutoScroll(el, opts = {}) {
+      if (!el) return;
+
+      const speedPxPerTick = opts.speedPxPerTick ?? 1;
+      const tickMs = opts.tickMs ?? 40;
+      const pauseAtEndMs = opts.pauseAtEndMs ?? 1400;
+      const pauseAtTopMs = opts.pauseAtTopMs ?? 700;
+      const resetThresholdPx = opts.resetThresholdPx ?? 2;
+
+      let timer = null;
+      let paused = false;
+
+      const canScroll = () => el.scrollHeight > el.clientHeight + 5;
+
+      const step = () => {
+        if (paused) return;
+        if (!canScroll()) return;
+
+        const maxScrollTop = el.scrollHeight - el.clientHeight;
+        const next = el.scrollTop + speedPxPerTick;
+
+        if (next >= maxScrollTop - resetThresholdPx) {
+          el.scrollTop = maxScrollTop;
+
+          paused = true;
+          setTimeout(() => {
+            el.scrollTop = 0;
+            setTimeout(() => { paused = false; }, pauseAtTopMs);
+          }, pauseAtEndMs);
+
+          return;
+        }
+
+        el.scrollTop = next;
+      };
+
+      const start = () => {
+        stop();
+        timer = setInterval(step, tickMs);
+      };
+
+      const stop = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+      };
+
+      el.addEventListener('mouseenter', () => { paused = true; });
+      el.addEventListener('mouseleave', () => { paused = false; });
+      el.addEventListener('touchstart', () => { paused = !paused; }, { passive:true });
+
+      start();
+      return { start, stop };
+    }
+
+    function initAutoScroll() {
+      startAutoScroll(document.getElementById('scrollAtraso'), { speedPxPerTick: 1, tickMs: 45, pauseAtEndMs: 1500 });
+      startAutoScroll(document.getElementById('scrollHoje'),   { speedPxPerTick: 1, tickMs: 50, pauseAtEndMs: 1400 });
+      startAutoScroll(document.getElementById('scrollTransp'), { speedPxPerTick: 1, tickMs: 55, pauseAtEndMs: 1200 });
+      startAutoScroll(document.getElementById('scrollPedidos'), { speedPxPerTick: 1, tickMs: 55, pauseAtEndMs: 1200 });
+    }
+
+    const AUDIO_STORAGE_KEY = "last_audio_announcement_id_v1";
+
+    function parseISODateSafe(iso){
+      const t = Date.parse(String(iso || ''));
+      return Number.isFinite(t) ? t : NaN;
+    }
+
+    function isAnnouncementExpired(createdAtISO, ttlMinutes){
+      const createdMs = parseISODateSafe(createdAtISO);
+      if (!Number.isFinite(createdMs)) return false;
+      const ttl = Number(ttlMinutes) || 0;
+      if (ttl <= 0) return false;
+      return (Date.now() - createdMs) > (ttl * 60 * 1000);
+    }
+
+    function speakPTBR(text){
+      if (!text) return;
+      if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) return;
+
+      window.speechSynthesis.cancel();
+
+      const u = new SpeechSynthesisUtterance(String(text));
+      u.lang = "pt-BR";
+      u.rate = 1.0;
+      u.pitch = 1.0;
+
+      window.speechSynthesis.speak(u);
+    }
+
+    function tryPlayAnnouncement(data){
+      const ann = data?.audio_announcement;
+      if (!ann || ann.enabled !== true) return;
+
+      const id = String(ann.id || '').trim();
+      const msg = String(ann.message || '').trim();
+      if (!id || !msg) return;
+
+      if (isAnnouncementExpired(ann.created_at, ann.ttl_minutes)) return;
+
+      const lastId = localStorage.getItem(AUDIO_STORAGE_KEY);
+      if (lastId === id) return;
+
+      localStorage.setItem(AUDIO_STORAGE_KEY, id);
+      speakPTBR(msg);
+    }
+
+    async function load(){
+      const res = await fetch(`data.json?t=${Date.now()}`, { cache: 'no-store' });
+      const data = await res.json();
+
+      tryPlayAnnouncement(data);
+
+      document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
+
+      // ✅ KPIs (3 cards)
+      document.getElementById('kpiAtraso').textContent = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiPrevistasHoje').textContent = Number(data.kpis.previstas_para_hoje || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiEntreguesHoje').textContent = Number(data.kpis.entregues_hoje || 0).toLocaleString('pt-BR');
+
+      buildCarrierOptions(data);
+
+      renderTransportadores(data);
+      renderPedidos(data);
+
+      const sel = document.getElementById('carrierFilter');
+      const render = () => renderTables(data, sel.value);
+
+      sel.addEventListener('change', () => {
+        render();
+        document.getElementById('scrollAtraso').scrollTop = 0;
+        document.getElementById('scrollHoje').scrollTop = 0;
+      });
+
+      render();
+
+      setTimeout(initAutoScroll, 350);
+    }
+
+    load().catch(err => {
+      console.error(err);
+      alert('Erro ao carregar data.json. Verifique se index.html e data.json estão na mesma pasta.');
+    });
+  </script>
+</body>
+</html>
