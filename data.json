@@ -84,9 +84,9 @@
     },  
     { "nota_fiscal": "199539",
       "destinatario": "CIRURGICA PORTO LTDA.",
-      " transportador": "LATAM",
-      " previsao_entrega": "2026-01-27",
-      " ocorrencia": "Atrasado",
+      "transportador": "LATAM",
+      "previsao_entrega": "2026-01-27",
+      "ocorrencia": "Atrasado",
       "valor_mercadoria": 0
     },
     {
@@ -901,6 +901,7 @@
     }
   ]
 }
+
 
 
 
