@@ -1,14 +1,14 @@
 {
-  "updated_at": "28/01/2026 08:00",
+  "updated_at": "28/01/2026 09:20",
   "kpis": {
     "total_notas": 1275,
-    "entregas_realizadas": 773,
-    "notas_em_atraso": 24,
+    "entregas_realizadas": 775,
+    "notas_em_atraso": 22,
     "previstas_para_hoje": 80,
     "entregues_hoje": 55,
     "performance_percent": 96.51,
     "meta_performance_percent": 95.0,
-    "valor_total_em_atraso": 107572.8,
+    "valor_total_em_atraso": 94294.71,
     "valor_total_previsto_hoje": 576182.45
   },
   "transportadores": [
@@ -147,14 +147,6 @@
       "valor_mercadoria": 0
     },
     {
-      "nota_fiscal": "198911",
-      "destinatario": "NACIONAL COMERCIO E REPRESENTACAO EIRELLI",
-      "transportador": "TECMAR",
-      "previsao_entrega": "2026-01-27",
-      "ocorrencia": "Aguard. Baixa",
-      "valor_mercadoria": 0
-    },
-    {
       "nota_fiscal": "199854",
       "destinatario": "INSTITUTO PARANAENSE HEMOTERAPIA E HEMAT",
       "transportador": "TGL",
@@ -192,14 +184,6 @@
       "transportador": "FEDEX",
       "previsao_entrega": "2026-01-21",
       "ocorrencia": "Atrasado",
-      "valor_mercadoria": 0
-    },
-    {
-      "nota_fiscal": "199396",
-      "destinatario": "LABORATORIO DE ANALISES CLINICAS DR. WILLY CARLOS JUNG LTDA",
-      "transportador": "FEDEX",
-      "previsao_entrega": "2026-01-21",
-      "ocorrencia": "Extravio",
       "valor_mercadoria": 0
     },
     {
@@ -910,3 +894,4 @@
     }
   ]
 }
+
