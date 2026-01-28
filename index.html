@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8"/>
-  <meta http-equiv="refresh" content="600">
+  <meta http-equiv="refresh" content="1800">
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Painel de Fluxo Operacional – Indicador</title>
+  <title>Painel de Entregas – Indicador</title>
 
   <style>
     :root{
@@ -94,7 +94,7 @@
       overflow:hidden;
       position:relative;
       color: var(--ink);
-      height: auto; /* ✅ agora a hero ajusta pela altura do conteúdo */
+      height: var(--topRowH);
     }
     .hero::before{
       content:"";
@@ -110,7 +110,7 @@
       position:relative;
       z-index:1;
       display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr)); /* ✅ agora são 3 cards */
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px;
       width: 100%;
       flex: 0 0 auto;
@@ -143,6 +143,101 @@
       white-space:nowrap;
     }
 
+    .perfRow{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+      flex: 1 1 auto;
+    }
+    .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
+    .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; font-size: 13px; line-height: 1.35; }
+
+    .metaLine{ margin-top: 8px; font-size: 12px; color: rgba(11,27,58,.72); }
+
+    .badge{
+      font-size:12px;
+      padding: 6px 10px;
+      border-radius:999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(233,236,245,.92);
+      white-space:nowrap;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding: 6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      color:#0b1020;
+      background: var(--warn);
+      white-space:nowrap;
+    }
+    .pill.bad{ background: var(--bad); color:#fff; }
+    .pill.good{ background: var(--good); color:#0b1020; }
+
+    .gaugeWrap{ display:flex; justify-content:center; align-items:center; position:relative; z-index:1; }
+    .gauge{
+      width: 170px; height: 170px;
+      border-radius: 50%;
+      position:relative;
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
+      overflow:hidden;
+    }
+    .gauge::before{
+      content:"";
+      position:absolute;
+      left:-2px; right:-2px; bottom:-2px;
+      height: 54%;
+      background: rgba(255,255,255,.92);
+      border-top: 1px solid rgba(11,27,58,.10);
+      z-index:1;
+    }
+    .gauge::after{
+      content:"";
+      position:absolute; inset: 14px;
+      background: rgba(255,255,255,.96);
+      border-radius:50%;
+      border:1px solid rgba(11,27,58,.18);
+      z-index:2;
+    }
+
+    .gaugeCenter{
+      position:absolute;
+      top:50%; left:50%;
+      transform: translate(-50%, -54%);
+      text-align:center;
+      z-index:3;
+      width: 150px;
+    }
+    .gaugeCenter .pct{
+      font-size: 42px;
+      font-weight: 950;
+      line-height:1;
+      color:var(--ink);
+      letter-spacing: -0.5px;
+      white-space: nowrap;
+    }
+    .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
+
+    .targetDot{
+      position:absolute;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 6px 14px rgba(0,0,0,.25);
+      z-index:4;
+      transform: translate(-50%, -50%);
+    }
+
     .panel{
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.10);
@@ -164,6 +259,36 @@
       flex: 0 0 auto;
     }
     .ph .ttl{ font-weight:800; display:flex; align-items:center; gap:10px; }
+
+    .panelMetrics{
+      padding: 10px 12px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.08);
+      flex: 0 0 auto;
+    }
+    .metricCard{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: 14px;
+      padding: 10px 10px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.12);
+      min-height: 64px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .metricCard .mt{ font-size: 12px; color: rgba(233,236,245,.78); }
+    .metricCard .mv{
+      margin-top: 6px;
+      font-weight: 900;
+      font-size: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     table{ width:100%; border-collapse:collapse; }
     th, td{
@@ -218,8 +343,10 @@
 
     @media (max-width: 1200px){
       .topRow{ grid-template-columns: 1fr; }
-      .miniKpis{ grid-template-columns: 1fr; }
+      .miniKpis{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .perfRow{ grid-template-columns: 1fr; }
       .hero, .panel{ height: auto; }
+      .gauge{ margin: 4px 0 8px; }
     }
     @media (max-width: 980px){
       .grid2{ grid-template-columns: 1fr; }
@@ -233,7 +360,7 @@
   <div class="wrap">
     <header>
       <div>
-        <h1>Painel de Fluxo Operacional</h1>
+        <h1>Painel de Entregas</h1>
       </div>
 
       <div class="rightHead">
@@ -247,64 +374,83 @@
       </div>
     </header>
 
-    <!-- ✅ Topo: Esquerda (3 cards + transportadores embaixo) | Direita (Gestão de Pedidos) -->
     <section class="topRow">
       <section class="hero">
-        <div class="miniKpis" aria-label="KPIs do dia">
+        <div class="miniKpis" aria-label="KPIs de notas">
+          <div class="miniKpi">
+            <div class="t">Total de Notas</div>
+            <div class="v" id="kpiTotalNotas">—</div>
+          </div>
+          <div class="miniKpi">
+            <div class="t">Entregas Realizadas</div>
+            <div class="v" id="kpiEntregas">—</div>
+          </div>
           <div class="miniKpi">
             <div class="t">Notas em Atraso</div>
             <div class="v" id="kpiAtraso">—</div>
           </div>
           <div class="miniKpi">
-            <div class="t">Previstas para Hoje</div>
-            <div class="v" id="kpiPrevistasHoje">—</div>
-          </div>
-          <div class="miniKpi">
-            <div class="t">Entregas Realizadas Hoje</div>
-            <div class="v" id="kpiEntreguesHoje">—</div>
+            <div class="t">Previsto hoje / Entregue</div>
+            <div class="v" id="kpiHojeEntregue">—</div>
           </div>
         </div>
 
-        <!-- ✅ Transportadores agora ficam abaixo dos 3 cards -->
-        <div class="panel" style="height:auto; margin-top:12px;">
-          <div class="ph">
-            <div class="ttl">Status de Coleta Transportadores</div>
-            <div class="badge" id="transpCount">— itens</div>
+        <div class="perfRow">
+          <div style="position:relative; z-index:1;">
+            <h2>Performance de Entregas Atual</h2>
+            <p>
+              Indicador consolidado de entregas concluídas. A meta é manter a eficiência em 95,00% ou acima.
+              Abaixo da meta, o painel sinaliza atenção.
+            </p>
+
+            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <span class="pill" id="metaStatus">—</span>
+              <span class="badge" id="metaBadge">Meta: 95,00%</span>
+            </div>
+
+            <div class="metaLine" id="metaLegend">Meta no gauge: —</div>
           </div>
 
-          <div class="scroll" id="scrollTransp">
-            <table>
-              <thead>
-                <tr>
-                  <th>Transportador</th>
-                  <th>Chegada</th>
-                  <th>Saída</th>
-                  <th>Horário da coleta</th>
-                </tr>
-              </thead>
-              <tbody id="tbodyTransp"></tbody>
-            </table>
+          <div class="gaugeWrap">
+            <div class="gauge" id="gauge">
+              <div class="gaugeCenter">
+                <div class="pct" id="perfPct">—%</div>
+                <div class="lbl">Eficiência de Entrega</div>
+              </div>
+              <div class="targetDot" id="targetDot" style="left:-9999px; top:-9999px;"></div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ✅ Lugar antigo do painel de transportadores: vira Gestão de Pedidos -->
       <div class="panel">
         <div class="ph">
-          <div class="ttl">Gestão de Pedidos</div>
-          <div class="badge" id="pedidosCount">— itens</div>
+          <div class="ttl">Status de Coleta Transportadores</div>
+          <div class="badge" id="transpCount">— itens</div>
         </div>
 
-        <div class="scroll" id="scrollPedidos">
+        <div class="panelMetrics">
+          <div class="metricCard">
+            <div class="mt">Valor total em atraso</div>
+            <div class="mv" id="kpiValorAtraso">—</div>
+          </div>
+          <div class="metricCard">
+            <div class="mt">Valor total previsto hoje</div>
+            <div class="mv" id="kpiValorHoje">—</div>
+          </div>
+        </div>
+
+        <div class="scroll" id="scrollTransp">
           <table>
             <thead>
               <tr>
-                <th>Pedidos</th>
-                <th>Quantidade</th>
-                <th>Valor</th>
+                <th>Transportador</th>
+                <th>Chegada</th>
+                <th>Saída</th>
+                <th>Horário da coleta</th>
               </tr>
             </thead>
-            <tbody id="tbodyPedidos"></tbody>
+            <tbody id="tbodyTransp"></tbody>
           </table>
         </div>
       </div>
@@ -357,12 +503,29 @@
 
     <div class="foot">
       <div>Observação: painel alimentado via <strong>data.json</strong>.</div>
-      <div>Labor • Fluxo Operacional • Indicadores</div>
+      <div>Labor • Logística • Indicadores</div>
     </div>
   </div>
 
   <script>
     const fmtBRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
+
+    function fmtPctBR(v){
+      return (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
+    }
+
+    function fmtBRLCompactK(value){
+      const v = Number(value) || 0;
+      const abs = Math.abs(v);
+      const sign = v < 0 ? "-" : "";
+      const format1 = (n) => (Math.round(n * 10) / 10).toFixed(1);
+
+      if (abs >= 1e9)  return `R$ ${sign}${format1(abs/1e9)}B`;
+      if (abs >= 1e6)  return `R$ ${sign}${format1(abs/1e6)}M`;
+      if (abs >= 1e3)  return `R$ ${sign}${format1(abs/1e3)}K`;
+
+      return fmtBRL.format(v);
+    }
 
     function parseUpdatedDate(updatedAtStr){
       const parts = String(updatedAtStr || '').split(" ");
@@ -412,6 +575,67 @@
       }
     }
 
+    function placeTargetMarker(targetPct){
+      const gauge = document.getElementById('gauge');
+      const dot = document.getElementById('targetDot');
+      if (!gauge || !dot) return;
+
+      const size = gauge.clientWidth;
+      const cx = size / 2;
+      const cy = size / 2;
+      const r = (size / 2) - 7;
+
+      const t = Math.max(0, Math.min(100, Number(targetPct) || 0));
+      const angle = Math.PI * (1 - (t / 100));
+
+      const x = cx + r * Math.cos(angle);
+      const y = cy - r * Math.sin(angle);
+
+      dot.style.left = `${x}px`;
+      dot.style.top  = `${y}px`;
+    }
+
+    function setGauge(percent, target){
+      const p = Math.max(0, Math.min(100, Number(percent) || 0));
+      const t = Math.max(0, Math.min(100, Number(target) || 95));
+
+      const fillDeg = (p/100) * 180;
+
+      const root = getComputedStyle(document.documentElement);
+      const good = root.getPropertyValue('--good').trim();
+      const warn = root.getPropertyValue('--warn').trim();
+      const bad  = root.getPropertyValue('--bad').trim();
+
+      let color = good;
+      if (p < t) color = warn;
+      if (p < (t - 5)) color = bad;
+
+      const gauge = document.getElementById('gauge');
+      gauge.style.background =
+        `conic-gradient(from 180deg, ${color} 0deg, ${color} ${fillDeg}deg, rgba(11,27,58,.12) ${fillDeg}deg 360deg)`;
+
+      document.getElementById('perfPct').textContent = fmtPctBR(p);
+
+      const statusEl = document.getElementById('metaStatus');
+      const metaEl = document.getElementById('metaBadge');
+      if (metaEl) metaEl.textContent = `Meta: ${fmtPctBR(t)}`;
+
+      if (statusEl){
+        if (p >= t){
+          statusEl.className = 'pill good';
+          statusEl.textContent = 'OK — acima da meta';
+        } else {
+          statusEl.className = 'pill bad';
+          statusEl.textContent = 'Atenção — abaixo da meta';
+        }
+      }
+
+      const legend = document.getElementById('metaLegend');
+      if (legend) legend.textContent = `Meta no gauge: ${fmtPctBR(t)} (pino)`;
+
+      placeTargetMarker(t);
+    }
+
     function renderTransportadores(data){
       const list = Array.isArray(data.transportadores) ? data.transportadores : [];
       const body = document.getElementById('tbodyTransp');
@@ -424,7 +648,7 @@
         const chegada = (it.chegada ?? '').toString().trim();
         const saida = (it.saida ?? '').toString().trim();
 
-        // ✅ somente "agendado" (como já estava)
+        // ✅ NOVO: somente "agendado"
         const agendado = (it.agendado ?? '').toString().trim();
 
         let cls = '';
@@ -438,42 +662,6 @@
           <td>${chegada || '—'}</td>
           <td>${saida || '—'}</td>
           <td>${agendado || '—'}</td>
-        `;
-        body.appendChild(tr);
-      }
-    }
-
-    function renderPedidos(data){
-      const list = Array.isArray(data.pedidos_status) ? data.pedidos_status : [];
-      const body = document.getElementById('tbodyPedidos');
-      body.innerHTML = '';
-
-      document.getElementById('pedidosCount').textContent = `${list.length} itens`;
-
-      if (!list.length){
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td colspan="3">—</td>`;
-        body.appendChild(tr);
-        return;
-      }
-
-      for (const it of list){
-        const status = (it.status ?? it.pedidos ?? '').toString().trim() || '—';
-        const qtd = Number(it.quantidade ?? it.qtd ?? 0) || 0;
-
-        const vRaw = it.valor;
-        const valorNum = Number(String(vRaw ?? 0).replace(/\./g,'').replace(',','.')) || Number(vRaw) || 0;
-        const valorFmt = status.toLowerCase() === 'total'
-          ? `<strong>${fmtBRL.format(valorNum)}</strong>`
-          : fmtBRL.format(valorNum);
-
-        const tr = document.createElement('tr');
-        if (status.toLowerCase() === 'total') tr.className = 'rowLeft';
-
-        tr.innerHTML = `
-          <td><strong>${status}</strong></td>
-          <td>${qtd.toLocaleString('pt-BR')}</td>
-          <td>${valorFmt}</td>
         `;
         body.appendChild(tr);
       }
@@ -591,7 +779,6 @@
       startAutoScroll(document.getElementById('scrollAtraso'), { speedPxPerTick: 1, tickMs: 45, pauseAtEndMs: 1500 });
       startAutoScroll(document.getElementById('scrollHoje'),   { speedPxPerTick: 1, tickMs: 50, pauseAtEndMs: 1400 });
       startAutoScroll(document.getElementById('scrollTransp'), { speedPxPerTick: 1, tickMs: 55, pauseAtEndMs: 1200 });
-      startAutoScroll(document.getElementById('scrollPedidos'), { speedPxPerTick: 1, tickMs: 55, pauseAtEndMs: 1200 });
     }
 
     const AUDIO_STORAGE_KEY = "last_audio_announcement_id_v1";
@@ -648,15 +835,25 @@
 
       document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
 
-      // ✅ KPIs (3 cards)
-      document.getElementById('kpiAtraso').textContent = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
-      document.getElementById('kpiPrevistasHoje').textContent = Number(data.kpis.previstas_para_hoje || 0).toLocaleString('pt-BR');
-      document.getElementById('kpiEntreguesHoje').textContent = Number(data.kpis.entregues_hoje || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiTotalNotas').textContent = Number(data.kpis.total_notas || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiEntregas').textContent   = Number(data.kpis.entregas_realizadas || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiAtraso').textContent     = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
+
+      const previstasHoje = Number(data.kpis.previstas_para_hoje || 0);
+      const entreguesHoje = Number(data.kpis.entregues_hoje || 0);
+      document.getElementById('kpiHojeEntregue').textContent =
+        `${previstasHoje.toLocaleString('pt-BR')} / ${entreguesHoje.toLocaleString('pt-BR')}`;
+
+      document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(data.kpis.valor_total_em_atraso);
+      document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(data.kpis.valor_total_previsto_hoje);
 
       buildCarrierOptions(data);
 
+      const perf = Number(data.kpis.performance_percent || 0);
+      const target = Number(data.kpis.meta_performance_percent || 95);
+      setGauge(perf, target);
+
       renderTransportadores(data);
-      renderPedidos(data);
 
       const sel = document.getElementById('carrierFilter');
       const render = () => renderTables(data, sel.value);
@@ -670,6 +867,7 @@
       render();
 
       setTimeout(initAutoScroll, 350);
+      window.addEventListener('resize', () => setGauge(perf, target));
     }
 
     load().catch(err => {
