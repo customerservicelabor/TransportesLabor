@@ -81,9 +81,14 @@
       "previsao_entrega": "2026-01-27",
       "ocorrencia": "Atrasado",
       "valor_mercadoria": 0
-    }, 
-    { "nota_fiscal": "199539","destinatario": "CIRURGICA PORTO LTDA."," transportador": "LATAM"," previsao_entrega": "46049"," ocorrencia": "Atrasado"},
-
+    },  
+    { "nota_fiscal": "199539",
+      "destinatario": "CIRURGICA PORTO LTDA.",
+      " transportador": "LATAM",
+      " previsao_entrega": "2026-01-27",
+      " ocorrencia": "Atrasado",
+      "valor_mercadoria": 0
+    },
     {
       "nota_fiscal": "198944",
       "destinatario": "GLOBALMOR COMERCIO DE ARTIGOS HOSPITALARES LTDA",
@@ -896,6 +901,7 @@
     }
   ]
 }
+
 
 
 
