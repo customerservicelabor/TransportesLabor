@@ -1,5 +1,5 @@
 {
-  "updated_at": "28/01/2026 09:20",
+  "updated_at": "28/01/2026 10:20",
   "kpis": {
     "total_notas": 1275,
     "entregas_realizadas": 775,
@@ -20,13 +20,13 @@
     },
     {
       "transportador": "Latam",
-      "chegada": "",
+      "chegada": "10:00",
       "saida": "",
       "agendado": "10:00"
     },
     {
       "transportador": "Azurelog",
-      "chegada": "",
+      "chegada": "10:00",
       "saida": "",
       "agendado": "10:30"
     },
@@ -894,4 +894,5 @@
     }
   ]
 }
+
 
