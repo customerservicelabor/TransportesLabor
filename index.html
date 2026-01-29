@@ -274,6 +274,7 @@
       background: color-mix(in srgb, var(--mustard) 35%, transparent);
     }
 
+    /* (mantido) Total antigo, se algum dia quiser usar */
     .rowTotalGreen{
       background: color-mix(in srgb, var(--totalGreen) 35%, transparent);
       font-weight: 950;
@@ -290,6 +291,37 @@
     .rowTotalGreen td:nth-child(2){
       font-weight: 900;
     }
+
+    /* ===== NOVOS TOTAIS DO QUADRO ===== */
+    .rowDisputaTotal{
+      background: color-mix(in srgb, var(--mustard) 22%, transparent);
+      font-weight: 900;
+    }
+    .rowDisputaTotal td{
+      border-top: 2px solid var(--dividerStrong);
+    }
+    .rowDisputaTotal td:nth-child(3){
+      font-size: 15px;
+      font-weight: 950;
+    }
+
+    .rowPrevistoTotal{
+      background: color-mix(in srgb, var(--totalGreen) 28%, transparent);
+      font-weight: 950;
+    }
+    .rowPrevistoTotal td{
+      padding-top: 14px;
+      padding-bottom: 14px;
+      border-top: 2px solid var(--dividerStrong);
+    }
+    .rowPrevistoTotal td:nth-child(3){
+      font-size: 16px;
+      font-weight: 950;
+    }
+    .rowPrevistoTotal td:nth-child(2){
+      font-weight: 900;
+    }
+    /* ================================ */
 
     @keyframes blinkWarn {
       0%, 100% { background: transparent; }
@@ -443,6 +475,23 @@
       font-size: 13px;
     }
     /* ==================================================== */
+
+    /* Pills (atraso) */
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(245,158,11,.18);
+      color: rgba(233,236,245,.95);
+      min-width: 36px;
+    }
+    .pill.good{ background: rgba(34,197,94,.18); }
+    .pill.bad{ background: rgba(239,68,68,.20); }
   </style>
 </head>
 
@@ -799,34 +848,99 @@
       }
     }
 
+    /* ======= GESTÃO DE PEDIDOS (ATUALIZADA) =======
+       - Total em Disputa = Aguard. Liberação + Alvará + Bloqueado + Análise
+       - Total Faturamento Previsto = Aguard. Envio Sep + Em Sep + Separado + Faturado
+       - Pisca: Alvará, Análise e Bloqueado
+       - Ordem fixa conforme solicitado
+    */
     function renderPedidos(data){
-      const list = Array.isArray(data.pedidos_status) ? data.pedidos_status : [];
+      const raw = Array.isArray(data.pedidos_status) ? data.pedidos_status : [];
       const body = document.getElementById('tbodyPedidos');
       body.innerHTML = '';
 
-      document.getElementById('pedidosCount').textContent = `${list.length} itens`;
+      const normKey = (s) => String(s || '')
+        .trim()
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
 
-      if (!list.length){
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td colspan="3">—</td>`;
-        body.appendChild(tr);
-        return;
+      const map = new Map();
+      for (const it of raw){
+        const label = (it.status ?? it.pedidos ?? '').toString().trim();
+        if (!label) continue;
+
+        const key = normKey(label);
+        const qtd = Number(it.quantidade ?? it.qtd ?? 0) || 0;
+        const valorNum = parseBRLValue(it.valor);
+
+        map.set(key, { label, qtd, valorNum });
       }
 
-      for (const it of list){
-        const status = (it.status ?? it.pedidos ?? '').toString().trim() || '—';
-        const qtd = Number(it.quantidade ?? it.qtd ?? 0) || 0;
+      const get = (expectedLabel) => {
+        const key = normKey(expectedLabel);
+        return map.get(key) || { label: expectedLabel, qtd: 0, valorNum: 0 };
+      };
 
-        const valorNum = parseBRLValue(it.valor);
-        const key = status.toLowerCase();
+      const aguardLib = get('Aguardando Liberação');
+      const alvara    = get('Alvará Sanitário');
+      const bloqueado = get('Bloqueado por regra');
+      const analise   = get('Análise de Crédito');
 
-        const isTotal = key === 'total';
+      const aguardEnv = get('Aguard. Envio Separação');
+      const emSep     = get('Em Separação');
+      const separado  = get('Separado');
+      const faturado  = get('Faturado');
+
+      const totalDisputa = {
+        label: 'Total em Disputa',
+        qtd: aguardLib.qtd + alvara.qtd + bloqueado.qtd + analise.qtd,
+        valorNum: aguardLib.valorNum + alvara.valorNum + bloqueado.valorNum + analise.valorNum
+      };
+
+      const totalPrevisto = {
+        label: 'Total Faturamento Previsto',
+        qtd: aguardEnv.qtd + emSep.qtd + separado.qtd + faturado.qtd,
+        valorNum: aguardEnv.valorNum + emSep.valorNum + separado.valorNum + faturado.valorNum
+      };
+
+      const ordered = [
+        aguardLib,
+        alvara,
+        bloqueado,
+        analise,
+        totalDisputa,
+        aguardEnv,
+        emSep,
+        separado,
+        faturado,
+        totalPrevisto
+      ];
+
+      document.getElementById('pedidosCount').textContent = `${ordered.length} itens`;
+
+      for (const it of ordered){
+        const status = it.label || '—';
+        const qtd = Number(it.qtd) || 0;
+        const valorNum = Number(it.valorNum) || 0;
+
+        const key = normKey(status);
+
+        const isBlink =
+          key.includes('analise de credito') ||
+          key.includes('alvara sanitario') ||
+          key.includes('bloqueado por regra');
+
         const isFaturado = key === 'faturado';
-        const isBlink = (key === 'análise de crédito' || key === 'analise de credito' || key === 'alvará sanitário' || key === 'alvara sanitario');
+        const isTotalDisputa = key === 'total em disputa';
+        const isTotalPrevisto = key === 'total faturamento previsto';
 
         const tr = document.createElement('tr');
-        if (isTotal) tr.classList.add('rowTotalGreen');
+
+        if (isTotalPrevisto) tr.classList.add('rowPrevistoTotal');
+        else if (isTotalDisputa) tr.classList.add('rowDisputaTotal');
         else if (isFaturado) tr.classList.add('rowFaturado');
+
         if (isBlink) tr.classList.add('blinkWarn');
 
         const iconKind = iconKindForStatus(status);
@@ -839,8 +953,9 @@
             </div>
           </td>
           <td>${qtd.toLocaleString('pt-BR')}</td>
-          <td>${isTotal ? `<strong>${fmtBRL.format(valorNum)}</strong>` : fmtBRL.format(valorNum)}</td>
+          <td>${fmtBRL.format(valorNum)}</td>
         `;
+
         body.appendChild(tr);
       }
     }
@@ -1016,9 +1131,9 @@
       // ✅ Mostra o alerta APENAS se tv_alert.enabled === true
       tryShowTvAlert(data);
 
-      document.getElementById('kpiAtraso').textContent = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
-      document.getElementById('kpiPrevistasHoje').textContent = Number(data.kpis.previstas_para_hoje || 0).toLocaleString('pt-BR');
-      document.getElementById('kpiEntreguesHoje').textContent = Number(data.kpis.entregues_hoje || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiAtraso').textContent = Number(data.kpis?.notas_em_atraso || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiPrevistasHoje').textContent = Number(data.kpis?.previstas_para_hoje || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiEntreguesHoje').textContent = Number(data.kpis?.entregues_hoje || 0).toLocaleString('pt-BR');
 
       buildCarrierOptions(data);
 
@@ -1058,4 +1173,3 @@
   </script>
 </body>
 </html>
-
