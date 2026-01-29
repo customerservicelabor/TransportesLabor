@@ -3,7 +3,7 @@
   "kpis": {
     "notas_em_atraso": 21,
     "previstas_para_hoje": 21,
-    "entregues_hoje": 3
+    "entregues_hoje": 4
   },
   "pedidos_status": [
     { "status": "Ecommerce", "quantidade": 0, "valor": "0" },
@@ -71,7 +71,7 @@
     { "nota_fiscal": "199878", "destinatario": "LABORATORIO ROSETTI LTDA", "transportador": "TGL", "cidade_destino": "CANOAS - RS", "data_entrega": "" },
     { "nota_fiscal": "199820", "destinatario": "DIAGNOSTICOS DA AMERICA S.A", "transportador": "PATRUS", "cidade_destino": "DUQUE DE CAXIAS - RJ", "data_entrega": "" },
     { "nota_fiscal": "199808", "destinatario": "TECHMED DISTRIBUIDORA DE PRODUTOS HOSPIT", "transportador": "TRANSLOVATO", "cidade_destino": "ITAPEVA - SP", "data_entrega": "" },
-    { "nota_fiscal": "199770", "destinatario": "ALBMED COMERCIO PRODUTOS HOSPITALARES LT", "transportador": "PATRUS", "cidade_destino": "PETROPOLIS - RJ", "data_entrega": "" },
+    { "nota_fiscal": "199770", "destinatario": "ALBMED COMERCIO PRODUTOS HOSPITALARES LT", "transportador": "PATRUS", "cidade_destino": "PETROPOLIS - RJ", "data_entrega": "29/01/2026" },
     { "nota_fiscal": "199755", "destinatario": "HOSPITAL DAS CLINICAS DE SAO PAULO", "transportador": "PATRUS", "cidade_destino": "CERQUEIRA CESAR - SP", "data_entrega": "" },
     { "nota_fiscal": "199700", "destinatario": "COTA DENTAL NEGOCIACOES ELETRONICAS LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "SERRA - ES", "data_entrega": "" },
     { "nota_fiscal": "199682", "destinatario": "DU BOM DIST. DE PRODUTOS MEDICO-HOSPITAL", "transportador": "AZURELOG", "cidade_destino": "CAMPO GRANDE - MS", "data_entrega": "" },
@@ -90,6 +90,7 @@
     "ttl_minutes": 720
   }
 }
+
 
 
 
