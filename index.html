@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8"/>
-  <meta http-equiv="refresh" content="1800">
+  <meta http-equiv="refresh" content="600">
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Painel de Entregas – Indicador</title>
+  <title>Painel de Fluxo Operacional – Indicador</title>
 
   <style>
     :root{
@@ -21,7 +21,22 @@
 
       --ink:#0b1b3a;
 
-      --topRowH: 400px;
+      --topRowMinH: 360px;
+
+      /* Destaques pedidos */
+      --mustard:#D4A017;         /* mostarda */
+      --totalGreen:#22c55e;      /* verde vivo */
+      --blinkYellow:#FFE731;     /* rgb(255,231,49) */
+
+      /* Gestão de pedidos (refino TV) */
+      --icon: rgba(11,27,58,.72);
+      --dividerStrong: rgba(11,27,58,.22);
+
+      /* Badge staleness */
+      --staleWarnBg: rgba(245,158,11,.22);
+      --staleWarnBd: rgba(245,158,11,.45);
+      --staleBadBg:  rgba(239,68,68,.22);
+      --staleBadBd:  rgba(239,68,68,.45);
     }
 
     *{ box-sizing:border-box; }
@@ -45,6 +60,7 @@
     .rightHead{
       display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
     }
+
     .updated{
       color:var(--muted);
       font-size:13px;
@@ -54,7 +70,19 @@
       background: rgba(255,255,255,.04);
       backdrop-filter: blur(8px);
       white-space:nowrap;
+      transition: background .2s ease, border-color .2s ease, color .2s ease;
     }
+    .updated.stale-warn{
+      background: var(--staleWarnBg);
+      border-color: var(--staleWarnBd);
+      color: rgba(233,236,245,.92);
+    }
+    .updated.stale-bad{
+      background: var(--staleBadBg);
+      border-color: var(--staleBadBd);
+      color: rgba(233,236,245,.92);
+    }
+
     .filter{
       display:flex; align-items:center; gap:8px;
       padding:8px 10px;
@@ -79,24 +107,28 @@
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      align-items: stretch;
+      align-items: start;
     }
 
-    .hero{
+    .leftCol{
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+      height: auto;
+    }
+
+    .cardsBox{
       border-radius: var(--radius);
       background: rgba(255,255,255,.92);
       border:1px solid rgba(255,255,255,.35);
       box-shadow: var(--shadow);
       padding: 16px 16px;
-      display:flex;
-      flex-direction:column;
-      gap: 12px;
-      overflow:hidden;
       position:relative;
       color: var(--ink);
-      height: var(--topRowH);
+      overflow:hidden;
+      flex: 0 0 auto;
     }
-    .hero::before{
+    .cardsBox::before{
       content:"";
       position:absolute; inset:-80px -120px auto auto;
       width: 360px; height: 360px;
@@ -110,18 +142,17 @@
       position:relative;
       z-index:1;
       display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
       width: 100%;
-      flex: 0 0 auto;
     }
     .miniKpi{
       border-radius: 14px;
       border: 1px solid rgba(11,27,58,.10);
       background: rgba(255,255,255,.85);
-      padding: 10px 10px;
+      padding: 9px 10px;
       box-shadow: 0 10px 24px rgba(0,0,0,.10);
-      min-height: 70px;
+      min-height: 62px;
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -135,118 +166,21 @@
       text-overflow:ellipsis;
     }
     .miniKpi .v{
-      margin-top: 6px;
+      margin-top: 5px;
       font-weight: 900;
-      font-size: clamp(22px, 2.2vw, 34px);
+      font-size: clamp(21px, 2.1vw, 33px);
       line-height: 1.05;
       color: var(--ink);
       white-space:nowrap;
     }
 
-    .perfRow{
-      position:relative;
-      z-index:1;
-      display:grid;
-      grid-template-columns: 1.35fr .65fr;
-      gap: 12px;
-      align-items: center;
-      width: 100%;
-      flex: 1 1 auto;
-    }
-    .hero h2{ margin:0 0 6px; font-size:20px; letter-spacing:.2px; color:var(--ink); }
-    .hero p{ margin:0; color: rgba(11,27,58,.78); max-width: 720px; font-size: 13px; line-height: 1.35; }
-
-    .metaLine{ margin-top: 8px; font-size: 12px; color: rgba(11,27,58,.72); }
-
-    .badge{
-      font-size:12px;
-      padding: 6px 10px;
-      border-radius:999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: rgba(233,236,245,.92);
-      white-space:nowrap;
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      padding: 6px 10px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:700;
-      color:#0b1020;
-      background: var(--warn);
-      white-space:nowrap;
-    }
-    .pill.bad{ background: var(--bad); color:#fff; }
-    .pill.good{ background: var(--good); color:#0b1020; }
-
-    .gaugeWrap{ display:flex; justify-content:center; align-items:center; position:relative; z-index:1; }
-    .gauge{
-      width: 170px; height: 170px;
-      border-radius: 50%;
-      position:relative;
-      box-shadow: 0 18px 40px rgba(0,0,0,.18);
-      background: conic-gradient(from 180deg, var(--good) 0deg, var(--good) 120deg, rgba(11,27,58,.12) 120deg 360deg);
-      overflow:hidden;
-    }
-    .gauge::before{
-      content:"";
-      position:absolute;
-      left:-2px; right:-2px; bottom:-2px;
-      height: 54%;
-      background: rgba(255,255,255,.92);
-      border-top: 1px solid rgba(11,27,58,.10);
-      z-index:1;
-    }
-    .gauge::after{
-      content:"";
-      position:absolute; inset: 14px;
-      background: rgba(255,255,255,.96);
-      border-radius:50%;
-      border:1px solid rgba(11,27,58,.18);
-      z-index:2;
-    }
-
-    .gaugeCenter{
-      position:absolute;
-      top:50%; left:50%;
-      transform: translate(-50%, -54%);
-      text-align:center;
-      z-index:3;
-      width: 150px;
-    }
-    .gaugeCenter .pct{
-      font-size: 42px;
-      font-weight: 950;
-      line-height:1;
-      color:var(--ink);
-      letter-spacing: -0.5px;
-      white-space: nowrap;
-    }
-    .gaugeCenter .lbl{ font-size:12px; color: rgba(11,27,58,.78); margin-top:6px; }
-
-    .targetDot{
-      position:absolute;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--ink);
-      box-shadow: 0 6px 14px rgba(0,0,0,.25);
-      z-index:4;
-      transform: translate(-50%, -50%);
-    }
-
     .panel{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
       display:flex;
       flex-direction:column;
-      height: var(--topRowH);
+      min-height: var(--topRowMinH);
     }
     .panel .ph{
       padding: 14px 14px;
@@ -254,58 +188,146 @@
       align-items:center;
       justify-content:space-between;
       gap:10px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.14);
+      border-bottom:1px solid rgba(11,27,58,.10);
+      background: rgba(255,255,255,.70);
       flex: 0 0 auto;
     }
     .ph .ttl{ font-weight:800; display:flex; align-items:center; gap:10px; }
 
-    .panelMetrics{
-      padding: 10px 12px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.08);
-      flex: 0 0 auto;
-    }
-    .metricCard{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      border-radius: 14px;
-      padding: 10px 10px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.12);
-      min-height: 64px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-    .metricCard .mt{ font-size: 12px; color: rgba(233,236,245,.78); }
-    .metricCard .mv{
-      margin-top: 6px;
-      font-weight: 900;
-      font-size: 20px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .badge{
+      font-size:12px;
+      padding: 6px 10px;
+      border-radius:999px;
+      border: 1px solid rgba(11,27,58,.12);
+      background: rgba(11,27,58,.06);
+      color: rgba(11,27,58,.82);
+      white-space:nowrap;
     }
 
     table{ width:100%; border-collapse:collapse; }
     th, td{
       padding: 10px 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(11,27,58,.10);
       vertical-align:middle;
       font-size:13px;
+      color: var(--ink);
     }
 
     .scroll{
-      max-height: 420px;
       overflow:auto;
       position: relative;
       background: rgba(0,0,0,.04);
       flex: 1 1 auto;
+      min-height: 0;
     }
-    thead th{
+
+    .panelLight{
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(255,255,255,.35);
+      color: var(--ink);
+    }
+    .panelLight .ph{
+      background: rgba(255,255,255,.70);
+      border-bottom: 1px solid rgba(11,27,58,.10);
+    }
+
+    /* Cabeçalho dos pedidos: azul escuro igual fundo do site */
+    .tblPedidos thead th{
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: var(--bg);
+      color: rgba(233,236,245,.95);
+      text-transform:uppercase;
+      letter-spacing:.35px;
+      font-size:11px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    /* ======== GESTÃO DE PEDIDOS (REFINOS TV) ======== */
+    .tblPedidos td:nth-child(2),
+    .tblPedidos td:nth-child(3),
+    .tblPedidos thead th:nth-child(2),
+    .tblPedidos thead th:nth-child(3){
+      text-align: right;
+    }
+    .tblPedidos td:nth-child(2){ font-weight: 500; }
+    .tblPedidos td:nth-child(3){ font-weight: 650; }
+
+    .pedidoCell{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .pedidoIcon{
+      width:16px;
+      height:16px;
+      flex: 0 0 16px;
+      color: var(--icon);
+    }
+    .pedidoText{
+      font-weight: 800;
+      letter-spacing:.1px;
+    }
+
+    .rowFaturado{
+      background: color-mix(in srgb, var(--mustard) 35%, transparent);
+    }
+
+    .rowTotalGreen{
+      background: color-mix(in srgb, var(--totalGreen) 35%, transparent);
+      font-weight: 950;
+    }
+    .rowTotalGreen td{
+      padding-top: 14px;
+      padding-bottom: 14px;
+      border-top: 2px solid var(--dividerStrong);
+    }
+    .rowTotalGreen td:nth-child(3){
+      font-size: 16px;
+      font-weight: 950;
+    }
+    .rowTotalGreen td:nth-child(2){
+      font-weight: 900;
+    }
+
+    @keyframes blinkWarn {
+      0%, 100% { background: transparent; }
+      50% { background: rgba(255,231,49,.45); }
+    }
+    .blinkWarn{ animation: blinkWarn 1.45s ease-in-out infinite; }
+    /* =============================================== */
+
+    /* ===== Transportadores: menos contraste + fonte menor ===== */
+    .panelTranspSoft .scroll{
+      background: rgba(11,27,58,.03);
+    }
+    .panelTranspSoft td, .panelTranspSoft th{
+      font-size: 12px;
+    }
+    .panelTranspSoft th{
+      color: rgba(11,27,58,.70);
+    }
+    .panelTranspSoft td{
+      color: rgba(11,27,58,.90);
+    }
+    /* ========================================================= */
+
+    .panelDark{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--text);
+    }
+    .panelDark .ph{
+      background: rgba(0,0,0,.14);
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .panelDark .badge{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(233,236,245,.92);
+    }
+    .headDark thead th{
       position: sticky;
       top: 0;
       z-index: 5;
@@ -317,8 +339,11 @@
       backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(255,255,255,.12);
     }
-
-    td .muted{ color: var(--muted); font-size:12px; }
+    .headDark th, .headDark td{
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: rgba(233,236,245,.92);
+    }
+    .headDark td .muted{ color: var(--muted); font-size:12px; }
 
     .rowArrived{ background: rgba(245,158,11,.16); }
     .rowLeft{ background: rgba(34,197,94,.18); }
@@ -329,6 +354,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 14px;
       margin-top: 14px;
+      align-items: start;
     }
 
     .foot{
@@ -343,16 +369,80 @@
 
     @media (max-width: 1200px){
       .topRow{ grid-template-columns: 1fr; }
-      .miniKpis{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .perfRow{ grid-template-columns: 1fr; }
-      .hero, .panel{ height: auto; }
-      .gauge{ margin: 4px 0 8px; }
+      .miniKpis{ grid-template-columns: 1fr; }
+      .leftCol{ height:auto !important; }
     }
     @media (max-width: 980px){
       .grid2{ grid-template-columns: 1fr; }
       h1{ font-size:30px; }
-      .hero, .panel{ height: auto; }
     }
+
+    /* ================= TV ALERT OVERLAY ================= */
+    .tvAlertOverlay{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(11,16,32,.86);
+      backdrop-filter: blur(8px);
+    }
+
+    .tvAlertCard{
+      width: min(980px, 92vw);
+      border-radius: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.94);
+      color: #0b1b3a;
+      overflow: hidden;
+    }
+
+    .tvAlertTop{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      background: rgba(239,68,68,.12);
+      border-bottom: 1px solid rgba(11,27,58,.12);
+    }
+
+    .tvAlertTitle{
+      font-weight: 950;
+      font-size: 18px;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+    }
+
+    .tvAlertBadge{
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(239,68,68,.35);
+      background: rgba(239,68,68,.14);
+      white-space: nowrap;
+    }
+
+    .tvAlertBody{
+      padding: 18px 18px 16px;
+    }
+
+    .tvAlertMsg{
+      font-size: clamp(18px, 2.2vw, 26px);
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    .tvAlertSub{
+      margin-top: 10px;
+      color: rgba(11,27,58,.72);
+      font-size: 13px;
+    }
+    /* ==================================================== */
   </style>
 </head>
 
@@ -360,7 +450,7 @@
   <div class="wrap">
     <header>
       <div>
-        <h1>Painel de Entregas</h1>
+        <h1>Painel de Fluxo Operacional</h1>
       </div>
 
       <div class="rightHead">
@@ -375,94 +465,74 @@
     </header>
 
     <section class="topRow">
-      <section class="hero">
-        <div class="miniKpis" aria-label="KPIs de notas">
-          <div class="miniKpi">
-            <div class="t">Total de Notas</div>
-            <div class="v" id="kpiTotalNotas">—</div>
-          </div>
-          <div class="miniKpi">
-            <div class="t">Entregas Realizadas</div>
-            <div class="v" id="kpiEntregas">—</div>
-          </div>
-          <div class="miniKpi">
-            <div class="t">Notas em Atraso</div>
-            <div class="v" id="kpiAtraso">—</div>
-          </div>
-          <div class="miniKpi">
-            <div class="t">Previsto hoje / Entregue</div>
-            <div class="v" id="kpiHojeEntregue">—</div>
-          </div>
-        </div>
-
-        <div class="perfRow">
-          <div style="position:relative; z-index:1;">
-            <h2>Performance de Entregas Atual</h2>
-            <p>
-              Indicador consolidado de entregas concluídas. A meta é manter a eficiência em 95,00% ou acima.
-              Abaixo da meta, o painel sinaliza atenção.
-            </p>
-
-            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-              <span class="pill" id="metaStatus">—</span>
-              <span class="badge" id="metaBadge">Meta: 95,00%</span>
+      <div class="leftCol" id="leftCol">
+        <div class="cardsBox" id="cardsBox">
+          <div class="miniKpis" aria-label="KPIs do dia">
+            <div class="miniKpi">
+              <div class="t">Notas em Atraso</div>
+              <div class="v" id="kpiAtraso">—</div>
             </div>
-
-            <div class="metaLine" id="metaLegend">Meta no gauge: —</div>
-          </div>
-
-          <div class="gaugeWrap">
-            <div class="gauge" id="gauge">
-              <div class="gaugeCenter">
-                <div class="pct" id="perfPct">—%</div>
-                <div class="lbl">Eficiência de Entrega</div>
-              </div>
-              <div class="targetDot" id="targetDot" style="left:-9999px; top:-9999px;"></div>
+            <div class="miniKpi">
+              <div class="t">Previstas para Hoje</div>
+              <div class="v" id="kpiPrevistasHoje">—</div>
+            </div>
+            <div class="miniKpi">
+              <div class="t">Entregas Realizadas Hoje</div>
+              <div class="v" id="kpiEntreguesHoje">—</div>
             </div>
           </div>
         </div>
-      </section>
 
-      <div class="panel">
+        <div class="panel panelLight panelTranspSoft" id="panelTransp" style="min-height: 0; flex: 1 1 auto;">
+          <div class="ph">
+            <div class="ttl">Status de Coleta Transportadores</div>
+            <div class="badge" id="transpCount">— itens</div>
+          </div>
+
+          <div class="scroll" id="scrollTransp">
+            <table>
+              <thead>
+                <tr>
+                  <th>Transportador</th>
+                  <th>Chegada</th>
+                  <th>Saída</th>
+                  <th>Horário da coleta</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyTransp"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panelLight" id="panelPedidos">
         <div class="ph">
-          <div class="ttl">Status de Coleta Transportadores</div>
-          <div class="badge" id="transpCount">— itens</div>
+          <div class="ttl">Gestão de Pedidos</div>
+          <div class="badge" id="pedidosCount">— itens</div>
         </div>
 
-        <div class="panelMetrics">
-          <div class="metricCard">
-            <div class="mt">Valor total em atraso</div>
-            <div class="mv" id="kpiValorAtraso">—</div>
-          </div>
-          <div class="metricCard">
-            <div class="mt">Valor total previsto hoje</div>
-            <div class="mv" id="kpiValorHoje">—</div>
-          </div>
-        </div>
-
-        <div class="scroll" id="scrollTransp">
-          <table>
+        <div style="flex:1 1 auto;">
+          <table class="tblPedidos">
             <thead>
               <tr>
-                <th>Transportador</th>
-                <th>Chegada</th>
-                <th>Saída</th>
-                <th>Horário da coleta</th>
+                <th>Pedidos</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
               </tr>
             </thead>
-            <tbody id="tbodyTransp"></tbody>
+            <tbody id="tbodyPedidos"></tbody>
           </table>
         </div>
       </div>
     </section>
 
     <section class="grid2">
-      <div class="panel" style="height:auto;">
+      <div class="panel panelDark" id="panelAtraso">
         <div class="ph">
           <div class="ttl">Notas em Atraso</div>
           <div class="badge" id="atrasoCount">— itens</div>
         </div>
-        <div class="scroll" id="scrollAtraso">
+        <div class="scroll headDark" id="scrollAtraso">
           <table>
             <thead>
               <tr>
@@ -479,12 +549,12 @@
         </div>
       </div>
 
-      <div class="panel" style="height:auto;">
+      <div class="panel panelDark" id="panelHoje">
         <div class="ph">
           <div class="ttl">Notas Previstas para Hoje</div>
           <div class="badge" id="hojeCount">— itens</div>
         </div>
-        <div class="scroll" id="scrollHoje">
+        <div class="scroll headDark" id="scrollHoje">
           <table>
             <thead>
               <tr>
@@ -503,29 +573,26 @@
 
     <div class="foot">
       <div>Observação: painel alimentado via <strong>data.json</strong>.</div>
-      <div>Labor • Logística • Indicadores</div>
+      <div>Labor • Fluxo Operacional • Indicadores</div>
+    </div>
+  </div>
+
+  <!-- TV Alert Overlay (aparece apenas se tv_alert.enabled === true) -->
+  <div class="tvAlertOverlay" id="tvAlertOverlay" aria-live="assertive" aria-atomic="true">
+    <div class="tvAlertCard">
+      <div class="tvAlertTop">
+        <div class="tvAlertTitle" id="tvAlertTitle">Atenção</div>
+        <div class="tvAlertBadge" id="tvAlertTimer">20s</div>
+      </div>
+      <div class="tvAlertBody">
+        <div class="tvAlertMsg" id="tvAlertMsg">—</div>
+        <div class="tvAlertSub">Mensagem operacional • Some automaticamente</div>
+      </div>
     </div>
   </div>
 
   <script>
     const fmtBRL = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
-
-    function fmtPctBR(v){
-      return (Number(v) || 0).toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 }) + '%';
-    }
-
-    function fmtBRLCompactK(value){
-      const v = Number(value) || 0;
-      const abs = Math.abs(v);
-      const sign = v < 0 ? "-" : "";
-      const format1 = (n) => (Math.round(n * 10) / 10).toFixed(1);
-
-      if (abs >= 1e9)  return `R$ ${sign}${format1(abs/1e9)}B`;
-      if (abs >= 1e6)  return `R$ ${sign}${format1(abs/1e6)}M`;
-      if (abs >= 1e3)  return `R$ ${sign}${format1(abs/1e3)}K`;
-
-      return fmtBRL.format(v);
-    }
 
     function parseUpdatedDate(updatedAtStr){
       const parts = String(updatedAtStr || '').split(" ");
@@ -535,6 +602,91 @@
       const [HH, MM] = timePart.split(":").map(Number);
       return new Date(yyyy, (mm || 1)-1, dd || 1, HH || 0, MM || 0, 0, 0);
     }
+
+    function formatUpdatedAtToBadge(data){
+      const el = document.getElementById('updatedAt');
+      if (!el) return;
+
+      el.classList.remove('stale-warn','stale-bad');
+      el.textContent = 'Atualizado em: ' + (data.updated_at || '--/--/----');
+
+      const updated = parseUpdatedDate(data.updated_at);
+      const diffMs = Date.now() - updated.getTime();
+      if (!Number.isFinite(diffMs)) return;
+
+      const diffMin = Math.floor(diffMs / 60000);
+
+      if (diffMin > 120){
+        el.classList.add('stale-bad');
+      } else if (diffMin > 60){
+        el.classList.add('stale-warn');
+      }
+    }
+
+    function parseISODateSafe(iso){
+      const t = Date.parse(String(iso || ''));
+      return Number.isFinite(t) ? t : NaN;
+    }
+
+    function isExpired(createdAtISO, ttlMinutes){
+      const createdMs = parseISODateSafe(createdAtISO);
+      if (!Number.isFinite(createdMs)) return false;
+      const ttl = Number(ttlMinutes) || 0;
+      if (ttl <= 0) return false;
+      return (Date.now() - createdMs) > (ttl * 60 * 1000);
+    }
+
+    /* =================== TV ALERT (CONTROLADO PELO data.json) =================== */
+    const TV_ALERT_STORAGE_KEY = "last_tv_alert_id_v1";
+
+    function showTvAlert(alertObj){
+      const overlay = document.getElementById('tvAlertOverlay');
+      const titleEl = document.getElementById('tvAlertTitle');
+      const msgEl   = document.getElementById('tvAlertMsg');
+      const timerEl = document.getElementById('tvAlertTimer');
+      if (!overlay || !titleEl || !msgEl || !timerEl) return;
+
+      const title = String(alertObj.title || 'Atenção').trim();
+      const msg   = String(alertObj.message || '').trim();
+      const secs  = Math.max(5, Math.min(60, Number(alertObj.duration_seconds) || 20));
+
+      titleEl.textContent = title;
+      msgEl.textContent = msg;
+
+      overlay.style.display = 'flex';
+
+      let remaining = secs;
+      timerEl.textContent = `${remaining}s`;
+
+      const t = setInterval(() => {
+        remaining -= 1;
+        timerEl.textContent = `${Math.max(0, remaining)}s`;
+        if (remaining <= 0){
+          clearInterval(t);
+          overlay.style.display = 'none';
+        }
+      }, 1000);
+    }
+
+    function tryShowTvAlert(data){
+      const a = data?.tv_alert;
+      if (!a || a.enabled !== true) return;
+
+      const id = String(a.id || '').trim();
+      const msg = String(a.message || '').trim();
+      if (!id || !msg) return;
+
+      if (isExpired(a.created_at, a.ttl_minutes)) return;
+
+      // Mostra 1x por refresh (volta no próximo refresh/F5),
+      // ou se mudar o id.
+      const lastId = sessionStorage.getItem(TV_ALERT_STORAGE_KEY);
+      if (lastId === id) return;
+
+      sessionStorage.setItem(TV_ALERT_STORAGE_KEY, id);
+      showTvAlert(a);
+    }
+    /* =========================================================================== */
 
     function isoToBR(iso){
       const [y,m,d] = String(iso || '').split("-").map(Number);
@@ -575,65 +727,47 @@
       }
     }
 
-    function placeTargetMarker(targetPct){
-      const gauge = document.getElementById('gauge');
-      const dot = document.getElementById('targetDot');
-      if (!gauge || !dot) return;
+    function parseBRLValue(v){
+      if (typeof v === 'number' && Number.isFinite(v)) return v;
 
-      const size = gauge.clientWidth;
-      const cx = size / 2;
-      const cy = size / 2;
-      const r = (size / 2) - 7;
+      const s = String(v ?? '').trim();
+      if (!s) return 0;
 
-      const t = Math.max(0, Math.min(100, Number(targetPct) || 0));
-      const angle = Math.PI * (1 - (t / 100));
+      const cleaned = s
+        .replace(/\s+/g,' ')
+        .replace(/R\$\s?/i,'')
+        .replace(/\./g,'')
+        .replace(',','.');
 
-      const x = cx + r * Math.cos(angle);
-      const y = cy - r * Math.sin(angle);
-
-      dot.style.left = `${x}px`;
-      dot.style.top  = `${y}px`;
+      const n = Number(cleaned);
+      return Number.isFinite(n) ? n : 0;
     }
 
-    function setGauge(percent, target){
-      const p = Math.max(0, Math.min(100, Number(percent) || 0));
-      const t = Math.max(0, Math.min(100, Number(target) || 95));
+    function svgIcon(kind){
+      const common = 'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
 
-      const fillDeg = (p/100) * 180;
-
-      const root = getComputedStyle(document.documentElement);
-      const good = root.getPropertyValue('--good').trim();
-      const warn = root.getPropertyValue('--warn').trim();
-      const bad  = root.getPropertyValue('--bad').trim();
-
-      let color = good;
-      if (p < t) color = warn;
-      if (p < (t - 5)) color = bad;
-
-      const gauge = document.getElementById('gauge');
-      gauge.style.background =
-        `conic-gradient(from 180deg, ${color} 0deg, ${color} ${fillDeg}deg, rgba(11,27,58,.12) ${fillDeg}deg 360deg)`;
-
-      document.getElementById('perfPct').textContent = fmtPctBR(p);
-
-      const statusEl = document.getElementById('metaStatus');
-      const metaEl = document.getElementById('metaBadge');
-      if (metaEl) metaEl.textContent = `Meta: ${fmtPctBR(t)}`;
-
-      if (statusEl){
-        if (p >= t){
-          statusEl.className = 'pill good';
-          statusEl.textContent = 'OK — acima da meta';
-        } else {
-          statusEl.className = 'pill bad';
-          statusEl.textContent = 'Atenção — abaixo da meta';
-        }
+      if (kind === 'cart') {
+        return `<svg ${common}><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/><path d="M3 4h2l2.2 10.5a2 2 0 0 0 2 1.5h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>`;
       }
+      if (kind === 'stop') {
+        return `<svg ${common}><path d="M7 3h10l4 4v10l-4 4H7l-4-4V7z"/><path d="M9 9l6 6"/><path d="M15 9l-6 6"/></svg>`;
+      }
+      if (kind === 'doc') {
+        return `<svg ${common}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/></svg>`;
+      }
+      if (kind === 'hourglass') {
+        return `<svg ${common}><path d="M6 2h12"/><path d="M6 22h12"/><path d="M8 2c0 6 8 6 8 12"/><path d="M16 2c0 6-8 6-8 12"/></svg>`;
+      }
+      return `<svg ${common}><path d="M20.6 13.4 12 22l-10-10V2h10z"/><path d="M7 7h.01"/></svg>`;
+    }
 
-      const legend = document.getElementById('metaLegend');
-      if (legend) legend.textContent = `Meta no gauge: ${fmtPctBR(t)} (pino)`;
-
-      placeTargetMarker(t);
+    function iconKindForStatus(status){
+      const s = String(status || '').toLowerCase();
+      if (s.includes('ecommerce') || s.includes('e-commerce')) return 'cart';
+      if (s.includes('bloque')) return 'stop';
+      if (s.includes('fatur')) return 'doc';
+      if (s.includes('análise de crédito') || s.includes('analise de credito')) return 'hourglass';
+      return 'tag';
     }
 
     function renderTransportadores(data){
@@ -647,8 +781,6 @@
         const nome = (it.transportador ?? it.nome ?? '').toString().trim();
         const chegada = (it.chegada ?? '').toString().trim();
         const saida = (it.saida ?? '').toString().trim();
-
-        // ✅ NOVO: somente "agendado"
         const agendado = (it.agendado ?? '').toString().trim();
 
         let cls = '';
@@ -662,6 +794,52 @@
           <td>${chegada || '—'}</td>
           <td>${saida || '—'}</td>
           <td>${agendado || '—'}</td>
+        `;
+        body.appendChild(tr);
+      }
+    }
+
+    function renderPedidos(data){
+      const list = Array.isArray(data.pedidos_status) ? data.pedidos_status : [];
+      const body = document.getElementById('tbodyPedidos');
+      body.innerHTML = '';
+
+      document.getElementById('pedidosCount').textContent = `${list.length} itens`;
+
+      if (!list.length){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="3">—</td>`;
+        body.appendChild(tr);
+        return;
+      }
+
+      for (const it of list){
+        const status = (it.status ?? it.pedidos ?? '').toString().trim() || '—';
+        const qtd = Number(it.quantidade ?? it.qtd ?? 0) || 0;
+
+        const valorNum = parseBRLValue(it.valor);
+        const key = status.toLowerCase();
+
+        const isTotal = key === 'total';
+        const isFaturado = key === 'faturado';
+        const isBlink = (key === 'análise de crédito' || key === 'analise de credito' || key === 'alvará sanitário' || key === 'alvara sanitario');
+
+        const tr = document.createElement('tr');
+        if (isTotal) tr.classList.add('rowTotalGreen');
+        else if (isFaturado) tr.classList.add('rowFaturado');
+        if (isBlink) tr.classList.add('blinkWarn');
+
+        const iconKind = iconKindForStatus(status);
+
+        tr.innerHTML = `
+          <td>
+            <div class="pedidoCell">
+              <span class="pedidoIcon">${svgIcon(iconKind)}</span>
+              <span class="pedidoText">${status}</span>
+            </div>
+          </td>
+          <td>${qtd.toLocaleString('pt-BR')}</td>
+          <td>${isTotal ? `<strong>${fmtBRL.format(valorNum)}</strong>` : fmtBRL.format(valorNum)}</td>
         `;
         body.appendChild(tr);
       }
@@ -705,7 +883,7 @@
       const hojeBody = document.getElementById('tbodyHoje');
       hojeBody.innerHTML = '';
 
-      for (const it of hojeList){
+      for (const it of hojeAll){
         const dataEntrega = (it.data_entrega ?? '').toString().trim();
         const tr = document.createElement('tr');
         if (dataEntrega) tr.className = 'rowDelivered';
@@ -775,85 +953,77 @@
       return { start, stop };
     }
 
-    function initAutoScroll() {
-      startAutoScroll(document.getElementById('scrollAtraso'), { speedPxPerTick: 1, tickMs: 45, pauseAtEndMs: 1500 });
-      startAutoScroll(document.getElementById('scrollHoje'),   { speedPxPerTick: 1, tickMs: 50, pauseAtEndMs: 1400 });
-      startAutoScroll(document.getElementById('scrollTransp'), { speedPxPerTick: 1, tickMs: 55, pauseAtEndMs: 1200 });
+    function syncLeftToPedidosHeight(){
+      const leftCol = document.getElementById('leftCol');
+      const panelPedidos = document.getElementById('panelPedidos');
+      const cardsBox = document.getElementById('cardsBox');
+      const panelTransp = document.getElementById('panelTransp');
+      const scrollTransp = document.getElementById('scrollTransp');
+      if (!leftCol || !panelPedidos || !cardsBox || !panelTransp || !scrollTransp) return;
+
+      leftCol.style.height = 'auto';
+      panelTransp.style.height = 'auto';
+
+      const pedidosH = panelPedidos.offsetHeight;
+      leftCol.style.height = pedidosH + 'px';
+
+      const gap = 14;
+      const cardsH = cardsBox.offsetHeight;
+      const transpH = Math.max(160, pedidosH - cardsH - gap);
+
+      panelTransp.style.height = transpH + 'px';
+
+      const ph = panelTransp.querySelector('.ph');
+      const phH = ph ? ph.offsetHeight : 56;
+      scrollTransp.style.maxHeight = (transpH - phH) + 'px';
     }
 
-    const AUDIO_STORAGE_KEY = "last_audio_announcement_id_v1";
+    function syncNotesToPedidosHeight(){
+      const panelPedidos = document.getElementById('panelPedidos');
+      const panelAtraso = document.getElementById('panelAtraso');
+      const panelHoje = document.getElementById('panelHoje');
+      const scrollAtraso = document.getElementById('scrollAtraso');
+      const scrollHoje = document.getElementById('scrollHoje');
 
-    function parseISODateSafe(iso){
-      const t = Date.parse(String(iso || ''));
-      return Number.isFinite(t) ? t : NaN;
+      if (!panelPedidos || !panelAtraso || !panelHoje || !scrollAtraso || !scrollHoje) return;
+
+      const h = panelPedidos.offsetHeight;
+
+      panelAtraso.style.height = h + 'px';
+      panelHoje.style.height = h + 'px';
+
+      const phA = panelAtraso.querySelector('.ph');
+      const phH_A = phA ? phA.offsetHeight : 56;
+      scrollAtraso.style.maxHeight = (h - phH_A) + 'px';
+
+      const phB = panelHoje.querySelector('.ph');
+      const phH_B = phB ? phB.offsetHeight : 56;
+      scrollHoje.style.maxHeight = (h - phH_B) + 'px';
     }
 
-    function isAnnouncementExpired(createdAtISO, ttlMinutes){
-      const createdMs = parseISODateSafe(createdAtISO);
-      if (!Number.isFinite(createdMs)) return false;
-      const ttl = Number(ttlMinutes) || 0;
-      if (ttl <= 0) return false;
-      return (Date.now() - createdMs) > (ttl * 60 * 1000);
-    }
-
-    function speakPTBR(text){
-      if (!text) return;
-      if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) return;
-
-      window.speechSynthesis.cancel();
-
-      const u = new SpeechSynthesisUtterance(String(text));
-      u.lang = "pt-BR";
-      u.rate = 1.0;
-      u.pitch = 1.0;
-
-      window.speechSynthesis.speak(u);
-    }
-
-    function tryPlayAnnouncement(data){
-      const ann = data?.audio_announcement;
-      if (!ann || ann.enabled !== true) return;
-
-      const id = String(ann.id || '').trim();
-      const msg = String(ann.message || '').trim();
-      if (!id || !msg) return;
-
-      if (isAnnouncementExpired(ann.created_at, ann.ttl_minutes)) return;
-
-      const lastId = localStorage.getItem(AUDIO_STORAGE_KEY);
-      if (lastId === id) return;
-
-      localStorage.setItem(AUDIO_STORAGE_KEY, id);
-      speakPTBR(msg);
+    function initAutoScrollTV() {
+      startAutoScroll(document.getElementById('scrollAtraso'), { speedPxPerTick: 1, tickMs: 92, pauseAtEndMs: 2400, pauseAtTopMs: 900 });
+      startAutoScroll(document.getElementById('scrollHoje'),   { speedPxPerTick: 1, tickMs: 92, pauseAtEndMs: 2400, pauseAtTopMs: 900 });
+      startAutoScroll(document.getElementById('scrollTransp'), { speedPxPerTick: 1, tickMs: 95, pauseAtEndMs: 2200, pauseAtTopMs: 900 });
     }
 
     async function load(){
       const res = await fetch(`data.json?t=${Date.now()}`, { cache: 'no-store' });
       const data = await res.json();
 
-      tryPlayAnnouncement(data);
+      formatUpdatedAtToBadge(data);
 
-      document.getElementById('updatedAt').textContent = 'Atualizado em: ' + data.updated_at;
+      // ✅ Mostra o alerta APENAS se tv_alert.enabled === true
+      tryShowTvAlert(data);
 
-      document.getElementById('kpiTotalNotas').textContent = Number(data.kpis.total_notas || 0).toLocaleString('pt-BR');
-      document.getElementById('kpiEntregas').textContent   = Number(data.kpis.entregas_realizadas || 0).toLocaleString('pt-BR');
-      document.getElementById('kpiAtraso').textContent     = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
-
-      const previstasHoje = Number(data.kpis.previstas_para_hoje || 0);
-      const entreguesHoje = Number(data.kpis.entregues_hoje || 0);
-      document.getElementById('kpiHojeEntregue').textContent =
-        `${previstasHoje.toLocaleString('pt-BR')} / ${entreguesHoje.toLocaleString('pt-BR')}`;
-
-      document.getElementById('kpiValorAtraso').textContent = fmtBRLCompactK(data.kpis.valor_total_em_atraso);
-      document.getElementById('kpiValorHoje').textContent   = fmtBRLCompactK(data.kpis.valor_total_previsto_hoje);
+      document.getElementById('kpiAtraso').textContent = Number(data.kpis.notas_em_atraso || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiPrevistasHoje').textContent = Number(data.kpis.previstas_para_hoje || 0).toLocaleString('pt-BR');
+      document.getElementById('kpiEntreguesHoje').textContent = Number(data.kpis.entregues_hoje || 0).toLocaleString('pt-BR');
 
       buildCarrierOptions(data);
 
-      const perf = Number(data.kpis.performance_percent || 0);
-      const target = Number(data.kpis.meta_performance_percent || 95);
-      setGauge(perf, target);
-
       renderTransportadores(data);
+      renderPedidos(data);
 
       const sel = document.getElementById('carrierFilter');
       const render = () => renderTables(data, sel.value);
@@ -866,8 +1036,19 @@
 
       render();
 
-      setTimeout(initAutoScroll, 350);
-      window.addEventListener('resize', () => setGauge(perf, target));
+      syncLeftToPedidosHeight();
+      syncNotesToPedidosHeight();
+
+      setTimeout(() => {
+        syncLeftToPedidosHeight();
+        syncNotesToPedidosHeight();
+        initAutoScrollTV();
+      }, 350);
+
+      window.addEventListener('resize', () => {
+        syncLeftToPedidosHeight();
+        syncNotesToPedidosHeight();
+      });
     }
 
     load().catch(err => {
@@ -877,3 +1058,4 @@
   </script>
 </body>
 </html>
+
