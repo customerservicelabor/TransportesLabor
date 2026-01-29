@@ -55,7 +55,7 @@
   ],
   "notas_previstas_hoje": [
     { "nota_fiscal": "200162", "destinatario": "MINUZZI & PINTARELLI PRODUTOS MEDICO-HOS", "transportador": "TGL", "cidade_destino": "CURITIBA - PR", "data_entrega": "29/01/2025" },
-    { "nota_fiscal": "200118", "destinatario": "CICLA DIST PROD DIAGNOSTICOS LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "PORTO ALEGRE - RS", "data_entrega": "" },
+    { "nota_fiscal": "200118", "destinatario": "CICLA DIST PROD DIAGNOSTICOS LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "PORTO ALEGRE - RS", "data_entrega": "29/01/2025" },
     { "nota_fiscal": "200114", "destinatario": "VICTORIA REGIA", "transportador": "TGL", "cidade_destino": "PINHAIS - PR", "data_entrega": "29/01/2026" },
     { "nota_fiscal": "200076", "destinatario": "CENTRO ULTRASSONOGRAFICO LTDA", "transportador": "SCHREIBER", "cidade_destino": "SAO PAULO - SP", "data_entrega": "29/01/2026" },
     { "nota_fiscal": "200050", "destinatario": "DENTAL KAMINSKI LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "PELOTAS - RS", "data_entrega": "" },
@@ -86,6 +86,7 @@
     "ttl_minutes": 720
   }
 }
+
 
 
 
