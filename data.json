@@ -18,7 +18,7 @@
     { "status": "Total", "quantidade": 106, "valor": "962699,25" }
 
     
-  ],
+   ],
   "transportadores": [
     { "transportador": "Azul", "chegada": "10:30", "saida": "11:20", "agendado": "10:00" },
     { "transportador": "Latam", "chegada": "10:00", "saida": "10:50", "agendado": "10:00" },
@@ -26,8 +26,8 @@
     { "transportador": "Tecmar", "chegada": "", "saida": "", "agendado": "11:00" },
     { "transportador": "Logdi", "chegada": "10:05", "saida": "", "agendado": "11:00" },
     { "transportador": "Translovato", "chegada": "", "saida": "", "agendado": "14:00" },
-    { "transportador": "Patrus", "chegada": "", "saida": "", "agendado": "14:30" },
-    { "transportador": "Gran Cargo", "chegada": "13:00", "saida": "", "agendado": "15:00" },
+    { "transportador": "Patrus", "chegada": "13:00", "saida": "", "agendado": "14:30" },
+    { "transportador": "Gran Cargo", "chegada": "13:00", "saida": "14:05", "agendado": "15:00" },
     { "transportador": "Schreiber", "chegada": "12:00", "saida": "", "agendado": "16:30" },
     { "transportador": "TGL", "chegada": "", "saida": "", "agendado": "17:00" }
   ],
@@ -87,6 +87,7 @@
     "ttl_minutes": 720
   }
 }
+
 
 
 
