@@ -3,7 +3,7 @@
   "kpis": {
     "notas_em_atraso": 16,
     "previstas_para_hoje": 21,
-    "entregues_hoje": 4
+    "entregues_hoje": 6
   },
   "pedidos_status": [
     { "status": "Aguardando Liberação", "quantidade": 1, "valor": "25622,23" },
@@ -61,13 +61,13 @@
     { "nota_fiscal": "199929", "destinatario": "RUIZ COMERCIO DE EQUIPAMENTOS HOSPITALARES LTDA", "transportador": "TRANSLOVATO", "cidade_destino": "PERUIBE - SP", "data_entrega": "" },
     { "nota_fiscal": "199920", "destinatario": "J.J.COMERCIAL PROD. HOSPITALARES LTDA ME", "transportador": "PATRUS", "cidade_destino": "ARARAQUARA - SP", "data_entrega": "" },
     { "nota_fiscal": "199808", "destinatario": "TECHMED DISTRIBUIDORA DE PRODUTOS HOSPIT", "transportador": "TRANSLOVATO", "cidade_destino": "ITAPEVA - SP", "data_entrega": "29/01/2026" },
-    { "nota_fiscal": "199682", "destinatario": "DU BOM DIST. DE PRODUTOS MEDICO-HOSPITAL", "transportador": "AZURELOG", "cidade_destino": "CAMPO GRANDE - MS", "data_entrega": "" },
+    { "nota_fiscal": "199682", "destinatario": "DU BOM DIST. DE PRODUTOS MEDICO-HOSPITAL", "transportador": "AZURELOG", "cidade_destino": "CAMPO GRANDE - MS", "data_entrega": "30/01/2026" },
     { "nota_fiscal": "199580", "destinatario": "FLEURY S.A.", "transportador": "LOGDI", "cidade_destino": "RECIFE - PE", "data_entrega": "" },
     { "nota_fiscal": "199553", "destinatario": "KG MED PROD HOSP ORTOPEDICOS LTDA", "transportador": "AZURELOG", "cidade_destino": "COSTA RICA - MS", "data_entrega": "" },
     { "nota_fiscal": "199484", "destinatario": "PRO MED & COMERCIO LTDA", "transportador": "LATAM", "cidade_destino": "MACAPA - AP", "data_entrega": "" },
     { "nota_fiscal": "199372", "destinatario": "DENTAL COSTA PRODUTOS ODONTO EIRELI", "transportador": "FEDEX", "cidade_destino": "CAMPINA GRANDE - PB", "data_entrega": "" },
     { "nota_fiscal": "199295", "destinatario": "ALLFAMED COMERCIO ATAC DE MEDIC LTDA", "transportador": "FEDEX", "cidade_destino": "CAMPINA GRANDE - PB", "data_entrega": "" },
-    { "nota_fiscal": "199282", "destinatario": "KIENTRO BRASIL LTDA", "transportador": "PATRUS", "cidade_destino": "MOGI MIRIM - SP", "data_entrega": "" },
+    { "nota_fiscal": "199282", "destinatario": "KIENTRO BRASIL LTDA", "transportador": "PATRUS", "cidade_destino": "MOGI MIRIM - SP", "data_entrega": "30/01/2026" },
     { "nota_fiscal": "199234", "destinatario": "CEB SOLUCOES AMBIENTAIS LTDA", "transportador": "LATAM", "cidade_destino": "RIO DE JANEIRO - RJ", "data_entrega": "" },
     { "nota_fiscal": "199155", "destinatario": "HEALTH MED ATACADO LTDA", "transportador": "FEDEX", "cidade_destino": "TERESINA - PI", "data_entrega": "" }
   ],
@@ -81,4 +81,5 @@
     "ttl_minutes": 720
   }
 }
+
 
