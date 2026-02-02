@@ -1,21 +1,21 @@
 {
-  "updated_at": "02/02/2026 16:35",
+  "updated_at": "02/02/2026 16:36",
   "kpis": {
-    "notas_em_atraso": 10,
+    "notas_em_atraso": 15,
     "previstas_para_hoje": 52,
-    "entregues_hoje": 35
+    "entregues_hoje": 37
   },
   "pedidos_status": [
     { "status": "Aguardando Liberação", "quantidade": 1, "valor": "8305,56" },
-    { "status": "Alvará Sanitário", "quantidade": 4, "valor": "17923,89" },
-    { "status": "Bloqueado por regra", "quantidade": 0, "valor": "0" },
-    { "status": "Análise de Crédito", "quantidade": 6, "valor": "46187,24" },
-    { "status": "Total em Disputa", "quantidade": 11, "valor": "72416,69" },
-    { "status": "Aguard. Envio Separação", "quantidade": 22, "valor": "276224,35" },
-    { "status": "Em Separação", "quantidade": 30, "valor": "168418,85" },
+    { "status": "Alvará Sanitário", "quantidade": 7, "valor": "24467,76" },
+    { "status": "Bloqueado por regra", "quantidade": 1, "valor": "2668,43" },
+    { "status": "Análise de Crédito", "quantidade": 16, "valor": "69177,92" },
+    { "status": "Total em Disputa", "quantidade": 25, "valor": "104619,67" },
+    { "status": "Aguard. Envio Separação", "quantidade": 3, "valor": "3794,25" },
+    { "status": "Em Separação", "quantidade": 56, "valor": "273441,95" },
     { "status": "Separado", "quantidade": 0, "valor": "0" },
-    { "status": "Faturado", "quantidade": 67, "valor": "399575,17" },
-    { "status": "Total", "quantidade": 119, "valor": "844218,37" }
+    { "status": "Faturado", "quantidade": 70, "valor": "404328,88" },
+    { "status": "Total", "quantidade": 129, "valor": "681565,08" }
  ],
   "transportadores": [
     { "transportador": "Azul", "chegada": "", "saida": "", "agendado": "10:00" },
@@ -30,19 +30,19 @@
     { "transportador": "TGL", "chegada": "", "saida": "", "agendado": "17:00" }
   ],
  "notas_em_atraso": [
+   {"nota_fiscal": "200088 ", "destinatario": "89169379000171 - LABORATORIO BIOANALISES S/S LTDA ", "transportador": "TGL ", "previsao_entrega": "30/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199115 ", "destinatario": "19086670000109 - DICOREL DISTRIB MEDICAMENTOS EIRELI ", "transportador": "FEDEX ", "previsao_entrega": "23/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199916 ", "destinatario": "18422884000138 - CASTELLI PRODUTOS ODONTOLOGICOS EIRELI ", "transportador": "TGL ", "previsao_entrega": "28/01/2026","ocorrencia": "Atrasado" },
-   {"nota_fiscal": "200088 ", "destinatario": "89169379000171 - LABORATORIO BIOANALISES S/S LTDA ", "transportador": "TGL ", "previsao_entrega": "30/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199155 ", "destinatario": "17071690000172 - HEALTH MED ATACADO LTDA ", "transportador": "FEDEX ", "previsao_entrega": "30/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199414 ", "destinatario": "34922825000185 - LABNORTE MATERIAIS PARA LABORATORIO ", "transportador": "FEDEX ", "previsao_entrega": "21/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199525 ", "destinatario": "61486650020532 - DIAGNOSTICOS DA AMERICA S.A ", "transportador": "PATRUS ", "previsao_entrega": "23/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199580 ", "destinatario": "60840055009511 - FLEURY S.A. ", "transportador": "LOGDI ", "previsao_entrega": "30/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199820 ", "destinatario": "61486650020532 - DIAGNOSTICOS DA AMERICA S.A ", "transportador": "PATRUS ", "previsao_entrega": "29/01/2026","ocorrencia": "Atrasado" },
-   {"nota_fiscal": "199929 ", "destinatario": "05520851000189 - RUIZ COMERCIO DE EQUIPAMENTOS HOSPITALARES LTDA ", "transportador": "TRANSLOVATO ", "previsao_entrega": "30/01/2026","ocorrencia": "Atrasado" },
-   {"nota_fiscal": "199098 ", "destinatario": "07038425000139 - LABORATORIO CLEMENTINO FRAGA LTDA ", "transportador": "FEDEX ", "previsao_entrega": "21/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199191 ", "destinatario": "43751565000113 - RF PROD HOSPITALARES ODONTOLOGICOS LTDA ", "transportador": "FEDEX ", "previsao_entrega": "23/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199234 ", "destinatario": "27699258000184 - CEB SOLUCOES AMBIENTAIS LTDA ", "transportador": "LATAM ", "previsao_entrega": "30/01/2026","ocorrencia": "Atrasado" },
+   {"nota_fiscal": "199098 ", "destinatario": "07038425000139 - LABORATORIO CLEMENTINO FRAGA LTDA ", "transportador": "FEDEX ", "previsao_entrega": "21/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "199755 ", "destinatario": "60448040000122 - HOSPITAL DAS CLINICAS DE SAO PAULO ", "transportador": "PATRUS ", "previsao_entrega": "29/01/2026","ocorrencia": "Atrasado" },
+   {"nota_fiscal": "199929 ", "destinatario": "05520851000189 - RUIZ COMERCIO DE EQUIPAMENTOS HOSPITALARES LTDA ", "transportador": "TRANSLOVATO ", "previsao_entrega": "30/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "200050 ", "destinatario": "89948020000100 - DENTAL KAMINSKI LTDA ", "transportador": "TRANSLOVATO ", "previsao_entrega": "30/01/2026","ocorrencia": "Atrasado" },
    {"nota_fiscal": "200073 ", "destinatario": "91687376001810 - LABORATORIO EXAME DE ANALISES CLINICAS LTDA ", "transportador": "TGL ", "previsao_entrega": "30/01/2026","ocorrencia": "Atrasado" }
 
@@ -71,11 +71,13 @@
   "notas_previstas_hoje": [
    {"nota_fiscal": "200059 ", "destinatario": "51564171000184 - VITLAB LABORATORIO DE ANALISES CLINICAS ", "transportador": "TRANSLOVATO ", "cidade_destino": "SP ", "data_entrega": "30/01/2026" },
    {"nota_fiscal": "200178 ", "destinatario": "72315153000139 - CASA MEDICA COM. PROD. HOSPITALARES LTDA ", "transportador": "TRANSLOVATO ", "cidade_destino": "PR ", "data_entrega": "" },
-   {"nota_fiscal": "200115 ", "destinatario": "02486788000113 - CRISTALMED COMERCIO DE MEDICAMENTO ", "transportador": "TRANSLOVATO ", "cidade_destino": "PR ", "data_entrega": "" },
+   {"nota_fiscal": "200115 ", "destinatario": "02486788000113 - CRISTALMED COMERCIO DE MEDICAMENTO ", "transportador": "TRANSLOVATO ", "cidade_destino": "PR ", "data_entrega": "02/02/2026" },
    {"nota_fiscal": "199046 ", "destinatario": "00529443000336 - OBRAS SOCIAIS DA DIOCESE DE RIO BRANCO ", "transportador": "LATAM ", "cidade_destino": "AC ", "data_entrega": "19/01/2026" },
    {"nota_fiscal": "199502 ", "destinatario": "19378769019861 - INSTITUTO HERMES PARDINI SA ", "transportador": "FEDEX ", "cidade_destino": "CE ", "data_entrega": "" },
    {"nota_fiscal": "199478 ", "destinatario": "41238269000198 - MED TECH EIRELI ", "transportador": "PATRUS ", "cidade_destino": "BA ", "data_entrega": "27/01/2026" },
    {"nota_fiscal": "199561 ", "destinatario": "04361467000118 - ARTMED COMERCIAL LTDA ", "transportador": "LOGDI ", "cidade_destino": "RN ", "data_entrega": "30/01/2026" },
+   {"nota_fiscal": "199640 ", "destinatario": "11588333000108 - SALUTIS DA AMAZONIA LTDA ", "transportador": "LATAM ", "cidade_destino": "AM ", "data_entrega": "26/01/2026" },
+   {"nota_fiscal": "199688 ", "destinatario": "02246196000124 - HOSPLAB COMERCIO ARTIGOS MEDICOS E ORTOP ", "transportador": "LATAM ", "cidade_destino": "AM ", "data_entrega": "23/01/2026" },
    {"nota_fiscal": "200141 ", "destinatario": "07050997000133 - UNIAO PM DISTRIBUIDORA DE PRODUTOS MEDIC ", "transportador": "TGL ", "cidade_destino": "RS ", "data_entrega": "" },
    {"nota_fiscal": "200296 ", "destinatario": "03034313000159 - DENTAL CENTER - COMERCIO DE MATERIAIS OD ", "transportador": "SCHREIBER ", "cidade_destino": "SC ", "data_entrega": "29/01/2026" },
    {"nota_fiscal": "200276 ", "destinatario": "18599625000187 - JORGE LUIZ RUCKOWSKI - INDAVID ", "transportador": "SCHREIBER ", "cidade_destino": "SC ", "data_entrega": "29/01/2026" },
@@ -87,8 +89,6 @@
    {"nota_fiscal": "199210 ", "destinatario": "19090642000157 - S DE ALMEIDA MAIA CONSULTORIA EM SAUDE E ", "transportador": "LOGDI ", "cidade_destino": "PA ", "data_entrega": "" },
    {"nota_fiscal": "199313 ", "destinatario": "17227485000153 - L G PRODUTOS HOSPITALARES LTDA - ME ", "transportador": "FEDEX ", "cidade_destino": "PB ", "data_entrega": "30/01/2026" },
    {"nota_fiscal": "199426 ", "destinatario": "49755946000157 - RV MEDIC HOSPITALAR LTDA ", "transportador": "FEDEX ", "cidade_destino": "PI ", "data_entrega": "28/01/2026" },
-   {"nota_fiscal": "199640 ", "destinatario": "11588333000108 - SALUTIS DA AMAZONIA LTDA ", "transportador": "LATAM ", "cidade_destino": "AM ", "data_entrega": "26/01/2026" },
-   {"nota_fiscal": "199688 ", "destinatario": "02246196000124 - HOSPLAB COMERCIO ARTIGOS MEDICOS E ORTOP ", "transportador": "LATAM ", "cidade_destino": "AM ", "data_entrega": "23/01/2026" },
    {"nota_fiscal": "199818 ", "destinatario": "45331406000195 - DIST MEDICAMENTOS CASTRO OLIVEIRA LTDA ", "transportador": "PATRUS ", "cidade_destino": "MG ", "data_entrega": "28/01/2026" },
    {"nota_fiscal": "199850 ", "destinatario": "05988182000174 - CLAUDIA TREVISAN ", "transportador": "PATRUS ", "cidade_destino": "BA ", "data_entrega": "" },
    {"nota_fiscal": "199750 ", "destinatario": "04062545000183 - LABOR GUARARAPES ANALISES CLINICAS LTDA ", "transportador": "PATRUS ", "cidade_destino": "SP ", "data_entrega": "29/01/2026" },
@@ -96,7 +96,6 @@
    {"nota_fiscal": "199891 ", "destinatario": "71336101000186 - VALE COMERCIAL EIRELI ", "transportador": "PATRUS ", "cidade_destino": "MG ", "data_entrega": "28/01/2026" },
    {"nota_fiscal": "199872 ", "destinatario": "12392848000192 - OPCAO DISTRIBUIDORA DE MATERIAIS HOSPITALARES LTDA ME ", "transportador": "PATRUS ", "cidade_destino": "RJ ", "data_entrega": "28/01/2026" },
    {"nota_fiscal": "199996 ", "destinatario": "57624462000105 - OURO FINO SAUDE ANIMAL LTDA ", "transportador": "PATRUS ", "cidade_destino": "SP ", "data_entrega": "" },
-   {"nota_fiscal": "200000 ", "destinatario": "18127309770 - THAYNA GONCALVES CAETANO ", "transportador": "PATRUS ", "cidade_destino": "ES ", "data_entrega": "28/01/2026" },
    {"nota_fiscal": "199948 ", "destinatario": "11144448000103 - CONTROLL PHARMA COMERCIO MEDICAMENTOS LT ", "transportador": "PATRUS ", "cidade_destino": "SP ", "data_entrega": "28/01/2026" },
    {"nota_fiscal": "200047 ", "destinatario": "28801626000116 - GALILEO TECNOLOGIA EM SAUDE LTDA ", "transportador": "AZUL ", "cidade_destino": "ES ", "data_entrega": "" },
    {"nota_fiscal": "200044 ", "destinatario": "26174873000104 - MELLUZZI DISTRIB MEDICAMENTOS EIRELI ", "transportador": "AZUL ", "cidade_destino": "PA ", "data_entrega": "" },
@@ -105,20 +104,21 @@
    {"nota_fiscal": "200198 ", "destinatario": "21670010000104 - COMERCIAL CIRURGICA IPERO LTDA ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "29/01/2026" },
    {"nota_fiscal": "200145 ", "destinatario": "96275128000137 - PAULO ANTONIO GUARIGLIA ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "29/01/2026" },
    {"nota_fiscal": "200286 ", "destinatario": "21487927000178 - NEUPHARMA DISTRIBUICAO DE MAT. MED. HOSPITALAR LTD ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "30/01/2026" },
-   {"nota_fiscal": "200246 ", "destinatario": "05652452000171 - INSTITUTO DE BIOMEDICINA DO ABC LTDA - EPP ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "30/01/2026" },
    {"nota_fiscal": "200346 ", "destinatario": "12841848000122 - DB GENETICA SERVICOS LABORATORIAIS LTDA ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "30/01/2026" },
    {"nota_fiscal": "200241 ", "destinatario": "44217568000134 - ALEXANDRE LAZARO AQUINO 16383859803 ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "30/01/2026" },
    {"nota_fiscal": "200255 ", "destinatario": "18009840000180 - CLINICA VETERINARIA SPACAO LTDA ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "30/01/2026" },
-   {"nota_fiscal": "200179 ", "destinatario": "29032826000114 - DATA MEDICAL PROD MEDICOS HOSP LTDA ", "transportador": "TRANSLOVATO ", "cidade_destino": "PR ", "data_entrega": "" },
+   {"nota_fiscal": "200179 ", "destinatario": "29032826000114 - DATA MEDICAL PROD MEDICOS HOSP LTDA ", "transportador": "TRANSLOVATO ", "cidade_destino": "PR ", "data_entrega": "02/02/2026" },
    {"nota_fiscal": "200238 ", "destinatario": "57161603000192 - DRESCH E RODRIGUES DISTRIB VETERIN LTDA ", "transportador": "TRANSLOVATO ", "cidade_destino": "PR ", "data_entrega": "" },
    {"nota_fiscal": "200413 ", "destinatario": "39887396000176 - ROYAL TECH DISTRIB HOSP FARMACEUTICA LT ", "transportador": "TRANSLOVATO ", "cidade_destino": "PR ", "data_entrega": "02/02/2026" },
    {"nota_fiscal": "199972 ", "destinatario": "64440688000103 - CIRURGICA JOAO PROD MEDICO HOSP LTDA ", "transportador": "AZUL ", "cidade_destino": "MG ", "data_entrega": "29/01/2026" },
+   {"nota_fiscal": "200000 ", "destinatario": "18127309770 - THAYNA GONCALVES CAETANO ", "transportador": "PATRUS ", "cidade_destino": "ES ", "data_entrega": "28/01/2026" },
    {"nota_fiscal": "200035 ", "destinatario": "35143547000120 - LCCP LABORATORIO ANALISES CLINICAS LTDA ", "transportador": "TRANSLOVATO ", "cidade_destino": "PR ", "data_entrega": "30/01/2026" },
    {"nota_fiscal": "200160 ", "destinatario": "27599457000110 - DACAS SERVICOS MEDICOS LTDA ", "transportador": "TGL ", "cidade_destino": "RS ", "data_entrega": "" },
    {"nota_fiscal": "200197 ", "destinatario": "36569236000190 - GMT LIFE CARE MAT HOSPITALARES LTDA ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "29/01/2026" },
    {"nota_fiscal": "200206 ", "destinatario": "75869263000130 - LABORATORIO DE ANALISES CLINICAS LEDRA LTDA ", "transportador": "TGL ", "cidade_destino": "SC ", "data_entrega": "30/01/2026" },
    {"nota_fiscal": "200311 ", "destinatario": "32579035885 - LILIA RAMOS DOS SANTOS GUADANHIM ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "30/01/2026" },
    {"nota_fiscal": "200353 ", "destinatario": "35951053000172 - PARAMETRO OZONIO COM MAT HOSP LTDA ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "30/01/2026" },
+   {"nota_fiscal": "200246 ", "destinatario": "05652452000171 - INSTITUTO DE BIOMEDICINA DO ABC LTDA - EPP ", "transportador": "SCHREIBER ", "cidade_destino": "SP ", "data_entrega": "30/01/2026" },
    {"nota_fiscal": "200182 ", "destinatario": "00814559001208 - SURYA DENTAL COMERCIO DE PRODUTOS ODONTO ", "transportador": "TRANSLOVATO ", "cidade_destino": "SC ", "data_entrega": "" },
    {"nota_fiscal": "200539 ", "destinatario": "32350180000128 - NOVA LINEA COMERCIO DE PRODUTOS FARMACEUTICOS EIRELI ", "transportador": "TELE CARGA ", "cidade_destino": "RJ ", "data_entrega": "02/02/2026" }
 
@@ -138,4 +138,3 @@
     "ttl_minutes": 720
   }
 }
-
