@@ -18,16 +18,16 @@
     { "status": "Total", "quantidade": 97, "valor": "582626,72" }
   ],
   "transportadores": [
-    { "transportador": "Azul", "chegada": "00:00", "saida": "00:00", "agendado": "10:00" },
-    { "transportador": "Latam", "chegada": "10:51", "saida": "00:00", "agendado": "10:00" },
-    { "transportador": "Azurelog", "chegada": "10:00", "saida": "00:00", "agendado": "10:30" },
-    { "transportador": "Tecmar", "chegada": "00:00", "saida": "00:00", "agendado": "11:00" },
-    { "transportador": "Logdi", "chegada": "10:00", "saida": "00:00", "agendado": "11:00" },
-    { "transportador": "Translovato", "chegada": "00:00", "saida": "00:00", "agendado": "14:00" },
-    { "transportador": "Patrus", "chegada": "13:15", "saida": "00:00", "agendado": "14:30" },
-    { "transportador": "Gran Cargo", "chegada": "00:00", "saida": "00:00", "agendado": "15:00" },
-    { "transportador": "Schreiber", "chegada": "00:00", "saida": "00:00", "agendado": "16:30" },
-    { "transportador": "TGL", "chegada": "00:00", "saida": "00:00", "agendado": "17:00" }
+    { "transportador": "Azul", "chegada": "", "saida": "", "agendado": "10:00" },
+    { "transportador": "Latam", "chegada": "", "saida": "", "agendado": "10:00" },
+    { "transportador": "Azurelog", "chegada": "", "saida": "", "agendado": "10:30" },
+    { "transportador": "Tecmar", "chegada": "", "saida": "", "agendado": "11:00" },
+    { "transportador": "Logdi", "chegada": "", "saida": "", "agendado": "11:00" },
+    { "transportador": "Translovato", "chegada": "", "saida": "", "agendado": "14:00" },
+    { "transportador": "Patrus", "chegada": "", "saida": "", "agendado": "14:30" },
+    { "transportador": "Gran Cargo", "chegada": "", "saida": "", "agendado": "15:00" },
+    { "transportador": "Schreiber", "chegada": "", "saida": "", "agendado": "16:30" },
+    { "transportador": "TGL", "chegada": "", "saida": "", "agendado": "17:00" }
   ],
   "notas_em_atraso": [
     { "nota_fiscal": "200331", "destinatario": "XLAB SUPRIMENTOS PARA LABORATORIO LTDA", "transportador": "TGL", "previsao_entrega": "2026-01-30", "ocorrencia": "Atrasado" },
@@ -99,3 +99,4 @@
     "ttl_minutes": 720
   }
 }
+
