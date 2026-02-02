@@ -1,4 +1,4 @@
-  "updated_at": "02/02/2026 15:10",
+  "updated_at": "02/02/2026 15:14",
   "kpis": {
     "notas_em_atraso": 22,
     "previstas_para_hoje": 21,
@@ -18,4 +18,4 @@
  ],
   "transportadores": [
 
-    { "transportador": "Azul", "chegada": "15:10, saida": "11:20, agendado": "10:00" },
+    { "transportador": "Azul", "chegada": "15:14, saida": "11:20, agendado": "10:00" },
